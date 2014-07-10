@@ -1,13 +1,13 @@
 #mysql connection
 #install.packages("RMySQL");
-library(RMySQL);
+#library(RMySQL);
 #mydb = dbConnect(MySQL(), user='root', password='', dbname='thesis', host='127.0.0.1');
 #tables = dbListTables(mydb);
-mydb = dbConnect(MySQL(), user='root', password='', dbname='chr', host='127.0.0.1');
+#mydb = dbConnect(MySQL(), user='root', password='', dbname='chr', host='127.0.0.1');
 
 #install.packages("translate");
-library(translate);
-set.key("AIzaSyC5nT8bwUjdNXJxRbiloQhy6qhybDsdPNo")
+#library(translate);
+#set.key("AIzaSyC5nT8bwUjdNXJxRbiloQhy6qhybDsdPNo")
 
 #first paragraph from wiki into mysql table
 #install.packages("XML");
@@ -20,7 +20,8 @@ set.key("AIzaSyC5nT8bwUjdNXJxRbiloQhy6qhybDsdPNo")
 #ins <- dbSendQuery(mydb, paste("insert into `", tables[5], "` set `description`= \"", tex, "\", `url`=\"", url, "\"", sep=""));
 
 #set encoding for future query results as utf8
-dbSendQuery(mydb, "SET NAMES 'utf8'");
+#dbSendQuery(mydb, "SET NAMES 'utf8'");
+
 #dataframe with all terminologies and words:
 #allQuery = dbSendQuery(mydb, "select * from `term`");
 #tm = fetch(allQuery, n = -1);
@@ -28,27 +29,44 @@ dbSendQuery(mydb, "SET NAMES 'utf8'");
 #extracting specific terms from origin(term_id)
 #outputs vector of ids = path starting from origin
 tree <- function(origin, path = c()) {
-    path <- c(path, origin);
-    kids <- children(origin, returnIds = TRUE);
-    for(kid in kids) {
-        path <- tree(kid, path);
-    }
-    return(path);
+  path <- c(path, origin);
+  kids <- children(origin, returnIds = TRUE);
+  for(kid in kids) {
+    path <- tree(kid, path);
+  }
+  return(path);
 }
 
 #initialising data frame with terminology from given origin - from term
-initialise <- function(origin) {
-    idPath <- tree(origin);
-    idPathChar <- paste(idPath, collapse = ", ", sep = "");
-    dbSendQuery(mydb, "SET NAMES 'utf8'");
-    dataFrame <- dbGetQuery(mydb, paste("select * from `term` where `term_id` in (", idPathChar, ")", sep = ""));
-    return(dataFrame);
+#initialise <- function(origin) {
+#idPath <- tree(origin);
+#idPathChar <- paste(idPath, collapse = ", ", sep = "");
+#dbSendQuery(mydb, "SET NAMES 'utf8'");
+#dataFrame <- dbGetQuery(mydb, paste("select * from `term` where `term_id` in (", idPathChar, ")", sep = ""));
+#return(dataFrame);
+#}
+initialise <- function(origin){
+  #install.packages("RCurl");
+  library(RCurl);
+  x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
+  tm <- read.csv(text = x);
+  colNames<-names(tm);
+  df<-data.frame();
+  df<-data.frame(t(rep(NA,length(colNames))));
+  names(df)<-colNames;
+  df<-df[-1,];
+  termIds<-c();
+  termIds<-tree(origin);
+  df<-tm[tm$term_id %in% termIds,];
+  return (df);
 }
+y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv")
+rel <- read.csv(text = y)
 
 #dataframe with all the relations term-term, word-term
 #have to do initialise
-relQuery = dbSendQuery(mydb, "select * from `term_relation`"); #dbGetQuery might be better
-rel = fetch(relQuery, n = -1);
+#relQuery = dbSendQuery(mydb, "select * from `term_relation`"); #dbGetQuery might be better
+#rel = fetch(relQuery, n = -1);
 #lower case for all terms except t language
 #tm[,"term"] <- c(tolower(tm[tm$lang != "t","term"]), tm[tm$lang == "t","term"]);
 
@@ -268,6 +286,7 @@ browse <- function(term, lang) {
 #update data frame with same structure as the terminologies
 #updates existing row or inserts a new one (new = TRUE)
 #maybe add the findTerm function?
+#update words also
 updateFrame <- function(dataF, term, lang, termId = NA, new = FALSE, partSpeech = NA, gender = NA, descript = NA, wiki = NA) {
     if(new == FALSE) {
         dataF[dataF$term_id == termId, "term"] <- term;
@@ -321,9 +340,9 @@ transWords <- function(words,langs, newLang, new = FALSE) {
 }
 
 #not for thesis
-thdb <- function(th) {
-    len = nrow(th[th$lang == "t",
-}
+#thdb <- function(th) {
+#    len = nrow(th[th$lang == "t",
+#}
 
 tm<-initialise(10001);
 #wo<-wordFrame("la","en");
@@ -331,5 +350,7 @@ tm<-initialise(10001);
 #wo<-transWord(wo, 47032, "la", "ro")
 
 #dbDisconnect(mydb)
-#cons <- dbListConnections(MySQL());#for(con in cons) {#   dbDisconnect(con);
+#cons <- dbListConnections(MySQL());
+#for(con in cons) {
+#   dbDisconnect(con);
 #}
