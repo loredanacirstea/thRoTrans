@@ -361,14 +361,57 @@ newTranslation <- function(lang, terms = tm, rels = rel, origin = orig){
     }
   }
 }
-separateTerms <- function(offLangs) {
-  sample <- read.csv("../Data/500terms.csv");
-  samplet <- data.frame(t(rep(NA,length(names(tm)))));
-  names(samplet)<-names(tm);
+csvtodf <- function(df, lang, langNo) {
+  samplet <- data.frame(t(rep(NA,length(names(tm))+1)));
+  names(samplet)<-c(names(tm), "pages");
   samplet<-samplet[-1,];
-  for(col in names(sample)) {
-    
+  srow <- 1;
+  for(row in row.names(df)) {
+    nrcol <- 1;
+    for(col in (langNo +2): length(names(df))) {
+      if(nrcol %% 2 == 1) {
+        samplet[srow,] <- c(srow, NA, as.numeric(df[row, "id"]), lang, NA, NA, as.character(df[row, names(df)[col]]),
+                            names(df)[col], NA, NA, NA, as.character(df[row, names(df)[col+1]]));
+        srow <- srow + 1;
+      }
+      nrcol <- nrcol +1;
+    }
   }
+  samplet <- separateTerms(samplet);
+  return(samplet);
+}
+separateTerms <- function(df) {
+  for(row in row.names(df)) {
+    if(as.character(df[row, "term"]) != "") {
+      nosep <- length(grep(";", as.character(df[row, "term"]), fixed = TRUE));
+      if(nosep > 0) {
+        synon <- unlist(strsplit(as.character(df[row,"term"]), c(";", " ;", " ; ", "; "), fixed=TRUE));
+        pgs <- unlist(strsplit(as.character(df[row,"pages"]), c(";", " ;", " ; ", "; "), fixed=TRUE));
+        if(length(pgs) == 1) {
+          pgs <- rep(pgs, nosep+1);
+        }
+        #str(synon);
+        #str(pgs);
+        for(i in 2:length(synon)) {
+          end <- length(row.names(df));
+          df[end + 1, ] <- df[row,];
+          df[end + 1, "term"] <- synon[i];
+          df[end + 1, "pages"] <- pgs[i];
+        }
+        df[row, "term"] <- synon[1];
+        df[row, "pages"] <- pgs[1];
+      }
+    }
+  }
+  return(df);
+}
+inuse <- function(df){}
+compare <- function(df, sources){
+  #per <- c();
+  #for(row in row.names(df)) {
+    #per[""]
+  #}
+  #g <- barplot(c(100, 90, 80));
 }
 matchid <- function(sample = sample500){
   for(row in 1:length(row.names(sample))){
@@ -556,8 +599,68 @@ ontobrowse <- function() {
     }  
     
 }
-
-
+graphdemo <- function(){
+  samplet <- data.frame(t(rep(NA,length(names(tm)))));
+  names(samplet)<-names(tm);
+  samplet<-samplet[-1,];
+  term_id <- c(13459, 13459, 13459, 13602, 13602, 13602, 10738, 10738, 10738);
+  lang <- c("ro", "ro", "ro", "ro", "ro", "ro", "ro", "ro", "ro");
+  term <- c("celulă în coșuleț", "celulă cu coșuleț", "neuron în coșuleț", "sistem nervos periferic", "sistem nervos periferic", "sistem nervos periferic", "adipocit", "celulă adipoasă", "adipocit");
+  sources <- c(1, 2, 3, 1, 2, 3, 1, 2, 3);
+  samplet <- data.frame(term_id, lang, term, sources);
+  add <- c();
+  for(so in sources) { add[so] <- 0;}
+  for(row in row.names(samplet)) {
+    if(as.character(samplet[row, "term"]) == as.character(samplet[samplet$term_id == samplet[row, "term_id"] & samplet$sources == 1, "term"])) {
+      add[samplet[row,"sources"]] <- add[samplet[row,"sources"]] +1;
+    }
+  }
+  ref <- add[1];
+  for(elem in 1:length(add)){ add[elem] <- add[elem]*100/ref; }
+  #prop = prop.table(add, margin = 2);
+  g <- barplot(add, main = "Procentul de suprapunere a variantelor de traducere peste referință", 
+               xlab = "Variantele de traducere", ylab = "Procent de suprapunere %", ylim = c(0, 100),
+               names.arg = unique(sources), col = c("lightblue", "mistyrose", "lavender"),);
+  text(g, 0, round(add, 2), cex=1, pos=3);
+  return(g);
+  
+}
+graphcompare <- function(df){
+  add <- c();
+  sources <- factor(df[, "source"]);
+  for(so in levels(sources)) { add[so] <- 0;}
+  for(row in row.names(df)) {
+    if(as.character(df[row, "term"]) == as.character(df[df$term_id == df[row, "term_id"] & df$sources == "junqueira", "term"])) {
+      add[df[row,"source"]] <- add[df[row,"source"]] +1;
+    }
+  }
+  ref <- add[1];
+  for(elem in 1:length(add)){ add[elem] <- add[elem]*100/ref; }
+  #prop = prop.table(add, margin = 2);
+  g <- barplot(add, main = "Procentul de suprapunere a variantelor de traducere peste referință", 
+               xlab = "Variantele de traducere", ylab = "Procent de suprapunere %", ylim = c(0, 100),
+               names.arg = unique(sources), col = c("lightblue", "mistyrose", "lavender"),);
+  text(g, 0, round(add, 2), cex=1, pos=3);
+  return(g);
+}
+comp <- function(df1,df2){
+  for(row in length(row.names(df1))) {
+    if(df1[row,] != df2[row,]) {
+      str(df1[row,]);
+      cat("\n");
+      str(df2[row,]);
+      cat("\n ; ");
+    }
+  }
+}
+cleardf <- function(df) {
+  for(row in length(row.names(df))) {
+    for(col in names(df)) {
+      df[row, col] <- gsub("(^[[:space:]]+|[[:space:]]+$)", "", df[row, col]);
+    }
+  }
+  return(df);
+}
 #global data frames: terms and relations
 #cat("Connecting to database ...");
 #x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
@@ -566,14 +669,28 @@ ontobrowse <- function() {
 #allRel <- read.csv(text = y);
 #z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
 #sample500 <- read.csv(text = z);
-sample00 <- matchid(sample500);
+#w <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/ee4583b9c5c490e1732375acc4124ba248c763f2/Data/500terms.csv");
+#sample <- read.csv(text = w);
+#sample00 <- matchid(sample500);
+#demog <- graphdemo();
+#newlang <- csvtodf(sample00, "ro", 3);
+#dd <- newlang[1:25,];
+#finalLa <- separateTerms(newlang);
+#z2 <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
+#sample002 <- read.csv(text = z2);
+#sample002 <- sample002[,2:15];
+#finalLa2 <- csvtodf(sample002, "ro", 3);
+#finalLa2clear <- cleardf(finalLa2);
+g <- graphcompare(finalLa2);
+#comp(finalLa2, finalLa);
+#newd <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
+#newdf <- read.csv(text = newd);
 #tm <- allTerms;
 #rel <- allRel;
 #orig <- 10001;
 #displayLg <-"la";
 #cat("Done.");
 #ontobrowse();
-
 #wo<-wordFrame("la","en");
 #wo<-transWords(wo, "la", "ro");
-#wo<-transWord(wo, 47032, "la", "ro")
+#wo<-transWord(wo, 47032, "la", "ro");
