@@ -684,21 +684,21 @@ cleardf <- function(df) {
 }
 #global data frames: terms and relations
 #cat("Connecting to database ...");
-x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
-allTerms <- read.csv(text = x);
-y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
-allRel <- read.csv(text = y);
-z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
-sample500 <- read.csv(text = z);
-tm <- allTerms;
-rel <- allRel;
-orig <- 10001;
-displayLg <-"la";
-finalLa <- cleardf(csvtodf(sample500[,2:15], "ro", 3));
-final <- referenceTrans(finalLa2);
+#x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
+#allTerms <- read.csv(text = x);
+#y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
+#allRel <- read.csv(text = y);
+#z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
+#sample500 <- read.csv(text = z);
+#tm <- allTerms;
+#rel <- allRel;
+# orig <- 10001;
+# displayLg <-"la";
+# finalLa <- cleardf(csvtodf(sample500[,2:15], "ro", 3));
+# final <- referenceTrans(finalLa);
+g <- graphcompare(final);
 
-
-
+#write.csv(final, "../Data/final.csv");
 #w <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/ee4583b9c5c490e1732375acc4124ba248c763f2/Data/500terms.csv");
 #sample <- read.csv(text = w);
 #sample00 <- matchid(sample500);
