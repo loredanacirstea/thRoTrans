@@ -405,7 +405,25 @@ separateTerms <- function(df) {
   }
   return(df);
 }
-inuse <- function(df){}
+referenceTrans <- function(df){
+  lang <- as.character(df[1,"lang"]);
+  termids <- unique(df[, "term_id"]);
+  row <- length(row.names(df)) + 1;
+  for(termid in termids) {
+    concepts <- as.character(df[df$term_id == termid & df$lang == lang & as.character(df$term) != "", "term"]);
+    no <- 0;
+    no <- rep(no, length(unique(concepts)));
+    names(no) <- unique(concepts);
+    for(concept in concepts) {
+      no[concept] <- no[concept] + 1;
+    }
+    max <- max(no);
+    for(i in names(no)) { if(no[i] == max) { term <- i; }}
+    df[row,] <- c(row, NA, termid, lang, NA, NA, term, "reference", NA, NA, NA, NA);
+    row <- row + 1;
+  }
+  return(df);
+}
 compare <- function(df, sources){
   #per <- c();
   #for(row in row.names(df)) {
@@ -629,9 +647,12 @@ graphcompare <- function(df){
   add <- c();
   sources <- factor(df[, "source"]);
   for(so in levels(sources)) { add[so] <- 0;}
+  add["junqueira"] <- length(df[df$source == "junqueira", "term"])
   for(row in row.names(df)) {
-    if(as.character(df[row, "term"]) == as.character(df[df$term_id == df[row, "term_id"] & df$sources == "junqueira", "term"])) {
-      add[df[row,"source"]] <- add[df[row,"source"]] +1;
+    if(length(as.character(df[row, "term"])) != 0 && length(as.character(df[df$term_id == df[row, "term_id"] & df$sources == "junqueira", "term"])) != 0) {
+      if(as.character(df[row, "term"]) == as.character(df[df$term_id == df[row, "term_id"] & df$sources == "junqueira", "term"])) {
+        add[df[row,"source"]] <- add[df[row,"source"]] +1;
+      }
     }
   }
   ref <- add[1];
@@ -654,7 +675,7 @@ comp <- function(df1,df2){
   }
 }
 cleardf <- function(df) {
-  for(row in length(row.names(df))) {
+  for(row in 1:length(row.names(df))) {
     for(col in names(df)) {
       df[row, col] <- gsub("(^[[:space:]]+|[[:space:]]+$)", "", df[row, col]);
     }
@@ -663,12 +684,17 @@ cleardf <- function(df) {
 }
 #global data frames: terms and relations
 #cat("Connecting to database ...");
-#x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
-#allTerms <- read.csv(text = x);
-#y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
-#allRel <- read.csv(text = y);
-#z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
-#sample500 <- read.csv(text = z);
+x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
+allTerms <- read.csv(text = x);
+y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
+allRel <- read.csv(text = y);
+z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
+sample500 <- read.csv(text = z);
+finalLa2 <- cleardf(csvtodf(sample002, "ro", 3));
+final <- referenceTrans(finalLa2);
+
+
+
 #w <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/ee4583b9c5c490e1732375acc4124ba248c763f2/Data/500terms.csv");
 #sample <- read.csv(text = w);
 #sample00 <- matchid(sample500);
@@ -676,12 +702,12 @@ cleardf <- function(df) {
 #newlang <- csvtodf(sample00, "ro", 3);
 #dd <- newlang[1:25,];
 #finalLa <- separateTerms(newlang);
-#z2 <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
-#sample002 <- read.csv(text = z2);
 #sample002 <- sample002[,2:15];
 #finalLa2 <- csvtodf(sample002, "ro", 3);
 #finalLa2clear <- cleardf(finalLa2);
-g <- graphcompare(finalLa2);
+#fin <- referenceTrans(finalLa2clear);
+#g <- graphcompare(finalLa2clear);
+#g <- graphcompare(finalLa2);
 #comp(finalLa2, finalLa);
 #newd <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
 #newdf <- read.csv(text = newd);
@@ -694,3 +720,5 @@ g <- graphcompare(finalLa2);
 #wo<-wordFrame("la","en");
 #wo<-transWords(wo, "la", "ro");
 #wo<-transWord(wo, 47032, "la", "ro");
+
+#fin[fin$source == "reference" & fin$term_id == 11222,"term"] %in% gsub("(^[[:space:]]+|[[:space:]]+$)", "", unlist(strsplit(as.character(sample002[,"junqueira"]), c(";", " ;", " ; ", "; "), fixed = TRUE)))
