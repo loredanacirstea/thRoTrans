@@ -690,7 +690,11 @@ y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_re
 allRel <- read.csv(text = y);
 z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
 sample500 <- read.csv(text = z);
-finalLa2 <- cleardf(csvtodf(sample002, "ro", 3));
+tm <- allTerms;
+rel <- allRel;
+orig <- 10001;
+displayLg <-"la";
+finalLa <- cleardf(csvtodf(sample500[,2:15], "ro", 3));
 final <- referenceTrans(finalLa2);
 
 
@@ -711,10 +715,6 @@ final <- referenceTrans(finalLa2);
 #comp(finalLa2, finalLa);
 #newd <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
 #newdf <- read.csv(text = newd);
-#tm <- allTerms;
-#rel <- allRel;
-#orig <- 10001;
-#displayLg <-"la";
 #cat("Done.");
 #ontobrowse();
 #wo<-wordFrame("la","en");
