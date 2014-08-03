@@ -5,7 +5,7 @@
 
 #AIzaSyC52zBpNSi-udSEDQhZK_WqU5TMOr84XN0
 #AIzaSyDlE05FCFugKklVOfGytGZjuNpsJ6e0Ivo
-AIzaSyC5nT8bwUjdNXJxRbiloQhy6qhybDsdPNo
+#AIzaSyC5nT8bwUjdNXJxRbiloQhy6qhybDsdPNo
 
 #install.packages("RCurl");
 #library(RCurl);
@@ -18,3 +18,4 @@ install.packages("translate");
 library(translate);
 set.key("AIzaSyC5nT8bwUjdNXJxRbiloQhy6qhybDsdPNo")
 translate("Hello, world!", "en", "de")
+#ws[2,1] = '=GoogleTranslate("this is a test", "en", "es")'

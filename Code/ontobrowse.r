@@ -49,8 +49,7 @@ langTerms <- function(term, lang) {
     allTerms <- tm[tm$term_id == termId, c("term", "lang")];
     return(allTerms);
 }
-#makes a word vector from initialized terminology - +origin? (! [],no )
-makeWords <- function(terms = tm,lang) {
+uniqueWordsVector <- function(terms = tm,lang) {
     allTerms = terms[terms$lang == lang, "term"];
     #wordsList = strsplit(allTerms,"\s|,|\(|\)|\[|\]|[0-9]|;");
     #words = unlist(wordsList);
@@ -80,8 +79,76 @@ makeWords <- function(terms = tm,lang) {
     words = unique(words); #removes doubles
     return(words);
 }
+sourceWordsList <- function(terms = tm,lang, sourc = 0) {
+  allTerms = c();
+  termids <- unique(as.character(terms[,"term_id"]));
+  #termids <- as.character(terms[,"term_id"]);
+  if(sourc != 0) {
+    for(termid in termids) {
+      allTerms[termid] <- as.character(terms[terms$lang == lang & terms$term_id == termid & terms$source == sourc, "term"]);
+    }
+  }
+  else {
+    for(termid in termids) {
+      allTerms[termid] <- as.character(terms[terms$lang == lang & terms$term_id == termid, "term"]);
+    }
+  }
+  #allTerms <- allTerms[!is.na(allTerms)];
+  allTerms[termids[1]] <- strsplit(allTerms[1], " ");
+  for(termid in termids) {
+    if(allTerms[[termid]] != ""){
+      if(termid != termids[1]) { allTerms[[termid]] <- strsplit(allTerms[[termid]], " "); }
+      allTerms[[termid]] <- unlist(allTerms[[termid]]);
+      for(char in c(",", "(", ")", ";", "[", "]", "{", "}", "/")) {
+        allTerms[[termid]] <- unlist(strsplit(allTerms[[termid]], char, fixed = TRUE));
+      }
+      allTerms[[termid]] <- unlist(strsplit(allTerms[[termid]], "[0123456789]"));
+    }
+  }
+  return(allTerms);
+}
+sourceWordsList2 <- function(terms = tm,lang, sourc = 0) {
+  allTerms = list();
+  if(sourc == 0) {
+    termsV <- as.character(terms[terms$lang == lang,"term"]);
+    termids <- as.character(terms[terms$lang == lang,"term_id"]);
+  }
+  else {
+    termsV <- as.character(terms[terms$lang == lang & terms$source == sourc,"term"]);
+    termids <- as.character(terms[terms$lang == lang & terms$source == sourc,"term_id"]);
+  }
+  for(i in 1: length(termsV)){
+    t<-termsV[i];
+    if(length(allTerms[[termids[i]]]) == 0 || is.na(allTerms[[termids[i]]]) == TRUE || is.null(allTerms[[termids[i]]]) ==  TRUE){ allTerms[termids[i]] <- termsV[i]; }
+    else { 
+      if(length(allTerms[[termids[i]]]) == 1){ allTerms[[termids[i]]] <- list(allTerms[[termids[i]]], termsV[i]); } 
+      else { allTerms[[termids[i]]] <- c(allTerms[[termids[i]]], termsV[i]); }
+    }
+    tt<-allTerms[[termids[i]]];
+  }
+  #allTerms <- allTerms[!is.na(allTerms)];
+  allTerms[[termids[1]]] <- strsplit(as.character(allTerms[[termids[1]]]), " ");
+  allTerms[[termids[1]]] <- unlist(allTerms[[termids[1]]]);
+  for(termid in termids) {
+    if(allTerms[[termid]] != "" && termid != 1){
+      if(is.list(allTerms[[termid]]) == TRUE) {
+        for(n in 1: length(allTerms[[termid]])) {    
+            allTerms[[termid]][[n]] <- unlist(strsplit(as.character(allTerms[[termid]][[n]]), " "));
+            for(char in c(",", "(", ")", ";", "[", "]", "{", "}", "/")) { allTerms[[termid]][[n]] <- unlist(strsplit(allTerms[[termid]][[n]], char, fixed = TRUE)); }
+            allTerms[[termid]][[n]] <- unlist(strsplit(allTerms[[termid]][[n]], "[0123456789]"));
+            }
+      }
+      else{
+        allTerms[[termid]] <- unlist(strsplit(as.character(allTerms[[termid]]), " "));
+        for(char in c(",", "(", ")", ";", "[", "]", "{", "}", "/")) { allTerms[[termid]] <- unlist(strsplit(allTerms[[termid]], char, fixed = TRUE)); }
+        allTerms[[termid]] <- unlist(strsplit(allTerms[[termid]], "[0123456789]"));
+      }
+    }
+  }
+  return(allTerms);
+}
 #creates dataframe with words in the provided languages, same structure with terminology dataframe; input: vector of languages, output: data frame.
-wordFrame<- function(langs) {
+uniqueWordFrame<- function(terms = tm, langs, add = 0) {
     allWords = c();
     allLangs = c();
     for(lang in langs) {
@@ -92,14 +159,44 @@ wordFrame<- function(langs) {
         allLangs = c(allLangs, langV);
     }
     len <- length(allWords);
-    wo <- data.frame(id = numeric(len), term_id = numeric(len), lang = character(len), part_speech = character(len), gender = character(len), term = character(len), description = character(len), wiki = character(len)) #not good - it should autom. take the original structure
+    wo <- data.frame(id = numeric(len), term_id = numeric(len), lang = character(len),
+                     part_speech = character(len), gender = character(len), term = character(len),
+                     source = character(len), description = character(len), wiki = character(len), pages = character(len)); #not good - it should autom. take the original structure
     wo[,"term"] <- allWords;
     wo[,"lang"] <- allLangs;
-    startId <- nrow(tm)+30000; #tm used! attention to init
+    #startId <- nrow(tm)+30000; #tm used! attention to init
+    startId <- 1;
     ids <- seq(startId,startId + len-1); 
     wo[,"term_id"] <- ids;
     wo[,"id"] <- ids;
     return(wo);
+}
+sourceWordFrame<- function(terms = tm, langs, sources = 0) {
+  allWords = c();
+  allLangs = c();
+  sourceList <- list();
+  if(sources == 0){
+    for(lang in langs) {
+      words <- makeSourceWords(terms, lang);
+    }
+    
+    l = length(words);
+    allWords = c(allWords, words);
+    langV = rep(lang,l);
+    allLangs = c(allLangs, langV);
+  }
+  len <- length(allWords);
+  wo <- data.frame(id = numeric(len), term_id = numeric(len), lang = character(len),
+                   part_speech = character(len), gender = character(len), term = character(len),
+                   source = character(len), description = character(len), wiki = character(len), pages = character(len)); #not good - it should autom. take the original structure
+  wo[,"term"] <- allWords;
+  wo[,"lang"] <- allLangs;
+  #startId <- nrow(tm)+30000; #tm used! attention to init
+  startId <- 1;
+  ids <- seq(startId,startId + len-1); 
+  wo[,"term_id"] <- ids;
+  wo[,"id"] <- ids;
+  return(wo);
 }
 #update data frame with same structure as the terminologies
 #updates existing row or inserts a new one (new = TRUE)
@@ -361,34 +458,55 @@ newTranslation <- function(lang, terms = tm, rels = rel, origin = orig){
     }
   }
 }
-csvtodf <- function(df, lang, langNo) {
-  samplet <- data.frame(t(rep(NA,length(names(tm))+1)));
-  names(samplet)<-c(names(tm), "pages");
-  samplet<-samplet[-1,];
-  srow <- 1;
-  for(row in row.names(df)) {
-    nrcol <- 1;
-    for(col in (langNo +2): length(names(df))) {
-      if(nrcol %% 2 == 1) {
-        samplet[srow,] <- c(srow, NA, as.numeric(df[row, "id"]), lang, NA, NA, as.character(df[row, names(df)[col]]),
-                            names(df)[col], NA, NA, NA, as.character(df[row, names(df)[col+1]]));
-        srow <- srow + 1;
+csvtodf <- function(df, lang = "ro", langNo = 2, off = FALSE) {
+  if(off == FALSE){
+    samplet <- data.frame(t(rep(NA,length(names(tm))+1)));
+    names(samplet)<-c(names(tm), "pages");
+    samplet<-samplet[-1,];
+    srow <- 1;
+    for(row in row.names(df)) {
+      nrcol <- 1;
+      for(col in (langNo +2): length(names(df))) {
+        if(nrcol %% 2 == 1) {
+          samplet[srow,] <- c(srow, NA, as.numeric(df[row, "id"]), lang, NA, NA, as.character(df[row, names(df)[col]]),
+                              names(df)[col], NA, NA, NA, as.character(df[row, names(df)[col+1]]));
+          srow <- srow + 1;
+        }
+        nrcol <- nrcol +1;
       }
-      nrcol <- nrcol +1;
     }
+    samplet <- separateTerms(samplet);
+    return(samplet);
   }
-  samplet <- separateTerms(samplet);
-  return(samplet);
+  else {
+    term_id <- c(as.character(df[,"id"]), as.character(df[,"id"]));
+    term <- c(as.character(df[,"la"]), as.character(df[,"en"]));
+    pages <- rep(NA, length(term_id));
+    id <- c();
+    for(i in 1: length(term_id)) { id <- c(id, i); }
+    upd <- rep(NA, length(term_id));
+    lang <- c(rep("la", length(term_id)/2), rep("en", length(term_id)/2));
+    part_speech <- rep(NA, length(term_id));
+    gender <- rep(NA, length(term_id));
+    description <- rep(NA, length(term_id));
+    wiki <- rep(NA, length(term_id));
+    email <- rep(NA, length(term_id));
+    source <- rep(NA, length(term_id));
+    df2 <- data.frame(id, upd, term_id, lang, part_speech, gender, term, source, description, wiki, email, pages);
+    return(df2);
+  }
 }
-separateTerms <- function(df) {
+separateTerms <- function(df, sources = TRUE) {
   for(row in row.names(df)) {
     if(as.character(df[row, "term"]) != "") {
       nosep <- length(grep(";", as.character(df[row, "term"]), fixed = TRUE));
       if(nosep > 0) {
         synon <- unlist(strsplit(as.character(df[row,"term"]), c(";", " ;", " ; ", "; "), fixed=TRUE));
-        pgs <- unlist(strsplit(as.character(df[row,"pages"]), c(";", " ;", " ; ", "; "), fixed=TRUE));
-        if(length(pgs) == 1) {
-          pgs <- rep(pgs, nosep+1);
+        if(sources == TRUE) {
+          pgs <- unlist(strsplit(as.character(df[row,"pages"]), c(";", " ;", " ; ", "; "), fixed=TRUE));
+          if(length(pgs) == 1) {
+            pgs <- rep(pgs, nosep+1);
+          }
         }
         #str(synon);
         #str(pgs);
@@ -396,10 +514,10 @@ separateTerms <- function(df) {
           end <- length(row.names(df));
           df[end + 1, ] <- df[row,];
           df[end + 1, "term"] <- synon[i];
-          df[end + 1, "pages"] <- pgs[i];
+          if(sources == TRUE) { df[end + 1, "pages"] <- pgs[i]; }
         }
         df[row, "term"] <- synon[1];
-        df[row, "pages"] <- pgs[1];
+        if(sources == TRUE) { df[row, "pages"] <- pgs[1]; }
       }
     }
   }
@@ -423,13 +541,6 @@ referenceTrans <- function(df){
     row <- row + 1;
   }
   return(df);
-}
-compare <- function(df, sources){
-  #per <- c();
-  #for(row in row.names(df)) {
-    #per[""]
-  #}
-  #g <- barplot(c(100, 90, 80));
 }
 matchid <- function(sample = sample500){
   for(row in 1:length(row.names(sample))){
@@ -643,26 +754,89 @@ graphdemo <- function(){
   return(g);
   
 }
-graphcompare <- function(df){
+horizNoTerms <- function(df){
   add <- c();
+  noconcepts <- c();
+  #bysource <- c();
   sources <- factor(df[, "source"]);
-  for(so in levels(sources)) { add[so] <- 0;}
-  add["junqueira"] <- length(df[df$source == "junqueira", "term"])
+  for(so in levels(sources)) {
+    add[so] <- 0;
+    noconcepts[so] <- length(unique(final[final$source == so & as.character(final$term) != "", "term_id"]));
+    #bysource[so] <- character(0);
+  }
+  noconcepts <- sort(noconcepts, decreasing = TRUE);
   for(row in row.names(df)) {
-    if(length(as.character(df[row, "term"])) != 0 && length(as.character(df[df$term_id == df[row, "term_id"] & df$sources == "junqueira", "term"])) != 0) {
-      if(as.character(df[row, "term"]) == as.character(df[df$term_id == df[row, "term_id"] & df$sources == "junqueira", "term"])) {
+    if(as.character(df[row, "term"]) != "" | length(as.character(df[row, "term"]) != 0)) {
+      if(as.character(df[row, "term"]) == as.character(df[df$term_id == df[row, "term_id"] & df$source == "reference", "term"])) {
+        add[df[row,"source"]] <- add[df[row,"source"]] +1;
+        #bysource[df[row,"source"]] <- c(bysource[df[row,"source"]], as.character(df[row, "term"]));
+      }
+    }
+  }
+  correct <- c();
+  for(so in names(noconcepts)) {
+    correct[so] <- add[so];
+  }
+  data <- matrix(c(noconcepts, correct), nrow = 2, ncol = 6, byrow = TRUE,
+                 dimnames = list(c("concepte găsite", "termeni referință incluși \nîn conceptele găsite"),
+                                 as.character(names(noconcepts))));
+  ycoord <- c();
+  for(i in 1:6) { ycoord <- c(ycoord, data[1,i], data[2,i]); }
+  #for(elem in 1:length(add)){ add[elem] <- add[elem]*100/ref; }
+  #prop = prop.table(add, margin = 2);
+#  g <- barplot(noconcepts, main = "Procentul de suprapunere a variantelor de traducere peste referință", 
+#                xlab = "Variantele de traducere", ylab = "Procent de suprapunere %", ylim = c(0, 500),
+#                names.arg = names(noconcepts), col = c("lightblue", "mistyrose", "lavender"),);
+   title <- "Valori comparate ale conceptelor găsite și ale \ntermenilor referință incluși în acestea \npentru fiecare sursă";
+   par(mar = c(5.1, 7.1, 5.1, 7.1), xpd = TRUE, las = 1);
+   g <- barplot(data, main = title,
+                xlab = "Numărul de concepte/termeni",
+                ylab = "Sursele folosite pentru traducerea termenilor",
+                col = c("lightblue", "mistyrose"), beside = TRUE, 
+                horiz = TRUE, width = 2, ann = FALSE);
+   legend("topright", inset = c(0, 0), fill = c("lightblue", "mistyrose"), 
+          legend = rownames(data), xjust=1, yjust=1, cex = 0.9, pt.cex = 1);
+   text(ycoord , g, round(ycoord, 2), cex=1, pos=4);
+   #heat.colors(length(rownames(data)))
+   return(g);
+}
+vertNoTerms <- function(df){
+  add <- c();
+  noconcepts <- c();
+  sources <- factor(df[, "source"]);
+  for(so in levels(sources)) {
+    add[so] <- 0;
+    noconcepts[so] <- length(unique(final[final$source == so & as.character(final$term) != "", "term_id"]));
+  }
+  noconcepts <- sort(noconcepts, decreasing = TRUE);
+  for(row in row.names(df)) {
+    if(as.character(df[row, "term"]) != "" | length(as.character(df[row, "term"]) != 0)) {
+      if(as.character(df[row, "term"]) == as.character(df[df$term_id == df[row, "term_id"] & df$source == "reference", "term"])) {
         add[df[row,"source"]] <- add[df[row,"source"]] +1;
       }
     }
   }
-  ref <- add[1];
-  for(elem in 1:length(add)){ add[elem] <- add[elem]*100/ref; }
-  #prop = prop.table(add, margin = 2);
-  g <- barplot(add, main = "Procentul de suprapunere a variantelor de traducere peste referință", 
-               xlab = "Variantele de traducere", ylab = "Procent de suprapunere %", ylim = c(0, 100),
-               names.arg = unique(sources), col = c("lightblue", "mistyrose", "lavender"),);
-  text(g, 0, round(add, 2), cex=1, pos=3);
+  correct <- c();
+  for(so in names(noconcepts)) { correct[so] <- add[so]; }
+  data <- matrix(c(noconcepts, correct), nrow = 2, ncol = 6, byrow = TRUE,
+                 dimnames = list(c("concepte găsite", "termeni referință incluși \nîn conceptele găsite"),
+                                 as.character(names(noconcepts))));
+  ycoord <- c();
+  for(i in 1:6) { ycoord <- c(ycoord, data[1,i], data[2,i]); }
+  title <- "Valori comparate ale conceptelor găsite și ale \ntermenilor referință incluși în acestea \npentru fiecare sursă";
+  par(mar = c(5.1, 7.1, 5.1, 7.1), xpd = TRUE, las = 1);
+  g <- barplot(data, main = title,
+               xlab = "Sursele folosite pentru traducerea termenilor",
+               ylab = "Numărul de concepte/termeni",
+               col = c("lightblue", "mistyrose"), beside = TRUE, width = 2);
+  leg <- legend("topright", inset = c(0, 0), fill = c("lightblue", "mistyrose"), 
+         legend = rownames(data), xjust=1, yjust=0, cex = 0.9, pt.cex = 1);
+  text(g, ycoord, round(ycoord, 2), cex=1, pos=3);
+  #heat.colors(length(rownames(data)))
   return(g);
+}
+vertSinTerms <- function(df){
+  
 }
 comp <- function(df1,df2){
   for(row in length(row.names(df1))) {
@@ -682,8 +856,72 @@ cleardf <- function(df) {
   }
   return(df);
 }
+clearoff <- function(df) {
+  df[,"term"] <- sub("(", "", df[,"term"], fixed=TRUE);
+  df[,"term"] <- sub(")", "", df[,"term"], fixed=TRUE);
+  #df[,"term"] <- sub("\{[[:alnum:]]\}", "", df[,"term"], fixed=TRUE);
+}
+listtodf <- function(df, list, lang, source = NA, termdf = NA) {
+  termids <- names(list);
+  term <- character(0);
+  term_id <- c();
+  no <- 1;
+  pages <- character(0);
+  for(termid in termids) {
+    if(is.list(list[[as.character(termid)]]) == TRUE) {
+      for(i in 1: length(list[[as.character(termid)]])) {
+        for(j in 1: length(list[[as.character(termid)]][[i]])) {
+          term <- c(term, list[[as.character(termid)]][[i]][[j]]);
+          term_id <- c(term_id, termid);
+#           if(length(termdf) > 1){ #!pages=NA for reference
+#             if(!is.na(source)) {
+#               pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == source, "pages"]));
+#               no <- no + 1;
+#             }
+#           }
+        }
+      }
+    }
+    else {
+      for(i in 1: length(list[[as.character(termid)]])) {
+        term <- c(term, list[[as.character(termid)]][i]);
+        term_id <- c(term_id, termid);
+#         if(length(termdf) > 1){ #!pages=NA for reference
+#           if(!is.na(source)) {
+#             pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == source, "pages"]));
+#             no <- no + 1;
+#           }
+#         }
+      }
+    }
+  }
+  #if(length(termdf) == 0 || is.na(source)) { pages <- rep(NA, length(term)); }
+  pages <- rep(NA, length(term)); #!pages=NA for reference
+  id <- c();
+  for(i in (length(row.names(df)) + 1) : (length(row.names(df)) + length(term)) ) { id <- c(id, i); }
+  upd <- rep(NA, length(term));
+  lang <- rep(lang, length(term));
+  part_speech <- rep(NA, length(term));
+  gender <- rep(NA, length(term));
+  description <- rep(NA, length(term));
+  wiki <- rep(NA, length(term));
+  email <- rep(NA, length(term));
+  source <- rep(source, length(term));
+  df2 <- data.frame(id, upd, term_id, lang, part_speech, gender, term, source, description, wiki, email, pages);
+  df <- rbind(df, df2);
+  return(df);
+}
+noElemList <- function(List){
+  no <- 0;
+  for(i in 1: length(List)) {
+    if(is.list(List[[i]]) == TRUE) { no <- no + noElemList(List[[i]]); }
+    else { no <- no + length(List[[i]]); }
+  }
+  return(no);
+}
 #global data frames: terms and relations
 #cat("Connecting to database ...");
+
 #x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
 #allTerms <- read.csv(text = x);
 #y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
@@ -696,9 +934,45 @@ cleardf <- function(df) {
 # displayLg <-"la";
 # finalLa <- cleardf(csvtodf(sample500[,2:15], "ro", 3));
 # final <- referenceTrans(finalLa);
-g <- graphcompare(final);
+#wobuc1987 <- sourceWordsList(final,"ro","buc1987"); (not neccessary)
+# finalLaEn <- tm[tm$term_id %in% sample500[,"id"] & tm$lang %in% c("la","en"), ]; !!nu e bun!!!
+# finalLaEn <- csvtodf(sample500, off = TRUE);
+# finalLaEn[,"term"] <- tolower(finalLaEn[,"term"]);
+# finalLaEn[,"term"] <- sub("(", "", finalLaEn[,"term"], fixed=TRUE);
+# finalLaEn[,"term"] <- sub(")", "", finalLaEn[,"term"], fixed=TRUE);
+# finalLaEn[,"term"] <- sub("{ see page 73}", "", finalLaEn[,"term"], fixed=TRUE);
+# finalLaEn[,"term"] <- sub("{see page 3}", "", finalLaEn[,"term"], fixed=TRUE);
+# finalLaEn[,"term"] <- sub("{see also epidermis page 119}", "", finalLaEn[,"term"], fixed=TRUE);
+# finalLaEn[,"term"] <- sub("41", "", finalLaEn[,"term"], fixed=TRUE);
+# finalLaEn[,"term"] <- sub("{ vide paginam  }", "", finalLaEn[,"term"], fixed=TRUE);
+# finalLaEn[,"term"] <- sub("{vide paginam }", "", finalLaEn[,"term"], fixed=TRUE);
+# finalLaEn[,"term"] <- sub("{vide etiam epidermis paginam }", "", finalLaEn[,"term"], fixed=TRUE);
+# finalLaEn[finalLaEn$term_id == 12965, "term"] <- "glandula parathyroidea"; #glandula parathyroideaglandula parathyroidea
+# finalLaEn[finalLaEn$term_id == 12965 & finalLaEn$lang == "en", "term"] <- "parathyroid gland";
+# finalLaEn2 <- separateTerms(finalLaEn, sources = FALSE);
+finalLaEn2 <- cleardf(finalLaEn2);
+finalLaWords <- sourceWordsList2(finalLaEn2,"la");
+finalEnWords <- sourceWordsList2(finalLaEn2,"en");
+wordsReference <- sourceWordsList2(final,"ro","reference");
+finalWords <- data.frame(t(rep(NA,length(names(final)))));
+names(finalWords)<-names(final);
+finalWords<-finalWords[-1,];
+finalWords <- listtodf(finalWords, finalLaWords, "la", termdf = finalLaEn2);
+finalWords <- listtodf(finalWords, finalEnWords, "en", termdf = finalLaEn2);
+finalWords <- listtodf(finalWords, wordsReference, "ro", source = "reference", termdf = final);
+writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
+writeLines(finalLaEn2[finalLaEn2$lang == "la", "term"], "../Data/laTerms.csv");
+writeLines(finalLaEn2[finalLaEn2$lang == "en", "term"], "../Data/enTerms.csv");
+writeLines(as.character(finalWords[finalWords$lang == "la", "term"]), "../Data/laWords.csv");
+writeLines(as.character(finalWords[finalWords$lang == "en", "term"]), "../Data/enWords.csv");
+#copy paste to Google Translate -> gtEnRoTerms.txt , gtLaRoTerms.txt
 
+
+
+#uniqueWo <- makeUniqueWords(final,"ro");
+#g <- horizNoTerms(final);
 #write.csv(final, "../Data/final.csv");
+#write.csv(finalLaEn2, "finalLaEn.csv")
 #w <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/ee4583b9c5c490e1732375acc4124ba248c763f2/Data/500terms.csv");
 #sample <- read.csv(text = w);
 #sample00 <- matchid(sample500);
@@ -721,4 +995,5 @@ g <- graphcompare(final);
 #wo<-transWords(wo, "la", "ro");
 #wo<-transWord(wo, 47032, "la", "ro");
 
-#fin[fin$source == "reference" & fin$term_id == 11222,"term"] %in% gsub("(^[[:space:]]+|[[:space:]]+$)", "", unlist(strsplit(as.character(sample002[,"junqueira"]), c(";", " ;", " ; ", "; "), fixed = TRUE)))
+#gsub("(^[[:space:]]+|[[:space:]]+$)", "", unlist(strsplit(as.character(sample002[,"junqueira"]),
+# c(";", " ;", " ; ", "; "), fixed = TRUE)))
