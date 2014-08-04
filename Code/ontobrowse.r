@@ -861,7 +861,7 @@ clearoff <- function(df) {
   df[,"term"] <- sub(")", "", df[,"term"], fixed=TRUE);
   #df[,"term"] <- sub("\{[[:alnum:]]\}", "", df[,"term"], fixed=TRUE);
 }
-listtodf <- function(df, list, lang, source = NA, termdf = NA) {
+listtodf <- function(df, list, lang, sourc = NA, termdf = NA) {
   termids <- names(list);
   term <- character(0);
   term_id <- c();
@@ -919,6 +919,44 @@ noElemList <- function(List){
   }
   return(no);
 }
+appenddf <- function(df, bigdf, lang = "la", sourc = NA, term_id = c()) {
+  term <- as.character(df[, "V1"]);
+  pages <- rep(NA, length(term));
+  id <- c();
+  for(i in (length(row.names(bigdf)) + 1) : (length(row.names(bigdf)) + length(term))) { id <- c(id, i); }
+  upd <- rep(NA, length(term));
+  lang <- rep("la", length(term));
+  part_speech <- rep(NA, length(term));
+  gender <- rep(NA, length(term));
+  description <- rep(NA, length(term));
+  wiki <- rep(NA, length(term));
+  email <- rep(NA, length(term));
+  source <- rep(sourc, length(term));
+  df2 <- data.frame(id, upd, term_id, lang, part_speech, gender, term, source, description, wiki, email, pages);
+  df <- rbind(bigdf, df2);
+  return(df);
+}
+matchWoTm <- function(langs = c("la", "en", "ro")){}
+woToTerms <- function(wodf, tmdf, lang = "la", sourc = NA){
+  term_id <- 
+  term <- as.character(df[, "V1"]);
+  pages <- rep(NA, length(term));
+  id <- c();
+  for(i in (length(row.names(bigdf)) + 1) : (length(row.names(bigdf)) + length(term))) { id <- c(id, i); }
+  upd <- rep(NA, length(term));
+  lang <- rep("la", length(term));
+  part_speech <- rep(NA, length(term));
+  gender <- rep(NA, length(term));
+  description <- rep(NA, length(term));
+  wiki <- rep(NA, length(term));
+  email <- rep(NA, length(term));
+  source <- rep(sourc, length(term));
+  df2 <- data.frame(id, upd, term_id, lang, part_speech, gender, term, source, description, wiki, email, pages);
+  df <- rbind(bigdf, df2);
+  return(df);
+}
+matchWoTransl <- function(){}
+automaticTransl <- function(){}
 #global data frames: terms and relations
 #cat("Connecting to database ...");
 
@@ -950,22 +988,54 @@ noElemList <- function(List){
 # finalLaEn[finalLaEn$term_id == 12965, "term"] <- "glandula parathyroidea"; #glandula parathyroideaglandula parathyroidea
 # finalLaEn[finalLaEn$term_id == 12965 & finalLaEn$lang == "en", "term"] <- "parathyroid gland";
 # finalLaEn2 <- separateTerms(finalLaEn, sources = FALSE);
-finalLaEn2 <- cleardf(finalLaEn2);
-finalLaWords <- sourceWordsList2(finalLaEn2,"la");
-finalEnWords <- sourceWordsList2(finalLaEn2,"en");
-wordsReference <- sourceWordsList2(final,"ro","reference");
-finalWords <- data.frame(t(rep(NA,length(names(final)))));
-names(finalWords)<-names(final);
-finalWords<-finalWords[-1,];
-finalWords <- listtodf(finalWords, finalLaWords, "la", termdf = finalLaEn2);
-finalWords <- listtodf(finalWords, finalEnWords, "en", termdf = finalLaEn2);
-finalWords <- listtodf(finalWords, wordsReference, "ro", source = "reference", termdf = final);
-writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
-writeLines(finalLaEn2[finalLaEn2$lang == "la", "term"], "../Data/laTerms.csv");
-writeLines(finalLaEn2[finalLaEn2$lang == "en", "term"], "../Data/enTerms.csv");
-writeLines(as.character(finalWords[finalWords$lang == "la", "term"]), "../Data/laWords.csv");
-writeLines(as.character(finalWords[finalWords$lang == "en", "term"]), "../Data/enWords.csv");
-#copy paste to Google Translate -> gtEnRoTerms.txt , gtLaRoTerms.txt
+# finalLaEn2 <- cleardf(finalLaEn2);
+#write.csv(finalLaEn2, "../Data/finalLaEn.csv");
+# finalLaWords <- sourceWordsList2(finalLaEn2,"la");
+# finalEnWords <- sourceWordsList2(finalLaEn2,"en");
+# wordsReference <- sourceWordsList2(final,"ro","reference");
+# finalWords <- data.frame(t(rep(NA,length(names(final)))));
+# names(finalWords)<-names(final);
+# finalWords<-finalWords[-1,];
+# finalWords <- listtodf(finalWords, finalLaWords, "la", termdf = finalLaEn2);
+# finalWords <- listtodf(finalWords, finalEnWords, "en", termdf = finalLaEn2);
+# finalWords <- listtodf(finalWords, wordsReference, "ro", source = "reference", termdf = final);
+# writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
+# writeLines(finalLaEn2[finalLaEn2$lang == "la", "term"], "../Data/laTerms.csv");
+# writeLines(finalLaEn2[finalLaEn2$lang == "en", "term"], "../Data/enTerms.csv");
+# writeLines(as.character(finalWords[finalWords$lang == "la", "term"]), "../Data/laWords.csv");
+# writeLines(as.character(finalWords[finalWords$lang == "en", "term"]), "../Data/enWords.csv");
+# termidsLaT <- as.character(finalLaEn2[finalLaEn2$lang == "la", "term_id"]);
+# termidsEnT <- as.character(finalLaEn2[finalLaEn2$lang == "en", "term_id"]);
+# termidsLaW <- as.character(finalWords[finalWords$lang == "la", "term_id"]);
+# termidsEnW <- as.character(finalWords[finalWords$lang == "en", "term_id"]);
+
+#copy paste to Google Translate -> gtEnRoTerms.csv , gtLaRoTerms.csv, gtEnRoWords.csv, gtLaRoWords.csv
+
+# gtLaRoTerms <- read.csv("../Data/gtLaRoTerms.csv", header = FALSE, sep = "\n");
+# gtEnRoTerms <- read.csv("../Data/gtEnRoTerms.csv", header = FALSE, sep = "\n");
+# gtLaRoWords <- read.csv("../Data/gtLaRoWords.csv", header = FALSE, sep = "\n");
+# gtEnRoWords <- read.csv("../Data/gtEnRoWords.csv", header = FALSE, sep = "\n");
+# gtLaRoTerms[,"V1"] <- sub(",", "", gtLaRoTerms[,"V1"], fixed=TRUE);
+# gtLaRoTerms <- cleardf(gtLaRoTerms);
+# gtLaRoTerms[,"V1"] <- tolower(gtLaRoTerms[,"V1"]);
+# gtLaRoTerms[407,"V1"] <- "m.";
+# 
+# gtEnRoTerms[,"V1"] <- sub(",", "", gtEnRoTerms[,"V1"], fixed=TRUE);
+# gtEnRoTerms <- cleardf(gtEnRoTerms);
+# gtEnRoTerms[,"V1"] <- tolower(gtEnRoTerms[,"V1"]);
+# 
+# gtLaRoWords[,"V1"] <- sub(",", "", gtLaRoWords[,"V1"], fixed=TRUE);
+# gtLaRoWords <- cleardf(gtLaRoWords);
+# gtLaRoWords[,"V1"] <- tolower(gtLaRoWords[,"V1"]);
+# 
+# gtEnRoWords[,"V1"] <- sub(",", "", gtEnRoWords[,"V1"], fixed=TRUE);
+# gtEnRoWords <- cleardf(gtEnRoWords);
+# gtEnRoWords[,"V1"] <- tolower(gtEnRoWords[,"V1"]);
+
+# final <- appenddf(gtLaRoTerms, final, "ro", "gtLaRoTerms", termidsLaT);
+# final <- appenddf(gtEnRoTerms, final, "ro", "gtEnRoTerms", termidsEnT);
+# finalWords <- appenddf(gtLaRoWords, finalWords, "ro", "gtLaRoWords", termidsLaW);
+# finalWords <- appenddf(gtEnRoWords, finalWords, "ro", "gtEnRoWords", termidsEnW);
 
 
 
@@ -994,6 +1064,8 @@ writeLines(as.character(finalWords[finalWords$lang == "en", "term"]), "../Data/e
 #wo<-wordFrame("la","en");
 #wo<-transWords(wo, "la", "ro");
 #wo<-transWord(wo, 47032, "la", "ro");
+
+#length(sample500[sample500$junqueira != "", "junqueira"]);
 
 #gsub("(^[[:space:]]+|[[:space:]]+$)", "", unlist(strsplit(as.character(sample002[,"junqueira"]),
 # c(";", " ;", " ; ", "; "), fixed = TRUE)))
