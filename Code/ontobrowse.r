@@ -1084,6 +1084,17 @@ automaticTransl <- function(){}
 #EnRoRel <- wordMatchCsv(finalLaEn2, final, finalWords, "en", "ro", "reference", "gtEnRoWords");
 #write.csv(LaRoRel, "../Data/LaRoRel.csv");
 #write.csv(EnRoRel, "../Data/EnRoRel.csv");
+#length(LaRoRel[LaRoRel$matchWords != "", "matchWords"]) #722 from 990
+#length(EnRoRel[EnRoRel$matchWords != "", "matchWords"]) #767 from 1056
+#LaRoRelOk <- read.csv("../Data/LaRoRelOk.csv");
+#LaRoRelOk <- LaRoRelOk[,2:length(names(LaRoRelOk))];
+#LaRoRelOk[,"matchWords"] <- tolower(LaRoRelOk[,"matchWords"]);
+#length(which(LaRoRel[, "matchWords"] == LaRoRelOk[, "matchWords"])); #654
+
+
+
+#write.csv(finalWords, "../Data/finalWords.csv");
+#write.csv(final, "../Data/final.csv");
 
 #uniqueWo <- makeUniqueWords(final,"ro");
 #g <- horizNoTerms(final);
