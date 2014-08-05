@@ -906,7 +906,7 @@ listtodf <- function(df, list, lang, sourc = NA, termdf = NA) {
   description <- rep(NA, length(term));
   wiki <- rep(NA, length(term));
   email <- rep(NA, length(term));
-  source <- rep(source, length(term));
+  source <- rep(sourc, length(term));
   df2 <- data.frame(id, upd, term_id, lang, part_speech, gender, term, source, description, wiki, email, pages);
   df <- rbind(df, df2);
   return(df);
@@ -919,13 +919,13 @@ noElemList <- function(List){
   }
   return(no);
 }
-appenddf <- function(df, bigdf, lang = "la", sourc = NA, term_id = c()) {
+appenddf <- function(df, bigdf, lg = "la", sourc = NA, term_id = c()) {
   term <- as.character(df[, "V1"]);
   pages <- rep(NA, length(term));
   id <- c();
   for(i in (length(row.names(bigdf)) + 1) : (length(row.names(bigdf)) + length(term))) { id <- c(id, i); }
   upd <- rep(NA, length(term));
-  lang <- rep("la", length(term));
+  lang <- rep(lg, length(term));
   part_speech <- rep(NA, length(term));
   gender <- rep(NA, length(term));
   description <- rep(NA, length(term));
@@ -936,7 +936,50 @@ appenddf <- function(df, bigdf, lang = "la", sourc = NA, term_id = c()) {
   df <- rbind(bigdf, df2);
   return(df);
 }
-matchWoTm <- function(langs = c("la", "en", "ro")){}
+wordMatchCsv <- function(offTerms, newTerms, words, offLang = "la", newLang = "ro", sourc = "reference", baseTransl="gtLaRoWords"){
+  termids <- as.integer(levels(offTerms[offTerms$lang == offLang, "term_id"]));
+  term_id <- c();
+  oTerms <- c();
+  nTerms <- c();
+  owo <- words[words$lang == offLang,];
+  oWords <- as.character(words[order(owo[,"term_id"]),"term"]);
+  basedf <- words[words$lang == newLang & words$source == baseTransl,];
+  base <- as.character(basedf[order(basedf[,"term_id"]),"term"]);
+  matchWords <- rep("", length(oWords));
+  maxWo <- 0;
+  for(id in termids){
+    nn <- newTerms[newTerms$lang == newLang & newTerms$source == sourc & newTerms$term_id == id, "term"];
+    noWo <- length(unlist(strsplit(newTerms[newTerms$lang == newLang & newTerms$source == sourc & newTerms$term_id == id, "term"], " ")));
+    if(maxWo < noWo) { maxWo <- noWo; }
+  }
+  newList <- list();
+  newList[[1]] <- rep("", length(oWords));
+  for(col in 2:maxWo){ newList[[col]] <- rep("", length(oWords)); }
+  for(id in termids) {
+    terms <- as.character(offTerms[offTerms$lang == offLang & offTerms$term_id == id, "term"]);
+    for(no in 1:length(terms)){
+      wo <- length(unlist(strsplit(terms[no], " ")));
+      term_id <- c(term_id, rep(id, wo));
+      oTerms <- c(oTerms, rep(terms[no], wo));
+      nTerms <- c(nTerms, rep(as.character(newTerms[newTerms$term_id == id & newTerms$lang == newLang & newTerms$source == sourc, "term"]), wo));
+      nwo <- as.character(words[words$term_id == id & words$source == sourc & words$lang == newLang, "term"]);
+      for(col in 1:length(nwo)){
+        for(row in 1:wo){ newList[[as.numeric(col)]][[as.numeric(length(oTerms)-wo+row)]] <- nwo[col]; }
+      }
+    }
+  }
+  sheet <- data.frame(term_id, oTerms, nTerms, base, oWords, matchWords, newList);
+  for(col in names(sheet)) { sheet[,col] <- as.character(sheet[,col]);}
+  sheet[,"term_id"] <- as.integer(sheet[,"term_id"]);
+  for(row in row.names(sheet)){
+    for(i in (length(names(sheet)) - maxWo + 1 ) : length(names(sheet))){
+      if(length(agrep(sheet[row, "base"], sheet[row, i], max.distance = 0.5)) != 0){
+        sheet[row, "matchWords"] <- sheet[row, i];
+      }
+    }
+  }
+  return(sheet);
+}
 woToTerms <- function(wodf, tmdf, lang = "la", sourc = NA){
   term_id <- 
   term <- as.character(df[, "V1"]);
@@ -998,7 +1041,7 @@ automaticTransl <- function(){}
 # finalWords<-finalWords[-1,];
 # finalWords <- listtodf(finalWords, finalLaWords, "la", termdf = finalLaEn2);
 # finalWords <- listtodf(finalWords, finalEnWords, "en", termdf = finalLaEn2);
-# finalWords <- listtodf(finalWords, wordsReference, "ro", source = "reference", termdf = final);
+# finalWords <- listtodf(finalWords, wordsReference, "ro", sourc = "reference", termdf = final);
 # writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
 # writeLines(finalLaEn2[finalLaEn2$lang == "la", "term"], "../Data/laTerms.csv");
 # writeLines(finalLaEn2[finalLaEn2$lang == "en", "term"], "../Data/enTerms.csv");
@@ -1037,7 +1080,10 @@ automaticTransl <- function(){}
 # finalWords <- appenddf(gtLaRoWords, finalWords, "ro", "gtLaRoWords", termidsLaW);
 # finalWords <- appenddf(gtEnRoWords, finalWords, "ro", "gtEnRoWords", termidsEnW);
 
-
+#LaRoRel <- wordMatchCsv(finalLaEn2, final, finalWords, "la", "ro", "reference", "gtLaRoWords");
+#EnRoRel <- wordMatchCsv(finalLaEn2, final, finalWords, "en", "ro", "reference", "gtEnRoWords");
+#write.csv(LaRoRel, "../Data/LaRoRel.csv");
+#write.csv(EnRoRel, "../Data/EnRoRel.csv");
 
 #uniqueWo <- makeUniqueWords(final,"ro");
 #g <- horizNoTerms(final);
