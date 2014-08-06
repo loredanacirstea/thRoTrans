@@ -980,26 +980,77 @@ wordMatchCsv <- function(offTerms, newTerms, words, offLang = "la", newLang = "r
   }
   return(sheet);
 }
-woToTerms <- function(wodf, tmdf, lang = "la", sourc = NA){
-  term_id <- 
-  term <- as.character(df[, "V1"]);
-  pages <- rep(NA, length(term));
+woToTermsBase <- function(wodf, tmdf, offlang = "la", newLang = "ro", sourc = NA){
+  term_id <- c();
+  term <- c();
+  wodf[,"oTerms"] <- as.character(wodf[,"oTerms"]);
+  wodf[,"base"] <- as.character(wodf[,"base"]);
+  for(row in row.names(wodf)){
+    if(wodf[row, "term_id"] %in% term_id == FALSE) {
+      termid <- wodf[row, "term_id"];
+      ter <- unique(wodf[wodf$term_id == termid, "oTerms"]);
+      for(t in ter){
+        term_id <- c(term_id, termid);
+        term <- c(term, paste(wodf[wodf$term_id == termid & wodf$oTerms == t, "base"], collapse=" "));
+      }
+    } 
+  }
+  pages <- rep(NA, length(term_id));
   id <- c();
-  for(i in (length(row.names(bigdf)) + 1) : (length(row.names(bigdf)) + length(term))) { id <- c(id, i); }
-  upd <- rep(NA, length(term));
-  lang <- rep("la", length(term));
-  part_speech <- rep(NA, length(term));
-  gender <- rep(NA, length(term));
-  description <- rep(NA, length(term));
-  wiki <- rep(NA, length(term));
-  email <- rep(NA, length(term));
-  source <- rep(sourc, length(term));
+  for(i in (length(row.names(tmdf)) + 1) : (length(row.names(tmdf)) + length(term_id))) { id <- c(id, i); }
+  upd <- rep(NA, length(term_id));
+  lang <- rep(newLang, length(term_id));
+  part_speech <- rep(NA, length(term_id));
+  gender <- rep(NA, length(term_id));
+  description <- rep(NA, length(term_id));
+  wiki <- rep(NA, length(term_id));
+  email <- rep(NA, length(term_id));
+  source <- rep(sourc, length(term_id));
   df2 <- data.frame(id, upd, term_id, lang, part_speech, gender, term, source, description, wiki, email, pages);
-  df <- rbind(bigdf, df2);
+  df <- rbind(tmdf, df2);
   return(df);
 }
-matchWoTransl <- function(){}
-automaticTransl <- function(){}
+woToTermsRef <- function(wodf, tmdf, offlang = "la", newLang = "ro", sourc = NA){
+  term_id <- c();
+  term <- c();
+  wodf[,"oTerms"] <- as.character(wodf[,"oTerms"]);
+  wodf[,"matchWords"] <- as.character(wodf[,"matchWords"]);
+  for(row in row.names(wodf)){
+    if(wodf[row, "term_id"] %in% term_id == FALSE) {
+      termid <- wodf[row, "term_id"];
+      ter <- unique(wodf[wodf$term_id == termid, "oTerms"]);
+      tmm <- c();
+      noW <- c();
+      for(t in ter){
+        tmm <- c(tmm, paste(wodf[wodf$term_id == termid & wodf$oTerms == t & wodf$matchWords != "", "matchWords"], collapse=" "));
+        noW <- c(noW, length(unlist(strsplit(wodf[wodf$term_id == termid & wodf$oTerms == t & wodf$matchWords != "", "matchWords"]," "))));
+      }
+      term <- c(term, unique(tmm[which(noW == max(noW))]));
+      term_id <- c(term_id, termid);
+    } 
+  }
+  pages <- rep(NA, length(term_id));
+  id <- c();
+  for(i in (length(row.names(tmdf)) + 1) : (length(row.names(tmdf)) + length(term_id))) { id <- c(id, i); }
+  upd <- rep(NA, length(term_id));
+  lang <- rep(newLang, length(term_id));
+  part_speech <- rep(NA, length(term_id));
+  gender <- rep(NA, length(term_id));
+  description <- rep(NA, length(term_id));
+  wiki <- rep(NA, length(term_id));
+  email <- rep(NA, length(term_id));
+  source <- rep(sourc, length(term_id));
+  df2 <- data.frame(id, upd, term_id, lang, part_speech, gender, term, source, description, wiki, email, pages);
+  df <- rbind(tmdf, df2);
+  return(df);
+}
+automaticTransl <- function(){
+  #unique words
+  #auto matching from all words ~La, min(words)
+}
+findInText <- function(text){
+  
+}
 #global data frames: terms and relations
 #cat("Connecting to database ...");
 
@@ -1090,11 +1141,16 @@ automaticTransl <- function(){}
 #LaRoRelOk <- LaRoRelOk[,2:length(names(LaRoRelOk))];
 #LaRoRelOk[,"matchWords"] <- tolower(LaRoRelOk[,"matchWords"]);
 #length(which(LaRoRel[, "matchWords"] == LaRoRelOk[, "matchWords"])); #654
-
-
+#final <- woToTermsBase(LaRoRelOk, final, "la", "ro", "gtLaRoWords");
+#final <- woToTermsBase(EnRoRel, final, "la", "ro", "gtEnRoWords");
+#final <- woToTermsBase(LaRoRelOk, final, "la", "ro", "referenceWordsLa");
+#final <- woToTermsRef(LaRoRelOk, final, "la", "ro", "referenceWordsLa");
 
 #write.csv(finalWords, "../Data/finalWords.csv");
 #write.csv(final, "../Data/final.csv");
+
+
+
 
 #uniqueWo <- makeUniqueWords(final,"ro");
 #g <- horizNoTerms(final);
