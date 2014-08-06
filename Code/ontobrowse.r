@@ -129,6 +129,7 @@ sourceWordsList2 <- function(terms = tm,lang, sourc = 0) {
   #allTerms <- allTerms[!is.na(allTerms)];
   allTerms[[termids[1]]] <- strsplit(as.character(allTerms[[termids[1]]]), " ");
   allTerms[[termids[1]]] <- unlist(allTerms[[termids[1]]]);
+  if(length(allTerms[[termids[1]]]) == 0) { allTerms[[termids[1]]] <- "";}
   for(termid in termids) {
     if(allTerms[[termid]] != "" && termid != 1){
       if(is.list(allTerms[[termid]]) == TRUE) {
@@ -875,7 +876,7 @@ listtodf <- function(df, list, lang, sourc = NA, termdf = NA) {
           term_id <- c(term_id, termid);
 #           if(length(termdf) > 1){ #!pages=NA for reference
 #             if(!is.na(source)) {
-#               pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == source, "pages"]));
+#               pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == sourc, "pages"]));
 #               no <- no + 1;
 #             }
 #           }
@@ -887,15 +888,15 @@ listtodf <- function(df, list, lang, sourc = NA, termdf = NA) {
         term <- c(term, list[[as.character(termid)]][i]);
         term_id <- c(term_id, termid);
 #         if(length(termdf) > 1){ #!pages=NA for reference
-#           if(!is.na(source)) {
-#             pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == source, "pages"]));
+#           if(!is.na(sourc)) {
+#             pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == sourc, "pages"]));
 #             no <- no + 1;
 #           }
 #         }
       }
     }
   }
-  #if(length(termdf) == 0 || is.na(source)) { pages <- rep(NA, length(term)); }
+  #if(length(termdf) == 0 || is.na(sourc)) { pages <- rep(NA, length(term)); }
   pages <- rep(NA, length(term)); #!pages=NA for reference
   id <- c();
   for(i in (length(row.names(df)) + 1) : (length(row.names(df)) + length(term)) ) { id <- c(id, i); }
@@ -911,13 +912,17 @@ listtodf <- function(df, list, lang, sourc = NA, termdf = NA) {
   df <- rbind(df, df2);
   return(df);
 }
-noElemList <- function(List){
+noElemList <- function(List, byElem = FALSE){
   no <- 0;
+  n <- 0;
+  noo <- c();
   for(i in 1: length(List)) {
-    if(is.list(List[[i]]) == TRUE) { no <- no + noElemList(List[[i]]); }
-    else { no <- no + length(List[[i]]); }
+    if(is.list(List[[i]]) == TRUE) { n <- noElemList(List[[i]], byElem = FALSE); no <- no + n; }
+    else { n <- length(List[[i]]); no <- no + n; }
+    if(byElem == TRUE){  noo <- c(noo, n); }
   }
-  return(no);
+  if(byElem == TRUE){ return(noo); }
+  else {return(no);}
 }
 appenddf <- function(df, bigdf, lg = "la", sourc = NA, term_id = c()) {
   term <- as.character(df[, "V1"]);
@@ -952,7 +957,7 @@ wordMatchCsv <- function(offTerms, newTerms, words, offLang = "la", newLang = "r
     noWo <- length(unlist(strsplit(newTerms[newTerms$lang == newLang & newTerms$source == sourc & newTerms$term_id == id, "term"], " ")));
     if(maxWo < noWo) { maxWo <- noWo; }
   }
-  newList <- list();
+  newList <- list();rep(names(wordsjunqueir
   newList[[1]] <- rep("", length(oWords));
   for(col in 2:maxWo){ newList[[col]] <- rep("", length(oWords)); }
   for(id in termids) {
@@ -1044,9 +1049,14 @@ woToTermsRef <- function(wodf, tmdf, offlang = "la", newLang = "ro", sourc = NA)
   df <- rbind(tmdf, df2);
   return(df);
 }
-automaticTransl <- function(){
-  #unique words
-  #auto matching from all words ~La, min(words)
+automaticTransl <- function(terms, words, matchwo, offLang = "la", newLang = "ro"){
+  words[,"term"] <- is.character(words[,"term"]);
+  words[,"lang"] <- is.character(words[,"lang"]);
+  uniqWo <- unique(words[words$lang == offLang, "term"]);
+  refmatch <- c();
+  #for(wo in uniqWo){if}
+  df <- data.frame(refmatch, uniqWo, match, matchList, sourceTerms);
+  return(df);
 }
 findInText <- function(text){
   
@@ -1066,7 +1076,6 @@ findInText <- function(text){
 # displayLg <-"la";
 # finalLa <- cleardf(csvtodf(sample500[,2:15], "ro", 3));
 # final <- referenceTrans(finalLa);
-#wobuc1987 <- sourceWordsList(final,"ro","buc1987"); (not neccessary)
 # finalLaEn <- tm[tm$term_id %in% sample500[,"id"] & tm$lang %in% c("la","en"), ]; !!nu e bun!!!
 # finalLaEn <- csvtodf(sample500, off = TRUE);
 # finalLaEn[,"term"] <- tolower(finalLaEn[,"term"]);
@@ -1145,6 +1154,30 @@ findInText <- function(text){
 #final <- woToTermsBase(EnRoRel, final, "la", "ro", "gtEnRoWords");
 #final <- woToTermsBase(LaRoRelOk, final, "la", "ro", "referenceWordsLa");
 #final <- woToTermsRef(LaRoRelOk, final, "la", "ro", "referenceWordsLa");
+#final <- automaticTransl(final);
+# wordsjunqueira <- sourceWordsList2(final,"ro","junqueira");
+# wordsjunqueira <- wordsjunqueira[which(wordsjunqueira != "")];
+# wordsbuc1987 <- sourceWordsList2(final,"ro","buc1987");
+# wordsbuc1987 <- wordsbuc1987[which(wordsbuc1987 != "")];
+# wordstm2009 <- sourceWordsList2(final,"ro","tm2009");
+# wordstm2009 <- wordstm2009[which(wordstm2009 != "")];
+# wordstm2004 <- sourceWordsList2(final,"ro","tm2004");
+# wordstm2004 <- wordstm2004[which(wordstm2004 != "")];
+# wordscraiova2006 <- sourceWordsList2(final,"ro","craiova2006");
+# wordscraiova2006 <- wordscraiova2006[which(wordscraiova2006 != "")];
+# termidsjunqueiraW <- rep(names(wordsjunqueira), noElemList(wordsjunqueira, byElem = TRUE)); # 1088 words
+# termidsbuc1987W <- rep(names(wordsbuc1987), noElemList(wordsbuc1987, byElem = TRUE)); # 123 words
+# termidstm2009W <- rep(names(wordstm2009), noElemList(wordstm2009, byElem = TRUE)); # 1019 words
+# termidstm2004W <- rep(names(wordstm2004), noElemList(wordstm2004, byElem = TRUE)); # 420 words
+# termidscraiova2006W <- rep(names(wordscraiova2006), noElemList(wordscraiova2006, byElem = TRUE)); # 293 words
+
+# finalWords <- listtodf(finalWords, wordsjunqueira, "ro", termdf = finalLaEn2);
+# finalWords <- appenddf(wordsjunqueira, finalWords, "ro", "wordsjunqueira", termidsjunqueiraW);
+# finalWords <- appenddf(wordsbuc1987, finalWords, "ro", "wordsbuc1987", termidsbuc1987W);
+# finalWords <- appenddf(wordstm2009, finalWords, "ro", "wordstm2009", termidstm2009W);
+# finalWords <- appenddf(wordstm2004, finalWords, "ro", "wordstm2004", termidstm2004W);
+# finalWords <- appenddf(wordscraiova2006, finalWords, "ro", "wordscraiova2006", termidscraiova2006W);
+
 
 #write.csv(finalWords, "../Data/finalWords.csv");
 #write.csv(final, "../Data/final.csv");
