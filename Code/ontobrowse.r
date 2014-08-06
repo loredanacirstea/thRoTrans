@@ -1165,19 +1165,20 @@ findInText <- function(text){
 # wordstm2004 <- wordstm2004[which(wordstm2004 != "")];
 # wordscraiova2006 <- sourceWordsList2(final,"ro","craiova2006");
 # wordscraiova2006 <- wordscraiova2006[which(wordscraiova2006 != "")];
-# termidsjunqueiraW <- rep(names(wordsjunqueira), noElemList(wordsjunqueira, byElem = TRUE)); # 1088 words
-# termidsbuc1987W <- rep(names(wordsbuc1987), noElemList(wordsbuc1987, byElem = TRUE)); # 123 words
-# termidstm2009W <- rep(names(wordstm2009), noElemList(wordstm2009, byElem = TRUE)); # 1019 words
-# termidstm2004W <- rep(names(wordstm2004), noElemList(wordstm2004, byElem = TRUE)); # 420 words
-# termidscraiova2006W <- rep(names(wordscraiova2006), noElemList(wordscraiova2006, byElem = TRUE)); # 293 words
+# termidsjunqueiraW <- rep(names(wordsjunqueira), noElemList(wordsjunqueira, byElem = TRUE)); # 1088 words - unused
+# termidsbuc1987W <- rep(names(wordsbuc1987), noElemList(wordsbuc1987, byElem = TRUE)); # 123 words - unused
+# termidstm2009W <- rep(names(wordstm2009), noElemList(wordstm2009, byElem = TRUE)); # 1019 words - unused
+# termidstm2004W <- rep(names(wordstm2004), noElemList(wordstm2004, byElem = TRUE)); # 420 words - unused
+# termidscraiova2006W <- rep(names(wordscraiova2006), noElemList(wordscraiova2006, byElem = TRUE)); # 293 words - unused
 
-# finalWords <- listtodf(finalWords, wordsjunqueira, "ro", termdf = finalLaEn2);
-# finalWords <- appenddf(wordsjunqueira, finalWords, "ro", "wordsjunqueira", termidsjunqueiraW);
-# finalWords <- appenddf(wordsbuc1987, finalWords, "ro", "wordsbuc1987", termidsbuc1987W);
-# finalWords <- appenddf(wordstm2009, finalWords, "ro", "wordstm2009", termidstm2009W);
-# finalWords <- appenddf(wordstm2004, finalWords, "ro", "wordstm2004", termidstm2004W);
-# finalWords <- appenddf(wordscraiova2006, finalWords, "ro", "wordscraiova2006", termidscraiova2006W);
+# finalWords <- listtodf(finalWords, wordsjunqueira, "ro", sourc = "junqueira");
+# finalWords <- listtodf(finalWords, wordsbuc1987, "ro", sourc = "buc1987");
+# finalWords <- listtodf(finalWords, wordstm2009, "ro", sourc = "tm2009");
+# finalWords <- listtodf(finalWords, wordstm2004, "ro", sourc = "tm2004");
+# finalWords <- listtodf(finalWords, wordscraiova2006, "ro", sourc = "craiova2006");
 
+# finalWords["term",] <- tolower(finalWords["term",]);
+# finalWords <- cleardf(finalWords);
 
 #write.csv(finalWords, "../Data/finalWords.csv");
 #write.csv(final, "../Data/final.csv");
