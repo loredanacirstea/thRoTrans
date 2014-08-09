@@ -945,7 +945,6 @@ wordMatchCsv <- function(offTerms, newTerms, words, offLang = "la", newLang = "r
   termids <- as.integer(levels(offTerms[offTerms$lang == offLang, "term_id"]));
   term_id <- c();
   oTerms <- c();
-  nTerms <- c();
   owo <- words[words$lang == offLang,];
   oWords <- as.character(words[order(owo[,"term_id"]),"term"]);
   basedf <- words[words$lang == newLang & words$source == baseTransl,];
@@ -957,7 +956,7 @@ wordMatchCsv <- function(offTerms, newTerms, words, offLang = "la", newLang = "r
     noWo <- length(unlist(strsplit(newTerms[newTerms$lang == newLang & newTerms$source == sourc & newTerms$term_id == id, "term"], " ")));
     if(maxWo < noWo) { maxWo <- noWo; }
   }
-  newList <- list();rep(names(wordsjunqueir
+  newList <- list();
   newList[[1]] <- rep("", length(oWords));
   for(col in 2:maxWo){ newList[[col]] <- rep("", length(oWords)); }
   for(id in termids) {
@@ -985,18 +984,109 @@ wordMatchCsv <- function(offTerms, newTerms, words, offLang = "la", newLang = "r
   }
   return(sheet);
 }
-woToTermsBase <- function(wodf, tmdf, offlang = "la", newLang = "ro", sourc = NA){
+wordMatchCsv2 <- function(offTerms, newTerms, words, offLang = "la", newLang = "ro", sourc = "reference", baseTransl="gtLaRoWords"){
+  termids <- as.integer(levels(offTerms[offTerms$lang == offLang, "term_id"]));
+  term_id <- c();
+  oTerms <- c();
+  nTerms <- c();
+  owo <- words[words$lang == offLang,];
+  oWords <- as.character(words[order(owo[,"term_id"]),"term"]);
+  base <- list();
+  for(baseT in baseTransl){
+    basedf <- words[words$lang == newLang & words$source == baseT,];
+    base[[baseT]] <- as.character(basedf[order(basedf[,"term_id"]),"term"]);
+  }
+  matchWords <- rep("", length(oWords));
+  maxWo <- 0;
+  for(id in termids){
+    nn <- newTerms[newTerms$lang == newLang & newTerms$source == sourc & newTerms$term_id == id, "term"];
+    noWo <- length(unlist(strsplit(newTerms[newTerms$lang == newLang & newTerms$source == sourc & newTerms$term_id == id, "term"], " ")));
+    if(maxWo < noWo) { maxWo <- noWo; }
+  }
+  newList <- list();
+  newList[[1]] <- rep("", length(oWords));
+  for(col in 2:maxWo){ newList[[col]] <- rep("", length(oWords)); }
+  for(id in termids) {
+    terms <- as.character(offTerms[offTerms$lang == offLang & offTerms$term_id == id, "term"]);
+    wo2 <- 0;
+    for(no in 1:length(terms)){
+      wo <- length(unlist(strsplit(terms[no], " ")));
+      wo2 <- wo2 + wo;
+      term_id <- c(term_id, rep(id, wo));
+      oTerms <- c(oTerms, rep(terms[no], wo));
+      nTerms <- c(nTerms, rep(as.character(newTerms[newTerms$term_id == id & newTerms$lang == newLang & newTerms$source == "reference", "term"]), wo));
+    }
+    nwo <- as.character(words[words$term_id == id & words$source == sourc & words$lang == newLang, "term"]);
+    if(length(nwo) != 0){
+      for(col in 1:length(nwo)){
+        for(row in 1:wo2){ 
+          newList[[as.numeric(col)]][[as.numeric(length(oTerms)-wo2+row)]] <- nwo[col]; }
+      }
+    }
+  }
+  sheet <- data.frame(term_id, oTerms, referenceTerms = nTerms, base, oWords, matchWords, newList);
+  for(col in names(sheet)) { sheet[,col] <- as.character(sheet[,col]);}
+  sheet[,"term_id"] <- as.integer(sheet[,"term_id"]);
+  for(row in row.names(sheet)){
+    words <- as.character(sheet[row, (length(names(sheet)) - maxWo + 1 ) : length(names(sheet))]);
+    if(length(which(words != "")) != 0){
+      ind <- list();
+      for(baseT in 1:length(names(base))){
+        ind[baseT] <- c();
+        if(length(sheet[row, names(base)[baseT]]) != 0 && sheet[row, names(base)[baseT]] != ""){
+          ind[[baseT]] <- agrep(sheet[row, names(base)[baseT]], words, max.distance = 0.5, ignore.case=TRUE);
+        }
+      }  
+      ind[[3]] <- agrep(sheet[row, "oWords"], words, max.distance = 0.5, ignore.case=TRUE);
+      ind[[4]] <- which(nchar(words[which(words != "")]) == min(nchar(words[which(words != "")])));
+      ind <- unlist(ind);
+      ind <- table(ind);
+      #cat(words, "\n");
+      #print(ind);
+      #cat("min(ind): ", min(ind), "\n");
+      #cat("which(ind == min(ind)): ", which(ind == min(ind)),"\n");
+      #cat("words[which(ind == min(ind)): ", words[which(ind == min(ind))[[1]]], "\n");
+      #oola<-sheet[row, "oWords"];
+      #oo<-words[which(ind == max(ind))[[1]]];
+      choice <- as.integer(names(which(ind == max(ind))));
+      if(length(choice) >1) {
+        ok<-0;
+        for(cho in choice) {
+          if(words[cho] == sheet[row, "oWords"]){ ok <- cho; }
+          else if(length(base) >1 && words[cho] == sheet[row, names(base)[2]]) { ok <- cho; }
+          else if(length(base) == 1 && words[cho] == sheet[row, base]) { ok <- cho; }
+        }
+        if(ok == 0) { ok<- choice[1]; }
+      }
+      else { ok <- choice; }
+      sheet[row, "matchWords"] <- words[ok];
+    }
+      
+      
+      
+#      for(i in (length(names(sheet)) - maxWo + 1 ) : length(names(sheet))){
+#        if(length(sheet[row, names(base)[baseT]]) != 0 && length(sheet[row, i]) != 0 && sheet[row, names(base)[baseT]] != "" && sheet[row, i] != ""){
+#          if(length(agrep(sheet[row, names(base)[baseT]], sheet[row, i], max.distance = 0.5, ignore.case=TRUE)) != 0){
+#            sheet[row, "matchWords"] <- sheet[row, i];
+#          }
+#        }
+#      }
+#    }
+  }
+  return(sheet);
+}
+woToTermsBase <- function(wodf, tmdf, offlang = "la", newLang = "ro", sourc = NA, base="base"){
   term_id <- c();
   term <- c();
   wodf[,"oTerms"] <- as.character(wodf[,"oTerms"]);
-  wodf[,"base"] <- as.character(wodf[,"base"]);
+  wodf[,base] <- as.character(wodf[,base]);
   for(row in row.names(wodf)){
     if(wodf[row, "term_id"] %in% term_id == FALSE) {
       termid <- wodf[row, "term_id"];
       ter <- unique(wodf[wodf$term_id == termid, "oTerms"]);
       for(t in ter){
         term_id <- c(term_id, termid);
-        term <- c(term, paste(wodf[wodf$term_id == termid & wodf$oTerms == t, "base"], collapse=" "));
+        term <- c(term, paste(wodf[wodf$term_id == termid & wodf$oTerms == t, base], collapse=" "));
       }
     } 
   }
@@ -1049,34 +1139,503 @@ woToTermsRef <- function(wodf, tmdf, offlang = "la", newLang = "ro", sourc = NA)
   df <- rbind(tmdf, df2);
   return(df);
 }
-automaticTransl <- function(terms, words, matchwo, offLang = "la", newLang = "ro"){
+autoTranslRef <- function(match){
+  synon <- synoW(match);
+  synonDif <- synDif(synon);
+  match[,"matchWords"] <- as.character(match[,"matchWords"]);
+  for(dif in synonDif){
+    cat(dif, "\n");
+    ind <- table(synon[[dif]]);
+    choices <- names(which(ind == max(ind)));
+    if(length(choices) > 1) {
+      i <- agrep(dif, choices, max.distance = 0.5, ignore.case=TRUE);
+      if(length(i) != 0) {
+        if( length(i) == 1) { ok <- choices[i]; }
+        else { ok <- choices[which(nchar(choices) == min(nchar(choices)))];
+               if(length(ok) > 1) { ok<- choices[1]; }}
+      }
+    } else { ok <- choices; }
+    match[match$matchWords == dif, "matchWords"] <- ok;
+    cat(ok, "\n");
+  }
+  return(match);
+}
+automaticTransl <- function(offTerms, terms, words, matchwo, offLang = "la", newLang = "ro", sources){
+  term_id <- c();
+  oTerms <- c();
+  oWords <- c();
+  matchWords <- c();
+  referenceMatch <- c();
   words[,"term"] <- is.character(words[,"term"]);
   words[,"lang"] <- is.character(words[,"lang"]);
   uniqWo <- unique(words[words$lang == offLang, "term"]);
-  refmatch <- c();
-  #for(wo in uniqWo){if}
-  df <- data.frame(refmatch, uniqWo, match, matchList, sourceTerms);
+  uniqList <- list();
+  for(wo in uniqWo){
+    uniqList[[wo]] <- list();
+    uniqList[[wo]][["id"]] <-c();
+    uniqList[[wo]][["oTerms"]] <-c();
+    uniqList[[wo]][["oWords"]] <-c();
+    uniqList[[wo]][["RefTerms"]] <-c();
+    uniqList[[wo]][["RefWords"]] <-c();
+    uniqList[[wo]][["matchWords"]] <-c();
+    for(i in 1:length(sources)) {
+    uniqList[[wo]][[sources[i]]] <-c();
+    }
+  }
+  for(wo in uniqWo) {
+    uniqList[[wo]][["id"]] <- as.character(words[words$term == wo & words$lang == offLang, "term_id"]);
+    uniqList[[wo]][["oTerms"]] <- as.character(offTerms[offTerms$term_id %in% uniqList[[wo]][["id"]] & offTerms$lang == offLang, "term"]);
+    uniqList[[wo]][["oWords"]] <- as.character(words[words$term_id %in% uniqList[[wo]][["id"]] & words$lang == "la", "term"]);
+    uniqList[[wo]][["RefTerms"]] <- as.character(terms[terms$term_id %in% uniqList[[wo]][["id"]] & terms$source == "reference", "term"]);
+    uniqList[[wo]][["RefWords"]] <- as.character(words[words$term_id %in% uniqList[[wo]][["id"]] & words$source == "reference", "term"]);
+    for(i in 1:length(sources)){
+      wos <- as.character(words[words$term_id %in% uniqList[[wo]][["id"]] & words$source == "junqueira", "term"]);
+      ok <- c();
+      ind <- c();
+      for(s in wos){
+        
+        }
+        
+      }
+    }
+   
+    uniqList[[wo]][["matchWords"]]
+    agrep(sheet[row, "base"], sheet[row, i], max.distance = 0.5)
+  
+  df <- data.frame(refT, refW, offT, offW, matchW, junqueira, tm2009, tm2004, buc1987, craiova2006, sourceTerms);
   return(df);
 }
-findInText <- function(text){
-  
+autoTranslWordList <- function(terms, words, matchwo, offLang = "la", newLang = "ro", sources){
+  uniqWo <- unique(as.character(words[words$lang == offLang, "term"]));
+  uniq <- list();
+  for(wo in uniqWo){
+    uniq[[wo]] <- list();
+    uniq[[wo]][["term_id"]] <- c();
+    uniq[[wo]][["match"]] <- c();
+    uniq[[wo]][["ind"]] <- c();
+    uniq[[wo]][["ok"]] <- "";
+  }
+  for(id in unique(as.character(words[words$lang == offLang, "term_id"]))){
+    wordsO <- as.character(words[words$lang == offLang & words$term_id == id, "term"]);
+    wordsId <- c();
+    ind <- c();
+    for(so in sources){
+      wordsId <- c(wordsId, as.character(words[words$lang == newLang & words$term_id == id & words$source == so & words$term != "", "term"]));
+    }
+    for(i in 1: length(wordsO)){
+      wordRef <- as.character(matchwo[matchwo$term_id == id & matchwo$oWords == wordsO[i] & matchwo$matchWords != "", "matchWords"]);
+      wordG <- as.character(matchwo[matchwo$term_id == id & matchwo$oWords == wordsO[i], "base"]);
+      agr <- c();
+      if(length(wordG) != 0){
+        if(length(wordG) > 1) { wordG <- paste(wordG, sep = " ", collapse = " "); }
+        agrG <- agrep(wordG, wordsId, max.distance = 0.4);
+        if(length(agrG) != 0) { agr <- c(agr, agrG); }
+      }
+      for(diff in 1:5){
+        agrO <- agrep(wordsO[i], wordsId, max.distance = 0.1*diff);
+        if(length(agrO) != 0) { agr <- c(agr, rep(agrO, 6-diff)); }
+        if(length(wordRef) != 0) {
+          if(length(wordRef) > 1) { wordRef <- paste(wordRef, sep = " ", collapse = " "); }
+          agrR <- agrep(wordRef, wordsId, max.distance = 0.1*diff);
+          if(length(agrR) != 0) { agr <- c(agr, rep(agrR, as.integer(3-diff/2))); }
+        }
+      }
+      indi <- unique(agr);
+      for(l in indi){
+        same <- grep(wordsId[l], wordsId, fixed=TRUE);
+        if(length(same) > 1){
+          
+        }
+      }
+      if(length(agr) > 0){
+        agrt <- table(agr);
+        for(ag in names(agrt)){
+          if(wordsId[as.integer(ag)] %in% uniq[[wordsO[i]]][["match"]]){
+            pos <- which(uniq[[wordsO[i]]][["match"]] == wordsId[as.integer(ag)]);
+            if(length(pos) > 1) { pos <- pos[1]; }
+            uniq[[wordsO[i]]][["ind"]][[pos]] <- uniq[[wordsO[i]]][["ind"]][[pos]] + agrt[[ag]];
+          } else {
+            uniq[[wordsO[i]]][["match"]] <- c(uniq[[wordsO[i]]][["match"]], wordsId[as.integer(ag)]);
+            uniq[[wordsO[i]]][["ind"]] <- c(uniq[[wordsO[i]]][["ind"]], agrt[[ag]]);
+          }
+        }
+      }
+      if(length(uniq[[wordsO[i]]][["match"]]) != 0){
+        pos <- which(nchar(uniq[[wordsO[i]]][["match"]]) == min(nchar(uniq[[wordsO[i]]][["match"]])));
+        uniq[[wordsO[i]]][["ind"]][pos] <- uniq[[wordsO[i]]][["ind"]][pos] + 2;
+      }
+      if(length(uniq[[wordsO[i]]][["match"]]) == 0){
+        agrA <- c();
+        for(difff in 6:10){
+          agrA <- c(agrA, agrep(wordsO[i], wordsId, max.distance = 0.1*difff));
+          if(length(agrA) != 0) {
+            
+            uniq[[wordsO[i]]][["match"]] <- wordsId[agrA];
+            uniq[[wordsO[i]]][["ind"]] <- agrA;
+          }
+          else {
+            uniq[[wordsO[i]]][["match"]] <- wordsId[1];
+            uniq[[wordsO[i]]][["ind"]] <- 1;
+          }
+        }
+      }
+      uniq[[wordsO[i]]][["term_id"]] <- c(uniq[[wordsO[i]]][["term_id"]], id);
+    }
+  }
+  for(wo in uniqWo){
+    pos <- which(uniq[[wo]][["ind"]] == max(uniq[[wo]][["ind"]]));
+    if(length(pos) > 1){
+        inc <- 1;
+        kk <- "";
+        while(length(kk) == 0 && inc < 10){
+          for(p in pos){
+            kk <- agrep(wo, uniq[[wo]][["match"]][[p]], max.distance = 0.1*inc);
+            if(length(kk) != 0) { pos <- p;}
+          }
+          inc <- inc + 1;
+        }
+      if(length(pos) > 1) {
+        min <- 100;
+        k <- 0;
+        for(p in pos){ if(nchar(uniq[[wo]][["match"]][[p]])<min) { k <- p; }}
+        pos <- k;
+      }
+    }
+    uniq[[wo]][["ok"]] <- uniq[[wo]][["match"]][[pos]];
+  }
+  return(uniq);
+}
+autoTransW <- function(List){
+  words <- c();
+  for(wo in names(List)){
+    words <- c(words, List[[wo]][["ok"]]);
+  }
+  return(words);
+}
+autoTransT <- function(List, words, terms, offLang = "la", newLang = "ro"){
+  term_id <- unique(as.character(words[words$lang == offLang, "term_id"]));
+  term <- c();
+  for(id in term_id){
+    wo <- as.character(words[words$lang == offLang & words$term_id == id, "term"]);
+    tt <- as.character(terms[terms$lang == offLang & terms$term_id == id, "term"]);
+    i <- 1;
+    ok <- c();
+    alt <- c();
+    for(ter in 1:length((tt))){
+      t <- c();
+      for(w in 1:length(unlist(strsplit(tt[ter]," ")))){
+        t <- c(t, List[[wo[i]]][["ok"]]);
+        i <- i + 1;
+      }
+      t <- paste(t, sep = " ", collapse = " ");
+      if(t %in% as.character(terms[terms$lang == newLang & terms$term_id == id, "term"])){
+        ok[ter] <- t;
+      }
+      else { alt[ter] <- t; }
+    }
+    if(length(ok) != 0){
+      term <- c(term, ok[1]);
+    }
+    else { term <- c(term, alt[1]); }
+  }
+  pages <- rep(NA, length(term_id));
+  id <- c();
+  for(i in 1:length(term_id)) { id <- c(id, i); }
+  #for(i in (length(row.names(tmdf)) + 1) : (length(row.names(tmdf)) + length(term_id))) { id <- c(id, i); }
+  upd <- rep(NA, length(term_id));
+  lang <- rep(newLang, length(term_id));
+  part_speech <- rep(NA, length(term_id));
+  gender <- rep(NA, length(term_id));
+  description <- rep(NA, length(term_id));
+  wiki <- rep(NA, length(term_id));
+  email <- rep(NA, length(term_id));
+  source <- rep("auto", length(term_id));
+  df2 <- data.frame(id, upd, term_id, lang, part_speech, gender, term, source, description, wiki, email, pages);
+  #df <- rbind(tmdf, df2);
+  return(df2);
+}
+autoMatch <- function(match, auto, words){
+  c <- which(names(match) == "matchWords");
+  for(col in (c+1):length(names(match))){
+    match[,col] <- as.character(match[,col]);
+  }
+  match[,"matchWords"] <- as.character(match[,"matchWords"]);
+  max <- 0;
+  for(i in 1:length(auto)){
+    if(length(unique(auto[[i]][["match"]])) > max) { max <- length(unique(auto[[i]][["match"]])); }
+  }
+  end <- length(names(match));
+  if(max > end) {
+    for(i in (end+1):max){
+      col <- rep(NA, length(row.names(match)));
+      cbind(match, col);
+    }
+    end <- max;
+  }
+  for(row in row.names(match)){
+    wordO <- as.character(match[row, "oWords"]);
+    replace <- auto[[wordO]][["ok"]];
+    if(length(replace) != 0) {
+      match[row, "matchWords"] <- replace;
+    }
+    i <- 1;
+    sinon <- unique(auto[[wordO]][["match"]]);
+    if(length(sinon) == 0){
+      sinon <- as.character(words[words$term_id == as.character(match[row,"term_id"]) & words$lang == "ro", "term"]);
+    }
+    for(col in (c+1):end){
+      match[row,col] <- sinon[i];
+      i <- i + 1;
+    }
+  }
+  return(match);
+}
+autoReduce <- function(terms, sourc = "autoOk", so = "autoRed", newLang = "ro"){
+  term_id <- unique(as.character(terms[,"term_id"]));
+  term <- c();
+  for(id in term_id){
+    tt <- as.character(terms[terms$term_id == id & terms$source == sourc, "term"]);
+    if(length(tt) > 1){
+      max <- 0; ind <- c();
+      for(t in tt){
+        if(length(unlist(strsplit(t, " "))) > max) { max <- length(unlist(strsplit(t, " "))); ok <- t;}
+        if(t %in% as.character(terms[terms$term_id == id, "term"])){ ind[t] <- 1; }
+      }
+      tt <- ok;
+    }
+    term <- c(term, tt);
+  }
+  pages <- rep(NA, length(term_id));
+  id <- c();
+  for(i in (length(row.names(terms)) + 1) : (length(row.names(terms)) + length(term_id))) { id <- c(id, i); }
+  upd <- rep(NA, length(term_id));
+  lang <- rep(newLang, length(term_id));
+  part_speech <- rep(NA, length(term_id));
+  gender <- rep(NA, length(term_id));
+  description <- rep(NA, length(term_id));
+  wiki <- rep(NA, length(term_id));
+  email <- rep(NA, length(term_id));
+  source <- rep(so, length(term_id));
+  df2 <- data.frame(id, upd, term_id, lang, part_speech, gender, term, source, description, wiki, email, pages);
+  df <- rbind(terms, df2);
+  return(df);
+}
+compareRatioWT <- function(oTerms, terms, words, offLang = "la", newLang = "ro", sources){
+  noWords <- c();
+  noWordsQ <- c();
+  noTerms <- c();
+  noTermsQ <- c();
+  ratioWT <- c();
+  ratioWTQ <- c();
+  for(lg in c("la", "en")) {
+    noWords[lg] <- length(as.character(words[words$lang == lg, "term"]));
+    noWordsQ[lg] <- length(unique(as.character(words[words$lang == lg, "term"])));
+    noTerms[lg] <- length(as.character(oTerms[oTerms$lang == lg, "term"]));
+    noTermsQ[lg] <- length(unique(as.character(oTerms[oTerms$lang == lg, "term"])));
+    ratioWT[lg] <- noWords[lg]/noTerms[lg];
+  }
+  for(so in sources){
+    if(so == "reference"){
+      noWords[so] <- length(as.character(words[words$lang == newLang & words$source == so, "term"]));
+      noWordsQ[so] <- length(unique(as.character(words[words$lang == newLang & words$source == so, "term"])));
+      noTerms[so] <- length(as.character(terms[terms$lang == newLang & terms$source == so, "term"]));
+      noTermsQ[so] <- length(unique(as.character(terms[terms$lang == newLang & terms$source == so, "term"])));
+    }
+    if(so == "referenceWordsLa") {
+      noWords[so] <- length(as.character(words[words$lang == newLang & words$source == "reference", "term"]));
+      noWordsQ[so] <- length(unique(as.character(words[words$lang == newLang & words$source == "reference", "term"])));
+      noTerms[so] <- length(as.character(terms[terms$lang == newLang & terms$source == so, "term"]));
+      noTermsQ[so] <- length(unique(as.character(terms[terms$lang == newLang & terms$source == so, "term"])));
+    }
+    if(length(grep("^gt", so) != 0)) {
+      noWords[so] <- length(as.character(words[words$lang == newLang & words$source == sub("Terms", "Words", so, fixed=TRUE), "term"]));
+      noWordsQ[so] <- length(unique(as.character(words[words$lang == newLang & words$source == sub("Terms", "Words", so, fixed=TRUE), "term"])));
+      noTerms[so] <- length(as.character(terms[terms$lang == newLang & terms$source == so, "term"]));
+      noTermsQ[so] <- length(unique(as.character(terms[terms$lang == newLang & terms$source == so, "term"])));
+    }
+    ratioWT[so] <- noWords[so]/noTerms[so];
+  }
+  df<-data.frame(noTerms, noTermsQ, noWords, noWordsQ, ratioWT);
+  return(df);
+}
+compareRatioWT2 <- function(oTerms, terms, words, offLang = "la", newLang = "ro", sourcesT, sourcesW){
+  noWords <- c();
+  noWordsQ <- c();
+  noTerms <- c();
+  noTermsQ <- c();
+  ratioWT <- c();
+  ratioWTQ <- c();
+  for(lg in offLang) {
+    noWords[lg] <- length(as.character(words[words$lang == lg, "term"]));
+    noWordsQ[lg] <- length(unique(as.character(words[words$lang == lg, "term"])));
+    noTerms[lg] <- length(as.character(oTerms[oTerms$lang == lg, "term"]));
+    noTermsQ[lg] <- length(unique(as.character(oTerms[oTerms$lang == lg, "term"])));
+    ratioWT[lg] <- noWords[lg]/noTerms[lg];
+  }
+  for(so in 1:length(sourcesT)){
+    noWords[sourcesT[so]] <- length(as.character(words[words$lang == newLang & words$source == sourcesW[so], "term"]));
+    noWordsQ[sourcesT[so]] <- length(unique(as.character(words[words$lang == newLang & words$source == sourcesW[so], "term"])));
+    noTerms[sourcesT[so]] <- length(as.character(terms[terms$lang == newLang & terms$source == sourcesW[so], "term"]));
+    noTermsQ[sourcesT[so]] <- length(unique(as.character(terms[terms$lang == newLang & terms$source == sourcesW[so], "term"])));
+    ratioWT[sourcesT[so]] <- noWords[sourcesT[so]]/noTerms[sourcesT[so]];
+  }
+  df<-data.frame(noTerms, noTermsQ, noWords, noWordsQ, ratioWT);
+  return(df);
+}
+compareSynoT <- function(oTerms, terms, offLang = "la", newLang = "ro", sources){
+  noConcepts <- c();
+  noTerms <- c();
+  noConceptsWithSyno <- c();
+  RatioSynoT <- c();
+  SynoList <- list();
+  minSynoT <- c();
+  maxSynoT <- c();
+  maxSynoTerm <- c();
+  for(lg in offLang) {
+    noConcepts[lg] <- length(unique(oTerms[oTerms$lang == lg, "term_id"]));
+    noTerms[lg] <- length(oTerms[oTerms$lang == lg, "term_id"]);
+    RatioSynoT[lg] <- noTerms[lg]/noConcepts[lg];
+    SynoList[[lg]] <- c();
+    for(id in unique(oTerms[oTerms$lang == lg, "term_id"])){
+      SynoList[[lg]] <- c(SynoList[[lg]], length(oTerms[oTerms$lang == lg & oTerms$term_id == id,"term"]));
+    }
+    noConceptsWithSyno[lg] <- length(as.character(unique(oTerms[oTerms$lang == lg, "term_id"])[which(SynoList[[lg]] > 1)]));
+    minSynoT[lg] <- min(SynoList[[lg]]);
+    maxSynoT[lg] <- max(SynoList[[lg]]);
+    syno <- as.character(unique(oTerms[oTerms$lang == lg, "term_id"])[which(SynoList[[lg]] == maxSynoT[lg])]);
+    sy <- c();
+    for(syid in syno) {
+      sy <- c(sy, paste(as.character(oTerms[oTerms$term_id == syid & oTerms$lang == lg, "term"]), collapse=", "));
+    }
+    maxSynoTerm[lg] <- paste(unique(sy), collapse = " ; ", sep = " ; ");
+  }
+  for(so in sources){
+    noConcepts[so] <- length(unique(terms[terms$lang == newLang & terms$source == so & terms$term != "", "term_id"]));
+    noTerms[so] <- length(terms[terms$lang == newLang & terms$source == so & terms$term != "", "term_id"]);
+    RatioSynoT[so] <- noTerms[so]/noConcepts[so];
+    SynoList[[so]] <- c();
+    if(noConcepts[so] != noTerms[so]) {
+      for(id in unique(terms[terms$lang == newLang & terms$source == so, "term_id"])){
+        SynoList[[so]] <- c(SynoList[[so]], length(terms[terms$term_id == id & terms$source == so,"term"]));
+      }
+      noConceptsWithSyno[so] <- length(as.character(unique(terms[terms$lang == newLang & terms$source == so, "term_id"])[which(SynoList[[so]] > 1)]));
+      minSynoT[so] <- min(SynoList[[so]]);
+      maxSynoT[so] <- max(SynoList[[so]]);
+      syno <- as.character(unique(terms[terms$lang == newLang & terms$source == so, "term_id"])[which(SynoList[[so]] == maxSynoT[so])]);
+      sy <- c();
+      for(syid in syno) {
+        sy <- c(sy, paste(as.character(terms[terms$lang == newLang & terms$source == so & terms$term_id == syid , "term"]), collapse=", "));
+      }
+      maxSynoTerm[[so]] <- paste(unique(sy), collapse = " ; ", sep = " ; ");
+    }
+    else{
+      noConceptsWithSyno[so] <- 0;
+      minSynoT[so] <- 1;
+      maxSynoT[so] <- 1;
+      maxSynoTerm[so] <- "";
+    }
+  }
+  df <- data.frame(noConcepts, noTerms, noConceptsWithSyno, RatioSynoT, minSynoT, maxSynoT, maxSynoTerm);
+  return(df);
+}
+synoW <- function(match){
+  uniqWo <- unique(as.character(match[,"oWords"]));
+  uniq <- list();
+  for(uniqW in uniqWo) { uniq[uniqW] <- c(); }
+  for(row in row.names(match)){
+    wo <- as.character(match[row,"oWords"]);
+    if(wo != "" && match[row, "matchWords"] != ""){ uniq[[wo]] <- c(uniq[[wo]], as.character(match[row, "matchWords"])); }
+  }
+  return(uniq);
+}
+synDif <- function(List){
+  dif <- c();
+  for(wo in names(List)){ if(length(unique(List[[wo]])) != 1){ dif <- c(dif, wo); } }
+  return(dif);
+}
+correctTerms <- function(terms, this, sources, lang){
+  ids <- as.character(terms[terms$source == this & terms$lang == lang, "term_id"]);
+  concept <- 0;
+  sino <- 0;
+  for(id in unique(ids)){
+    tms <- as.character(terms[terms$term_id == id & terms$source == this & terms$lang == lang, "term"]);
+    con <- 0;
+    for(tm in tms) { 
+      interm <- 0;
+      for(so in sources){
+        if(tm %in% as.character(terms[terms$term_id == id & terms$source == so & terms$lang == lang, "term"])){
+          interm <- interm + 1;
+        }
+      }
+      if(interm != 0) { sino <- sino + 1; con <- con +1;}   
+    }
+    if(con != 0) { concept <- concept + 1; }
+  }
+  return(matrix(c(c(length(unique(ids)), concept, concept/length(unique(ids))), c(length(ids), sino, sino/length(ids))), ncol=2));
+}
+correctWords <- function(terms, this, sources, lang){
+  ids <- as.character(terms[terms$source == this & terms$lang == lang, "term_id"]);
+  concept <- 0;
+  sino <- 0;
+  for(id in unique(ids)){
+    tms <- as.character(terms[terms$term_id == id & terms$source == this & terms$lang == lang, "term"]);
+    con <- 0;
+    for(tm in tms) { 
+      interm <- 0;
+      for(so in sources){
+        if(tm %in% as.character(terms[terms$term_id == id & terms$source == so & terms$lang == lang, "term"])){
+          interm <- interm + 1;
+        }
+      }
+      if(interm != 0) { sino <- sino + 1; con <- con +1;}   
+    }
+    if(con != 0) { concept <- concept + 1; }
+  }
+  return(matrix(c(c(length(unique(ids)), concept, concept/length(unique(ids))), c(length(ids), sino, sino/length(ids))), ncol=2));
+}
+ratioOffNewWords <- function(terms, offLang, newLang, sourc){
+  ids <- as.character(terms[terms$source == sourc & terms$lang == newLang, "term_id"]);
+  sameRatioWordsC <- 0;
+  sameRatioWordsT <- 0;
+  for(id in unique(ids)){
+    tms <- as.character(terms[terms$term_id == id & terms$source == sourc & terms$lang == newLang, "term"]);
+    interm <- 0;
+    for(tm in tms){
+      t <- 0;
+      so <- as.character(terms[terms$term_id == id & terms$lang == offLang, "term"]);
+      for(s in so) {
+        if(length(unlist(strsplit(tm, " "))) == length(unlist(strsplit(s, " ")))){
+          interm <- interm + 1;
+        }
+      }
+      if(interm != 0) { t <- t + 1; sameRatioWordsT <- sameRatioWordsT +1; }
+    }
+    if(t != 0) { sameRatioWordsC <- sameRatioWordsC +1; }
+  }
+  return(matrix(c(c(length(unique(ids)), sameRatioWordsC, sameRatioWordsC/length(unique(ids))), c(length(ids), sameRatioWordsT, sameRatioWordsT/length(ids))), ncol=2));
+}
+findInText <- function(text, terms, sources, langs){
+  find <- as.character(terms[terms$lang %in% langs & terms$source %in% sources, "term"]);
+  for(term in find){
+    text <- sub(paste(" ",term, " ", sep=""), paste("<", term, ">", sep=""),text);
+  }
+  return(text);
 }
 #global data frames: terms and relations
 #cat("Connecting to database ...");
 
-#x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
-#allTerms <- read.csv(text = x);
-#y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
-#allRel <- read.csv(text = y);
-#z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
-#sample500 <- read.csv(text = z);
-#tm <- allTerms;
-#rel <- allRel;
+# x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
+# allTerms <- read.csv(text = x);
+# y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
+# allRel <- read.csv(text = y);
+# z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
+# sample500 <- read.csv(text = z);
+# tm <- allTerms;
+# rel <- allRel;
 # orig <- 10001;
 # displayLg <-"la";
 # finalLa <- cleardf(csvtodf(sample500[,2:15], "ro", 3));
 # final <- referenceTrans(finalLa);
-# finalLaEn <- tm[tm$term_id %in% sample500[,"id"] & tm$lang %in% c("la","en"), ]; !!nu e bun!!!
 # finalLaEn <- csvtodf(sample500, off = TRUE);
 # finalLaEn[,"term"] <- tolower(finalLaEn[,"term"]);
 # finalLaEn[,"term"] <- sub("(", "", finalLaEn[,"term"], fixed=TRUE);
@@ -1092,7 +1651,6 @@ findInText <- function(text){
 # finalLaEn[finalLaEn$term_id == 12965 & finalLaEn$lang == "en", "term"] <- "parathyroid gland";
 # finalLaEn2 <- separateTerms(finalLaEn, sources = FALSE);
 # finalLaEn2 <- cleardf(finalLaEn2);
-#write.csv(finalLaEn2, "../Data/finalLaEn.csv");
 # finalLaWords <- sourceWordsList2(finalLaEn2,"la");
 # finalEnWords <- sourceWordsList2(finalLaEn2,"en");
 # wordsReference <- sourceWordsList2(final,"ro","reference");
@@ -1102,17 +1660,10 @@ findInText <- function(text){
 # finalWords <- listtodf(finalWords, finalLaWords, "la", termdf = finalLaEn2);
 # finalWords <- listtodf(finalWords, finalEnWords, "en", termdf = finalLaEn2);
 # finalWords <- listtodf(finalWords, wordsReference, "ro", sourc = "reference", termdf = final);
-# writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
-# writeLines(finalLaEn2[finalLaEn2$lang == "la", "term"], "../Data/laTerms.csv");
-# writeLines(finalLaEn2[finalLaEn2$lang == "en", "term"], "../Data/enTerms.csv");
-# writeLines(as.character(finalWords[finalWords$lang == "la", "term"]), "../Data/laWords.csv");
-# writeLines(as.character(finalWords[finalWords$lang == "en", "term"]), "../Data/enWords.csv");
 # termidsLaT <- as.character(finalLaEn2[finalLaEn2$lang == "la", "term_id"]);
 # termidsEnT <- as.character(finalLaEn2[finalLaEn2$lang == "en", "term_id"]);
 # termidsLaW <- as.character(finalWords[finalWords$lang == "la", "term_id"]);
 # termidsEnW <- as.character(finalWords[finalWords$lang == "en", "term_id"]);
-
-#copy paste to Google Translate -> gtEnRoTerms.csv , gtLaRoTerms.csv, gtEnRoWords.csv, gtLaRoWords.csv
 
 # gtLaRoTerms <- read.csv("../Data/gtLaRoTerms.csv", header = FALSE, sep = "\n");
 # gtEnRoTerms <- read.csv("../Data/gtEnRoTerms.csv", header = FALSE, sep = "\n");
@@ -1122,39 +1673,30 @@ findInText <- function(text){
 # gtLaRoTerms <- cleardf(gtLaRoTerms);
 # gtLaRoTerms[,"V1"] <- tolower(gtLaRoTerms[,"V1"]);
 # gtLaRoTerms[407,"V1"] <- "m.";
-# 
 # gtEnRoTerms[,"V1"] <- sub(",", "", gtEnRoTerms[,"V1"], fixed=TRUE);
 # gtEnRoTerms <- cleardf(gtEnRoTerms);
 # gtEnRoTerms[,"V1"] <- tolower(gtEnRoTerms[,"V1"]);
-# 
 # gtLaRoWords[,"V1"] <- sub(",", "", gtLaRoWords[,"V1"], fixed=TRUE);
 # gtLaRoWords <- cleardf(gtLaRoWords);
 # gtLaRoWords[,"V1"] <- tolower(gtLaRoWords[,"V1"]);
-# 
 # gtEnRoWords[,"V1"] <- sub(",", "", gtEnRoWords[,"V1"], fixed=TRUE);
 # gtEnRoWords <- cleardf(gtEnRoWords);
 # gtEnRoWords[,"V1"] <- tolower(gtEnRoWords[,"V1"]);
 
-# final <- appenddf(gtLaRoTerms, final, "ro", "gtLaRoTerms", termidsLaT);
+# final <- appenddf(gtLaRoTerms, final, "ro", "gtLaRoTerms", termidsLaT); # a iesit in la
 # final <- appenddf(gtEnRoTerms, final, "ro", "gtEnRoTerms", termidsEnT);
 # finalWords <- appenddf(gtLaRoWords, finalWords, "ro", "gtLaRoWords", termidsLaW);
 # finalWords <- appenddf(gtEnRoWords, finalWords, "ro", "gtEnRoWords", termidsEnW);
 
-#LaRoRel <- wordMatchCsv(finalLaEn2, final, finalWords, "la", "ro", "reference", "gtLaRoWords");
-#EnRoRel <- wordMatchCsv(finalLaEn2, final, finalWords, "en", "ro", "reference", "gtEnRoWords");
-#write.csv(LaRoRel, "../Data/LaRoRel.csv");
-#write.csv(EnRoRel, "../Data/EnRoRel.csv");
-#length(LaRoRel[LaRoRel$matchWords != "", "matchWords"]) #722 from 990
-#length(EnRoRel[EnRoRel$matchWords != "", "matchWords"]) #767 from 1056
-#LaRoRelOk <- read.csv("../Data/LaRoRelOk.csv");
-#LaRoRelOk <- LaRoRelOk[,2:length(names(LaRoRelOk))];
-#LaRoRelOk[,"matchWords"] <- tolower(LaRoRelOk[,"matchWords"]);
-#length(which(LaRoRel[, "matchWords"] == LaRoRelOk[, "matchWords"])); #654
+# LaRoRel <- wordMatchCsv(finalLaEn2, final, finalWords, "la", "ro", "reference", "gtLaRoWords");
+# EnRoRel <- wordMatchCsv(finalLaEn2, final, finalWords, "en", "ro", "reference", "gtEnRoWords");
+# LaRoRelOk <- read.csv("../Data/LaRoRelOk.csv");
+# LaRoRelOk <- LaRoRelOk[,2:length(names(LaRoRelOk))];
+# LaRoRelOk[,"matchWords"] <- tolower(LaRoRelOk[,"matchWords"]);
 #final <- woToTermsBase(LaRoRelOk, final, "la", "ro", "gtLaRoWords");
 #final <- woToTermsBase(EnRoRel, final, "la", "ro", "gtEnRoWords");
-#final <- woToTermsBase(LaRoRelOk, final, "la", "ro", "referenceWordsLa");
 #final <- woToTermsRef(LaRoRelOk, final, "la", "ro", "referenceWordsLa");
-#final <- automaticTransl(final);
+
 # wordsjunqueira <- sourceWordsList2(final,"ro","junqueira");
 # wordsjunqueira <- wordsjunqueira[which(wordsjunqueira != "")];
 # wordsbuc1987 <- sourceWordsList2(final,"ro","buc1987");
@@ -1165,11 +1707,6 @@ findInText <- function(text){
 # wordstm2004 <- wordstm2004[which(wordstm2004 != "")];
 # wordscraiova2006 <- sourceWordsList2(final,"ro","craiova2006");
 # wordscraiova2006 <- wordscraiova2006[which(wordscraiova2006 != "")];
-# termidsjunqueiraW <- rep(names(wordsjunqueira), noElemList(wordsjunqueira, byElem = TRUE)); # 1088 words - unused
-# termidsbuc1987W <- rep(names(wordsbuc1987), noElemList(wordsbuc1987, byElem = TRUE)); # 123 words - unused
-# termidstm2009W <- rep(names(wordstm2009), noElemList(wordstm2009, byElem = TRUE)); # 1019 words - unused
-# termidstm2004W <- rep(names(wordstm2004), noElemList(wordstm2004, byElem = TRUE)); # 420 words - unused
-# termidscraiova2006W <- rep(names(wordscraiova2006), noElemList(wordscraiova2006, byElem = TRUE)); # 293 words - unused
 
 # finalWords <- listtodf(finalWords, wordsjunqueira, "ro", sourc = "junqueira");
 # finalWords <- listtodf(finalWords, wordsbuc1987, "ro", sourc = "buc1987");
@@ -1177,14 +1714,170 @@ findInText <- function(text){
 # finalWords <- listtodf(finalWords, wordstm2004, "ro", sourc = "tm2004");
 # finalWords <- listtodf(finalWords, wordscraiova2006, "ro", sourc = "craiova2006");
 
-# finalWords["term",] <- tolower(finalWords["term",]);
-# finalWords <- cleardf(finalWords);
+#auto <- autoTranslWordList(final2, finalWords2, LaRoRelOk, "la", "ro", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
+#LaRoRelAuto <- autoMatch(LaRoRelOk, auto, finalWords2);
+#LaRoRelAutoOk <- read.csv("../Data/LaRoRelAutoOk.csv");
+#finalWords3 <- appenddf(df=data.frame(V1 = LaRoRelAutoOk[, "matchWords"]) , finalWords2, "ro", "autoOk", as.character(LaRoRelAutoOk[, "term_id"]));
+#final3 <- woToTermsBase(LaRoRelAutoOk, final2, "la", "ro", "autoOk", "matchWords");
+#final3 <- autoReduce(final3, "autoOk", "autoRed", "ro");
+
+#compareRatioWT2(finalLaEn2, final, finalWords, c("la","en"), "ro", c("reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"), c("reference", "reference", "gtLaRoWords", "gtEnRoWords", "gtLaRoWords", "gtEnRoWords"));
+#                  T    TQ     W      WQ     W/T
+#la:              566 | 518 | 990  | 582 | 1.749117
+#en:              581 | 535 | 1056 | 556 | 1.817556
+#reference:       500 | 455 | 909  | 537 | 1.818000
+#referenceWordsLa:500 | 455 | 909  | 537 | 1.818000
+#gtLaRoTerms:     566 | 517 | 990  | 539 | 1.749117
+#gtEnRoTerms:     581 | 534 | 1056 | 549 | 1.817556
+#gtLaRoWords:     566 | 517 | 990  | 539 | 1.749117
+#gtEnRoWords:     581 | 534 | 1056 | 549 | 1.817556
+
+#compareSynoT(finalLaEn2, final, c("la","en"), "ro", c("reference", "referenceWordsLa", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
+
+#                     noConcepts noTerms noConceptsWithSyno RatioSynoT minSynoT maxSynoT
+# la                      500     566                 57   1.132000        1        4
+# en                      500     581                 70   1.162000        1        3
+# reference               500     500                  0   1.000000        1        1
+# referenceWordsLa        500     500                  0   1.000000        1        1
+# junqueira               496     583                 69   1.175403        1        4
+# tm2009                  483     547                 55   1.132505        1        4
+# tm2004                  193     230                 32   1.191710        1        3
+# buc1987                  31      54                 12   1.741935        1        5
+# craiova2006              68     125                 35   1.838235        1        5
+
+#la         nexus, macula communicans, synapsis non vesicularis, synapsis electrica ; perikaryon, neurosoma, soma, corpus neuronis
+#en         gap junction, nonvesicular synapse, electrical synapse ; neutrophilic granulocyte, neutrophil, segmented neutrophilic granulocyte ; plasmalemma, cell membrane, plasma membrane ; desmosome, macula adherens, spot desmosome ; secretory vacuole vesicle, secretory granule, secretory ; plasmocyte, plasma cell, plasmacyte ; stratum basale, basal cell layer, stratum germinativum ; microvillous border, brush border, striated border ; perisinusoidal cell, fat storing cell, hepatic stellate cell [hsc] ; portal area, portal canal, portal zone
+#reference  
+#referenceWordsLa
+#junqueira  epiteliu simplu pavimentos, epiteliu unistratificat pavimentos, epiteliu simplu scuamos, epiteliu unistratificat scuamos
+#tm2009     incluziune de glicogen, granulă de glicogen, depozit de glicogen, vacuolă de glicogen
+#tm2004     celulă epitelială endocrină principală, celulă principală, celulă cromofobă ; celulă epitelială endocrină oxifilă, celulă oxifilă, celulă acidofilă ; celule nevroglice, celule gliale, nevroglii ; ganglion cerebro-spinal, ganglion senzitivo-senzorial, ganglion aferent ; neuron de asociație, interneuron, neuron intermediar
+#buc1987    celulă stem, celulă sușă, precursor, progenitor, tulpină a altor tipuri de celule
+#craiova2006 leucocit granulocitar neutrofil, granulocit neutrofil, granulocit neutrofil segmentat, neutrofil, polimorfonuclear neutrofil
+
+# syn <- synoW(LaRoRelOk);
+# length(names(syn));   #530 unique terms with transl != 0 (582 uniq la terms)
+# noUniqueWords<-noElemList(syn, byElem = TRUE);   #vector of frequency
+# max(noUniqueWords)     #20 = cellula
+# syn[which(noUniqueWords >10)]
+# woDif <- synDif(syn)   #40 words with diff synon
+# syn[woDif]            #the diff words
+
+# LaRoRelOk2 <- autoTranslRef(LaRoRelOk2) # sino reduced
+# length(which(final[final$source == "gtLaRoTerms", "term"] %in% final[final$source == "reference", "term"])) # 55
+# length(which(final[final$source == "gtLaRoTerms", "term"] %in% c(final[final$source == "reference", "term"], final[final$source == "junqueira", "term"], final[final$source == "tm2009", "term"], final[final$source == "tm2004", "term"], final[final$source == "buc1987", "term"], final[final$source == "craiova2006", "term"] ))) #65
+
+#correctTerms(final, "reference", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
+# 500c/500t
+#correctTerms(final, "gtLaRoTerms", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
+#64 concepts 64terms
+#correctTerms(final, "gtEnRoTerms", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
+# [,1]       [,2]
+# [1,] 500.000 581.000000
+# [2,] 128.000 129.000000
+# [3,]   0.256   0.222031
+#correctTerms(final, "gtLaRoWords", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
+#        [,1]        [,2]
+#[1,] 500.000 566.0000000
+#[2,]  62.000  63.0000000
+# [3,]   0.124   0.1113074
+#correctTerms(final, "gtEnRoWords", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
+#78 78
+#correctTerms(final, "referenceWordsLa", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
+# [,1]   [,2]
+# [1,] 500.00 500.00
+# [2,] 480.00 480.00
+# [3,]   0.96   0.96
+
+
+#correctWords(finalWords, "reference", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
+# [,1] [,2]
+# [1,]  500  909
+# [2,]  500  909
+# [3,]    1    1
+
+#correctWords(finalWords, "gtLaRoWords", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
+# [,1]        [,2]
+# [1,] 500.000 990.0000000
+# [2,] 204.000 258.0000000
+# [3,]   0.408   0.2606061
+
+#correctWords(finalWords, "gtEnRoWords", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
+# [,1]         [,2]
+# [1,] 500.00 1056.0000000
+# [2,] 335.00  482.0000000
+# [3,]   0.67    0.4564394
+
+#correctWords(finalWords2, "referenceOk", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
+# [,1]        [,2]
+# [1,] 500.000 990.0000000
+# [2,] 474.000 771.0000000
+# [3,]   0.948   0.7787879
+
+#ratioOffNewWords(final2, "la","ro","reference")
+# [,1]    [,2]
+# [1,] 500.000 500.000
+# [2,] 409.000 409.000
+# [3,]   0.818   0.818
+
+#ratioOffNewWords(final2, "la","ro","junqueira")
+# [,1]        [,2]
+# [1,] 500.00 587.0000000
+# [2,] 415.00 485.0000000
+# [3,]   0.83   0.8262351
+
+# ratioOffNewWords(final2, "la","ro","gtLaRoTerms")
+# [,1]        [,2]
+# [1,] 500.000 566.0000000
+# [2,] 434.000 495.0000000
+# [3,]   0.868   0.8745583
+
+#ratioOffNewWords(final2, "la","ro","gtLaRoWords")
+# [,1]        [,2]
+# [1,] 500.000 566.0000000
+# [2,] 477.000 536.0000000
+# [3,]   0.954   0.9469965
+
+
+
+# write.csv(finalLaEn2, "../Data/finalLaEn.csv");
+# writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
+# writeLines(finalLaEn2[finalLaEn2$lang == "la", "term"], "../Data/laTerms.csv");
+# writeLines(finalLaEn2[finalLaEn2$lang == "en", "term"], "../Data/enTerms.csv");
+# writeLines(as.character(finalWords[finalWords$lang == "la", "term"]), "../Data/laWords.csv");
+# writeLines(as.character(finalWords[finalWords$lang == "en", "term"]), "../Data/enWords.csv");
+# write.csv(LaRoRel, "../Data/LaRoRel.csv");
+# write.csv(EnRoRel, "../Data/EnRoRel.csv");
+# write.csv(LaRoRelAuto, "../Data/LaRoRelAuto.csv", row.names=FALSE);
 
 #write.csv(finalWords, "../Data/finalWords.csv");
 #write.csv(final, "../Data/final.csv");
 
+#length(LaRoRel[LaRoRel$matchWords != "", "matchWords"]) #722 from 990
+#length(EnRoRel[EnRoRel$matchWords != "", "matchWords"]) #895 from 1056
+#length(LaRoRelOk[LaRoRelOk$matchWords != "", "matchWords"]) #856 from 990
+#length(which(LaRoRel[, "matchWords"] == LaRoRelOk[, "matchWords"])); #654
+#length(which(LaRoRel[, "matchWords"] == "" & LaRoRelOk[, "matchWords"] == "")); #87 - "" -> 567 usable from 856
+#length(as.character(finalWords[finalWords$source=="junqueira" & finalWords$lang == "ro","term"])); #1088
 
 
+
+
+
+
+# unused
+# termidsjunqueiraW <- rep(names(wordsjunqueira), noElemList(wordsjunqueira, byElem = TRUE)); # 1088 words - unused
+# termidsbuc1987W <- rep(names(wordsbuc1987), noElemList(wordsbuc1987, byElem = TRUE)); # 123 words - unused
+# termidstm2009W <- rep(names(wordstm2009), noElemList(wordstm2009, byElem = TRUE)); # 1019 words - unused
+# termidstm2004W <- rep(names(wordstm2004), noElemList(wordstm2004, byElem = TRUE)); # 420 words - unused
+# termidscraiova2006W <- rep(names(wordscraiova2006), noElemList(wordscraiova2006, byElem = TRUE)); # 293 words - unused
+#finalLaEn3 <- finalLaEn2;
+#finalLaEn3[,"source"] <- "fipat";
+#final2 <- rbind(finalLaEn3, final);
+#final2[,"id"]<- seq(1,length(row.names(final2))); #this is the shit now!
+#finalWords2 <- appenddf(df=data.frame(V1 = LaRoRelOk[, "matchWords"]) , finalWords2, "ro", "referenceOk", as.character(LaRoRelOk[, "term_id"]));
+#LaRoRelJ <- wordMatchCsv2(finalLaEn2, final, finalWords2, "la", "ro", "junqueira", c("gtLaRoWords", "referenceOk"));
+# write.csv(LaRoRelJ, "../Data/LaRoRelJ.csv", row.names = TRUE);
 
 #uniqueWo <- makeUniqueWords(final,"ro");
 #g <- horizNoTerms(final);
@@ -1211,8 +1904,9 @@ findInText <- function(text){
 #wo<-wordFrame("la","en");
 #wo<-transWords(wo, "la", "ro");
 #wo<-transWord(wo, 47032, "la", "ro");
-
+#finalLaEn <- tm[tm$term_id %in% sample500[,"id"] & tm$lang %in% c("la","en"), ]; !!nu e bun!!!
+#final <- woToTermsBase(LaRoRelOk, final, "la", "ro", "referenceWordsLa"); - nu
+# final[final$source == "gtLaRoTerms","lang"] <- rep("ro", length(final[final$source == "gtLaRoTerms","lang"])); -nush de ce a fost nevoie
 #length(sample500[sample500$junqueira != "", "junqueira"]);
-
 #gsub("(^[[:space:]]+|[[:space:]]+$)", "", unlist(strsplit(as.character(sample002[,"junqueira"]),
 # c(";", " ;", " ; ", "; "), fixed = TRUE)))

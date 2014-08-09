@@ -1,0 +1,991 @@
+"term_id","oTerms","nTerms","base","oWords","matchWords","c..celulă....nucleu....citoplasmă....citosol....citosol....citosol...","c..............................................multinucleată...","c......................................................primordială...","c.............................................................","c..............................................................1","V12","V13","V14","V15","V16","V17","V18"
+10003,"cellula","celulă","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10005,"nucleus","nucleu","nucleu","nucleus","nucleu","nucleu","pulpos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10006,"cytoplasma","citoplasmă","citoplasma","cytoplasma","citoplasmă","citoplasmă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10014,"cytosol","citosol","citosol","cytosol","citosol","citosol","citoplasmatică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10014,"matrix cytoplasmica","citosol","matrice","matrix","matrice","matrice","extracelulară","citoplasmatică",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10014,"matrix cytoplasmica","citosol","cytoplasmica","cytoplasmica","citoplasmatică","citoplasmatică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10015,"organella","organite","organite","organella","organite","organite",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10015,"organula","organite","organe","organula","organite","organite",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10017,"plasmalemma","plasmalemă","plasmalema","plasmalemma","plasmalemă","plasmatică","plasmalemă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10017,"membrana cellularis","plasmalemă","filme","membrana","membrană","membrană",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10017,"membrana cellularis","plasmalemă","celulă","cellularis","celulară","celulară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10026,"cellula multinucleata","celulă multinucleată","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10026,"cellula multinucleata","celulă multinucleată","multinucleata","multinucleata","multinucleată","multinucleată",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10032,"cellula primordialis","celulă germinală primordială","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10032,"cellula primordialis","celulă germinală primordială","primar","primordialis","primordială","primordială","ovarian","primordial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10035,"cellula precursoria","celulă stem","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10035,"cellula precursoria","celulă stem","precursori","precursoria","stem","stem","precursor",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10036,"cellula progenetrix","celulă progenitoare","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10036,"cellula progenetrix","celulă progenitoare","progenetrix","progenetrix","progenitoare","progenitoare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10046,"cellula dendritiformis","celulă dendritică","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10046,"cellula dendritiformis","celulă dendritică","dendritiformis","dendritiformis","dendritică","dendritică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10048,"cellula gigantea","celulă gigantă","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10048,"cellula gigantea","celulă gigantă","gigantic","gigantea","gigantă","gigantă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10050,"cellula polyhedralis","celulă poliedrică","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10050,"cellula polyhedralis","celulă poliedrică","poliedrică","polyhedralis","poliedrică","poliedrică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10052,"cellula pyramidalis","celulă piramidală","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10052,"cellula pyramidalis","celulă piramidală","piramidal","pyramidalis","piramidală","piramidală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10054,"cellula squamosa","celulă scuamoasă","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10054,"cellula squamosa","celulă scuamoasă","solzos","squamosa","scuamoasă","scuamoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10054,"cellula plana","celulă scuamoasă","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10054,"cellula plana","celulă scuamoasă","plat","plana","aplatizată","pavimentoasă","aplatizată",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10057,"glycocalyx","glicocalix","glycocalyx","glycocalyx","glicocalix","glicocalix",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10078,"microvillus","microvil","microvillus","microvillus","microvil","microvil",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10079,"limbus microvillosus","margine striată","frontieră","limbus","în","platou","margine","perie","striată","striat","în",NA,NA,NA,NA,NA,NA
+10079,"limbus microvillosus","margine striată","microvillosus","microvillosus","striat","margine","perie","striată","platou","striat",NA,NA,NA,NA,NA,NA,NA
+10079,"limbus penicillatus","margine striată","frontieră","limbus","în","platou","margine","perie","striată","striat","în",NA,NA,NA,NA,NA,NA
+10079,"limbus penicillatus","margine striată","peri","penicillatus","perie","perie","striată","striat",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10079,"limbus striatus","margine striată","frontieră","limbus","în","platou","margine","perie","striată","striat","în",NA,NA,NA,NA,NA,NA
+10079,"limbus striatus","margine striată","caneluri","striatus","striat","striată","striat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10084,"stereocilium","stereocil","stereocilium","stereocilium","stereocil","stereocil",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10085,"cilium","cil","consiliu","cilium","cil","cil",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10086,"kinocilium","kinocil","kinocilium","kinocilium","kinocil","chinocil","kinocil",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10090,"microtubulus centralis","( microtubul central )","microtubulus","microtubulus","microtubul","microtubul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10090,"microtubulus centralis","( microtubul central )","central","centralis","central","central",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10096,"dyneinum","dineină","dyneinum","dyneinum","dineină","dineină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10104,"flagellum","flagel","flagel","flagellum","flagel","flagel",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10106,"junctiones intercellulares","joncțiuni intercelulare","joncțiune","junctiones","joncțiuni","joncțiuni",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10106,"junctiones intercellulares","joncțiuni intercelulare","intercellulares","intercellulares","intercelulare","intercelulare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10112,"junctio occludens","joncțiune strânsă","conjuncție","junctio","joncțiune","joncțiune",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10112,"junctio occludens","joncțiune strânsă","închide","occludens","ocludens","ocluzie","ocluzivă","ocludens","ocludentă","strânsă",NA,NA,NA,NA,NA,NA,NA
+10112,"zonula occludens","joncțiune strânsă","brâu mic","zonula","zonula","zonula","joncțiune",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10112,"zonula occludens","joncțiune strânsă","închide","occludens","ocludens","ocluzie","ocluzivă","ocludens","ocludentă","strânsă",NA,NA,NA,NA,NA,NA,NA
+10120,"desmosoma","desmozom","desmosoma","desmosoma","desmozom","desmozom","desmozomală","desmozomică",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10120,"macula adhaerens","desmozom","punct","macula","macula","macula","desmozomală","joncțiune","maculă","saculei","utriculei",NA,NA,NA,NA,NA,NA
+10120,"macula adhaerens","desmozom","aderare","adhaerens","adherens","adherens",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10129,"nexus","joncțiune gap","legătură","nexus","nexus","joncțiune","nexus","communicans",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10129,"macula communicans","joncțiune gap","punct","macula","macula","macula","desmozomală","joncțiune","maculă","saculei","utriculei",NA,NA,NA,NA,NA,NA
+10129,"macula communicans","joncțiune gap","comunicarea","communicans","comunicantă","comunicare","communicans","comunicantă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10129,"synapsis non vesicularis","joncțiune gap","sinapselor","synapsis","sinapsă","joncțiune","comunicare","gap","nexus","communicans","comunicantă","tip","macula","de","sinapsă",NA,NA
+10129,"synapsis non vesicularis","joncțiune gap","nu","non","joncțiune","nervoasă","nemielinizată","amielinică","joncțiune","comunicare","nexus","macula","communicans","comunicantă","endoplasmic","neted","pavimentos"
+10129,"synapsis non vesicularis","joncțiune gap","veziculoase","vesicularis","gap","comunicare","macula","communicans","nexus","comunicantă","joncțiune","de","gap","tip",NA,NA,NA
+10129,"synapsis electrica","joncțiune gap","sinapselor","synapsis","sinapsă","joncțiune","comunicare","gap","nexus","communicans","comunicantă","tip","macula","de","sinapsă",NA,NA
+10129,"synapsis electrica","joncțiune gap","electric","electrica","gap","comunicare","communicans","comunicantă","joncțiune","tip","macula","de","gap","nexus",NA,NA,NA
+10134,"hemidesmosoma","hemidesmozom","hemidesmosoma","hemidesmosoma","hemidesmozom","hemidesmozom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10142,"nucleus","nucleu","nucleu","nucleus","nucleu","nucleu","pulpos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10157,"nucleus pyknoticus","nucleu picnotic","nucleu","nucleus","nucleu","nucleu","pulpos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10157,"nucleus pyknoticus","nucleu picnotic","pyknoticus","pyknoticus","picnotic","picnotic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10160,"nucleus sphericus","nucleu sferic","nucleu","nucleus","nucleu","nucleu","pulpos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10160,"nucleus sphericus","nucleu sferic","sferoidal","sphericus","sferic","sferic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10186,"chromatinum","cromatină","chromatinum","chromatinum","cromatină","cromatină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10187,"heterochromatinum","heterocromatină","heterochromatinum","heterochromatinum","heterocromatină","heterocromatină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10205,"nucleolus","nucleol","nucleoli","nucleolus","nucleol","nucleol",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10217,"cytocentrum","centrozom","cytocentrum","cytocentrum","centrozom","centrozom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10217,"centrosoma","centrozom","centrosoma","centrosoma","centrozom","centrozom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10218,"centriolum","centriol","centriolum","centriolum","centriol","centriol",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10223,"mitochondrion","mitocondrie","mitochondrion","mitochondrion","mitocondrie","mitocondrie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10228,"myofilamentum tenue","filament de actină","myofilamentum","myofilamentum","miofilament","filament","miofilament","microfilament",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10228,"myofilamentum tenue","filament de actină","subțire","tenue","actină","filament","actină","subțire","actinic","miofilament","microfilament",NA,NA,NA,NA,NA,NA
+10228,"filamentum actini","filament de actină","filament","filamentum","filament","filament","microfilament","miofilament",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10228,"filamentum actini","filament de actină","actina","actini","actină","actină","actinic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10244,"reticulum endoplasmicum","reticul endoplasmic","plasă","reticulum","reticul","reticul","endoplasmic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10244,"reticulum endoplasmicum","reticul endoplasmic","endoplasmatic","endoplasmicum","endoplasmic","endoplasmic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10249,"neurofilamentum","neurofilament","neurofilamentum","neurofilamentum","neurofilament","neurofilament",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+1024900,"cisterna","cisternă","bine","cisterna","cisternă","cisternă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10254,"reticulum endoplasmicum granulosum","reticul endoplasmic rugos","plasă","reticulum","reticul","reticul","endoplasmic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10254,"reticulum endoplasmicum granulosum","reticul endoplasmic rugos","endoplasmatic","endoplasmicum","endoplasmic","endoplasmic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10254,"reticulum endoplasmicum granulosum","reticul endoplasmic rugos","granulozei","granulosum","granular","endoplasmic","reticul","neted","rugos","granular","granulos",NA,NA,NA,NA,NA,NA
+10256,"reticulum endoplasmicum non granulosum","reticul endoplasmic neted","plasă","reticulum","reticul","reticul","endoplasmic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10256,"reticulum endoplasmicum non granulosum","reticul endoplasmic neted","endoplasmatic","endoplasmicum","endoplasmic","endoplasmic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10256,"reticulum endoplasmicum non granulosum","reticul endoplasmic neted","nu","non granulosum","neted","reticul","endoplasmic","neted","plasă","endoplasmatic","nu","granulozei","neted","endoplasmatic","stomac","reticul","endoplasmic"
+10256,"reticulum endoplasmicum non granulosum","reticul endoplasmic neted","granulozei","","","reticul","endoplasmic","neted","plasă","endoplasmatic","nu","granulozei","neted","endoplasmatic","stomac","reticul","endoplasmic"
+10260,"ribosoma","ribozom","ribosoma","ribosoma","ribozom","ribozom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10263,"polyribosoma","poliribozom","polyribosoma","polyribosoma","poliribozom","poliribozom","polizom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10274,"vesicula golgiensis","veziculă Golgi","vezicii biliare","vesicula","veziculă","veziculă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10274,"vesicula golgiensis","veziculă Golgi","golgiensis","golgiensis","golgiană","golgiană","Golgi",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10277,"lysosoma","lizozom","lysosoma","lysosoma","lizozom","lizozom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10293,"telolysosoma","corp rezidual","telolysosoma","telolysosoma","rezidual","rezidual","corp",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10293,"corpusculum residuale","corp rezidual","corp","corpusculum","corpuscul","corpuscul","corp",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10293,"corpusculum residuale","corp rezidual","residuale","residuale","rezidual","rezidual",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10296,"peroxysoma","peroxizom","peroxysoma","peroxysoma","peroxizom","peroxizom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10298,"matrix peroxysomatica","matrice a peroxizomului","matrice","matrix","matrice","matrice","extracelulară","citoplasmatică",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10298,"matrix peroxysomatica","matrice a peroxizomului","peroxysomatica","peroxysomatica","peroxizomului","peroxizomului",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10299,"exocytosis","exocitoză","exocitoza","exocytosis","exocitoză","exocitoză",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10302,"vesicula secretoria","granulă secretorie","vezicii biliare","vesicula","veziculă","veziculă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10302,"vesicula secretoria","granulă secretorie","secretorie","secretoria","secretorie","secretorie","secreție",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10302,"granulum secretorium","granulă secretorie","granulă","granulum","granulă","incluziune","granulă","incluzie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10302,"granulum secretorium","granulă secretorie","secretorie","secretorium","secretorie","secretorie","secreție",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10302,"vacuola secretoria","granulă secretorie","vacuole","vacuola","vacuolă","veziculă","granulă","vacuolă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10302,"vacuola secretoria","granulă secretorie","secretorie","secretoria","secretorie","secretorie","secreție",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10309,"endocytosis","endocitoză","endocytosis","endocytosis","endocitoză","endocitoză",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10310,"pinocytosis","pinocitoză","pinocitoza","pinocytosis","pinocitoză","pinocitoză",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10314,"phagocytosis","fagocitoză","fagocitoză","phagocytosis","fagocitoză","fagocitoză",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10317,"vesicula pinocytotica","veziculă de pinocitoză","vezicii biliare","vesicula","veziculă","veziculă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10317,"vesicula pinocytotica","veziculă de pinocitoză","pinocytotica","pinocytotica","pinocitoză","pinocitoză",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10317,"pinosoma","veziculă de pinocitoză","pinosoma","pinosoma","pinozom","pinocitoză","pinozom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10331,"phagosoma","vacuolă de fagocitoză","phagosoma","phagosoma","fagozom","fagozom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10335,"corpusculum residuale","corp rezidual","corp","corpusculum","corpuscul","corpuscul","corp",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10335,"corpusculum residuale","corp rezidual","residuale","residuale","rezidual","rezidual",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10344,"granulum glycogeni","incluziune de glicogen","granulă","granulum","granulă","incluziune","granulă","incluzie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10344,"granulum glycogeni","incluziune de glicogen","glicogen","glycogeni","glicogen","glicogen",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10348,"gutta adipis","incluziune lipidică","picătură","gutta","incluziune","incluziune",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10348,"gutta adipis","incluziune lipidică","grăsime","adipis","lipidică","lipidică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10353,"cytoskeleton","citoschelet","citoscheletului","cytoskeleton","citoschelet","citoschelet",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10354,"microtubulus","microtubul","microtubulus","microtubulus","microtubul","microtubul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10355,"tubulinum","tubulină","tubulinei","tubulinum","tubulină","tubulină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10361,"dyneinum","dineină","dyneinum","dyneinum","dineină","dineină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10363,"cilium","cil","consiliu","cilium","cil","cil",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10364,"flagellum","flagel","flagel","flagellum","flagel","flagel",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10365,"microfilamentum","filament de actină","microfilamentum","microfilamentum","microfilament","filament","microfilament",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10365,"filamentum actini","filament de actină","filament","filamentum","filament","filament","microfilament","miofilament",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10365,"filamentum actini","filament de actină","actina","actini","actină","actină","actinic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10370,"myosinum","miozină","myosin","myosinum","miozină","miozină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10384,"tonofilamentum","tonofilament","tonofilamentum","tonofilamentum","tonofilament","tonofilament",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10385,"tonofibrilla","tonofibrilă","tonofibrilla","tonofibrilla","tonofibrilă","tonofibrilă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10396,"interphasis","interfază","interphasis","interphasis","interfază","interfază",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10406,"centriolum","centriol","centriolum","centriolum","centriol","centriol",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10422,"mitosis","mitoză","capabile să","mitosis","mitoză","mitoză",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10422,"phasis m","mitoză","fasis","phasis","M","mitoză","diviziune","celulară","fază","M",NA,NA,NA,NA,NA,NA,NA
+10422,"phasis m","mitoză","m","m","mitoză","mitoză","diviziune","celulară","fază","M",NA,NA,NA,NA,NA,NA,NA
+10428,"prophasis","profază","prophasis","prophasis","profază","profază",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10432,"metaphasis","metafază","metaphasis","metaphasis","metafază","metafază",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10442,"chromosoma","cromozom","cromozom","chromosoma","cromozom","cromozom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10529,"parenchyma","parenchim","parenchim","parenchyma","parenchim","parenchim",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10530,"stroma","stromă","stroma","stroma","stromă","stromă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10531,"capsula","capsulă","capsula","capsula","capsulă","capsulă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10532,"membrana basalis","membrană bazală","filme","membrana","membrană","membrană",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10532,"membrana basalis","membrană bazală","bazale","basalis","bazală","membrană","bazală","bazal","Bruch",NA,NA,NA,NA,NA,NA,NA,NA
+10540,"hyperplasia","hiperplazie","hiperplazie","hyperplasia","hiperplazie","hiperplazie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10541,"hypertrophia","hipertrofie","hipertrofiat","hypertrophia","hipertrofie","hipertrofie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10545,"metaplasia","metaplazie","metaplazie","metaplasia","metaplazie","metaplazie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10570,"nexus","joncțiune gap","legătură","nexus","nexus","joncțiune","nexus","communicans",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10570,"macula communicans","joncțiune gap","punct","macula","macula","macula","desmozomală","joncțiune","maculă","saculei","utriculei",NA,NA,NA,NA,NA,NA
+10570,"macula communicans","joncțiune gap","comunicarea","communicans","comunicantă","comunicare","communicans","comunicantă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10570,"synapsis non vesicularis","joncțiune gap","sinapselor","synapsis","sinapsă","joncțiune","comunicare","gap","nexus","communicans","comunicantă","tip","macula","de","sinapsă",NA,NA
+10570,"synapsis non vesicularis","joncțiune gap","nu","non","joncțiune","nervoasă","nemielinizată","amielinică","joncțiune","comunicare","nexus","macula","communicans","comunicantă","endoplasmic","neted","pavimentos"
+10570,"synapsis non vesicularis","joncțiune gap","veziculoase","vesicularis","gap","comunicare","macula","communicans","nexus","comunicantă","joncțiune","de","gap","tip",NA,NA,NA
+10570,"synapsis electrica","joncțiune gap","sinapselor","synapsis","sinapsă","joncțiune","comunicare","gap","nexus","communicans","comunicantă","tip","macula","de","sinapsă",NA,NA
+10570,"synapsis electrica","joncțiune gap","electric","electrica","gap","comunicare","communicans","comunicantă","joncțiune","tip","macula","de","gap","nexus",NA,NA,NA
+10571,"myofilamentum tenue","filament de actină","myofilamentum","myofilamentum","miofilament","filament","miofilament","microfilament",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10571,"myofilamentum tenue","filament de actină","subțire","tenue","actină","filament","actină","subțire","actinic","miofilament","microfilament",NA,NA,NA,NA,NA,NA
+10571,"filamentum actini","filament de actină","filament","filamentum","filament","filament","microfilament","miofilament",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10571,"filamentum actini","filament de actină","actina","actini","actină","actină","actinic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10572,"textus epithelialis","țesut epitelial","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10572,"textus epithelialis","țesut epitelial","epiteliale","epithelialis","epitelială","epitelială","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10573,"epithelium","epiteliu","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10576,"epitheliocytus","celulă epitelială","epitheliocytus","epitheliocytus","celulă","epitelială","celulă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10576,"cellula epithelialis","celulă epitelială","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10576,"cellula epithelialis","celulă epitelială","epiteliale","epithelialis","epitelială","epitelială","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10578,"polus apicalis","pol apical","pol","polus","pol","pol","apical","bazal",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10578,"polus apicalis","pol apical","apical","apicalis","apical","apical","apicală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10578,"apex cellularis","pol apical","vârf","apex","apical","apical",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10578,"apex cellularis","pol apical","celulă","cellularis","celulară","celulară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10579,"polus basalis","pol bazal","pol","polus","pol","pol","apical","bazal",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10579,"polus basalis","pol bazal","bazale","basalis","bazală","membrană","bazală","bazal","Bruch",NA,NA,NA,NA,NA,NA,NA,NA
+10579,"basis cellularis","pol bazal","de bază","basis","bazal","bazal",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10579,"basis cellularis","pol bazal","celulă","cellularis","celulară","celulară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10581,"facies apicalis","suprafață apicală","față","facies","suprafață","suprafață","apicală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10581,"facies apicalis","suprafață apicală","apical","apicalis","apical","apical","apicală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10597,"serocytus","celulă seroasă","serocytus","serocytus","seroasă","seroasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10600,"endocrinocytus","celulă endocrină","endocrinocytus","endocrinocytus","endocrină","pinealocit","endocrină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10605,"epithelium superficiale","epiteliu de acoperire","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10605,"epithelium superficiale","epiteliu de acoperire","suprafață","superficiale","acoperire","acoperire",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10606,"epithelium simplex squamosum","epiteliu simplu scuamos","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10606,"epithelium simplex squamosum","epiteliu simplu scuamos","simplu","simplex","simplu","simplu","pavimentos","simplă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10606,"epithelium simplex squamosum","epiteliu simplu scuamos","solzos","squamosum","scuamos","scuamos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10607,"endothelium","endoteliu","endoteliul","endothelium","endoteliu","endoteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10610,"endotheliocytus","celulă endotelială","endotheliocytus","endotheliocytus","endotelială","endotelială","endoteliului",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10624,"mesothelium","mezoteliu","mesothelium","mesothelium","mezoteliu","mezoteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10626,"epithelium simplex cuboideum","epiteliu simplu cubic","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10626,"epithelium simplex cuboideum","epiteliu simplu cubic","simplu","simplex","simplu","simplu","pavimentos","simplă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10626,"epithelium simplex cuboideum","epiteliu simplu cubic","cuboideum","cuboideum","cubic","cubic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10627,"epithelium simplex columnare","epiteliu simplu columnar","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10627,"epithelium simplex columnare","epiteliu simplu columnar","simplu","simplex","simplu","simplu","pavimentos","simplă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10627,"epithelium simplex columnare","epiteliu simplu columnar","în formă de coloană","columnare","columnar","cilindric","columnar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10628,"epithelium pseudostratificatum columnare","epiteliu pseudostratificat columnar","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10628,"epithelium pseudostratificatum columnare","epiteliu pseudostratificat columnar","pseudostratificatum","pseudostratificatum","pseudostratificat","pseudostratificat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10628,"epithelium pseudostratificatum columnare","epiteliu pseudostratificat columnar","în formă de coloană","columnare","columnar","cilindric","columnar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10632,"epithelium stratificatum squamosum non cornificatum","epiteliu stratificat scuamos nekeratinizat","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10632,"epithelium stratificatum squamosum non cornificatum","epiteliu stratificat scuamos nekeratinizat","stratificatum","stratificatum","stratificat","stratificat","necheratinizat","keratinizare","nekeratinizat","cheratinizat","keratinizat",NA,NA,NA,NA,NA,NA
+10632,"epithelium stratificatum squamosum non cornificatum","epiteliu stratificat scuamos nekeratinizat","solzos","squamosum","scuamos","scuamos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10632,"epithelium stratificatum squamosum non cornificatum","epiteliu stratificat scuamos nekeratinizat","nu","non cornificatum","nekeratinizat","epiteliu","stratificat","scuamos","nekeratinizat","epiteliu","stratificatum","solzos","nu","cornificatum","nonkeratinized","stratificat","scuamoase"
+10632,"epithelium stratificatum squamosum non cornificatum","epiteliu stratificat scuamos nekeratinizat","cornificatum","cornificatum","stratificat","stratificat","cheratinizat","keratinizat","keratinizare",NA,NA,NA,NA,NA,NA,NA,NA
+10637,"epithelium stratificatum squamosum cornificatum","epiteliu stratificat scuamos keratinizat","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10637,"epithelium stratificatum squamosum cornificatum","epiteliu stratificat scuamos keratinizat","stratificatum","stratificatum","stratificat","stratificat","necheratinizat","keratinizare","nekeratinizat","cheratinizat","keratinizat",NA,NA,NA,NA,NA,NA
+10637,"epithelium stratificatum squamosum cornificatum","epiteliu stratificat scuamos keratinizat","solzos","squamosum","scuamos","scuamos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10637,"epithelium stratificatum squamosum cornificatum","epiteliu stratificat scuamos keratinizat","cornificatum","cornificatum","stratificat","stratificat","cheratinizat","keratinizat","keratinizare",NA,NA,NA,NA,NA,NA,NA,NA
+10638,"epithelium stratificatum cuboideum","epiteliu stratificat cubic","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10638,"epithelium stratificatum cuboideum","epiteliu stratificat cubic","stratificatum","stratificatum","stratificat","stratificat","necheratinizat","keratinizare","nekeratinizat","cheratinizat","keratinizat",NA,NA,NA,NA,NA,NA
+10638,"epithelium stratificatum cuboideum","epiteliu stratificat cubic","cuboideum","cuboideum","cubic","cubic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10639,"epithelium stratificatum columnare","epiteliu stratificat cilindric","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10639,"epithelium stratificatum columnare","epiteliu stratificat cilindric","stratificatum","stratificatum","stratificat","stratificat","necheratinizat","keratinizare","nekeratinizat","cheratinizat","keratinizat",NA,NA,NA,NA,NA,NA
+10639,"epithelium stratificatum columnare","epiteliu stratificat cilindric","în formă de coloană","columnare","columnar","cilindric","columnar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10655,"epithelium glandulare","epiteliu glandular","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10655,"epithelium glandulare","epiteliu glandular","glandular","glandulare","glandular","glandular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10656,"glandula","glandă","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+10658,"secretio apocrina","secreție apocrină","secreție","secretio","secreție","secreție",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10658,"secretio apocrina","secreție apocrină","apocrina","apocrina","apocrină","apocrină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10661,"secretio exocrina","secreție exocrină","secreție","secretio","secreție","secreție",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10661,"secretio exocrina","secreție exocrină","exocrina","exocrina","exocrină","exocrină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10668,"glandula exocrina","glandă exocrină","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+10668,"glandula exocrina","glandă exocrină","exocrina","exocrina","exocrină","exocrină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10670,"epitheliocytus caliciformis","celulă caliciformă","epitheliocytus","epitheliocytus","celulă","epitelială","celulă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10670,"epitheliocytus caliciformis","celulă caliciformă","caliciformis","caliciformis","caliciformă","caliciformă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10674,"glandula simplex","glandă simplă","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+10674,"glandula simplex","glandă simplă","simplu","simplex","simplu","simplu","pavimentos","simplă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10675,"glandula tubulosa","glandă tubulară","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+10675,"glandula tubulosa","glandă tubulară","tubular","tubulosa","tubulară","tubulară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10676,"glandula tubulosa simplex","glandă tubulară simplă","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+10676,"glandula tubulosa simplex","glandă tubulară simplă","tubular","tubulosa","tubulară","tubulară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10676,"glandula tubulosa simplex","glandă tubulară simplă","simplu","simplex","simplu","simplu","pavimentos","simplă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10677,"glandula tubulosa ramosa","glandă tubulară ramificată","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+10677,"glandula tubulosa ramosa","glandă tubulară ramificată","tubular","tubulosa","tubulară","tubulară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10677,"glandula tubulosa ramosa","glandă tubulară ramificată","branșament","ramosa","ramificată","ramificată",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10679,"glandula acinosa","glandă acinară","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+10679,"glandula acinosa","glandă acinară","like","acinosa","acinară","acinară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10687,"glandula tubuloacinosa composita","glandă tubuloacinară compusă","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+10687,"glandula tubuloacinosa composita","glandă tubuloacinară compusă","tubuloacinosa","tubuloacinosa","tubuloacinară","tubuloacinară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10687,"glandula tubuloacinosa composita","glandă tubuloacinară compusă","compozit","composita","compusă","compusă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10704,"acinus","acin","crimă","acinus","acin","acin",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10707,"myoepitheliocytus","celulă mioepitelială","myoepitheliocytus","myoepitheliocytus","mioepitelială","mioepitelială",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10713,"myoepitheliocytus","celulă mioepitelială","myoepitheliocytus","myoepitheliocytus","mioepitelială","mioepitelială",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10726,"glandula endocrina","glandă endocrină","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+10726,"glandula endocrina","glandă endocrină","endocrin","endocrina","endocrină","endocrină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10735,"fibroblastus","fibroblast","fibroblaste","fibroblastus","fibroblast","fibroblast",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10736,"fibrocytus","fibrocit","fibrocytus","fibrocytus","fibrocit","fibrocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10738,"adipocytus","adipocit","adipocytus","adipocytus","adipocit","adipoasă","adipocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10739,"plasmocytus","plasmocit","plasmocytus","plasmocytus","plasmocit","plasmocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10742,"macrophagocytus","macrofag","macrophagocytus","macrophagocytus","macrofag","macrofag",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10747,"mastocytus","mastocit","mastocytus","mastocytus","mastocit","mastocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10750,"myofibroblastus","miofibroblast","myofibroblastus","myofibroblastus","miofibroblast","miofibroblast",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10751,"cellula pigmentata","celulă pigmentară","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+10751,"cellula pigmentata","celulă pigmentară","pigmentat","pigmentata","pigmentară","pigmentară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10753,"melanocytus","melanocit","melanocite","melanocytus","melanocit","melanocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10754,"matrix extracellularis","matrice extracelulară","matrice","matrix","matrice","matrice","extracelulară","citoplasmatică",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10754,"matrix extracellularis","matrice extracelulară","extracelular","extracellularis","extracelulară","extracelulară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10756,"glycosaminoglycanum","glicozaminoglican","glicozaminoglicani","glycosaminoglycanum","glicozaminoglican","glicozaminoglican",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10758,"proteoglycanum","proteoglican","proteoglycanum","proteoglycanum","proteoglican","proteoglican",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10759,"collagenum","colagen","colagenul","collagenum","colagen","colagen",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10760,"procollagenum","procolagen","procollagenum","procollagenum","procolagen","procolagen",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10762,"fasciculus collageni","fascicul de colagen","fișier","fasciculus","fascicul","fascicul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10762,"fasciculus collageni","fascicul de colagen","colagenul","collageni","colagen","colagen","colagenă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10763,"fibra collageni","fibră de colagen","fibră","fibra","fibră","fibră",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10763,"fibra collageni","fibră de colagen","colagenul","collageni","colagen","colagen","colagenă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10765,"tropocollagenum","tropocolagen","tropocollagenum","tropocollagenum","tropocolagen","tropocolagen",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10769,"fibra elastica","fibră elastică","fibră","fibra","fibră","fibră",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10769,"fibra elastica","fibră elastică","elastic","elastica","elastică","elastică","cartilaj","elastic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10776,"elastinum","elastină","elastina","elastinum","elastină","elastină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10784,"textus connectivus laxus","țesut conjunctiv lax","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10784,"textus connectivus laxus","țesut conjunctiv lax","conjunctiv","connectivus","conjunctiv","conjunctiv",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10784,"textus connectivus laxus","țesut conjunctiv lax","mai târziu","laxus","lax","lax",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10785,"textus connectivus compactus","țesut conjunctiv dens","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10785,"textus connectivus compactus","țesut conjunctiv dens","conjunctiv","connectivus","conjunctiv","conjunctiv",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10785,"textus connectivus compactus","țesut conjunctiv dens","cd","compactus","dens","țesut","conjunctiv","dens",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10793,"ligamenta","ligamente","legături","ligamenta","ligamente","ligamente",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10800,"textus adiposus","țesut adipos","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10800,"textus adiposus","țesut adipos","gras","adiposus","adipos","adipos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10807,"chondrocytus","condrocit","chondrocytus","chondrocytus","condrocit","condrocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10817,"fibra collageni","fibră de colagen","fibră","fibra","fibră","fibră",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10817,"fibra collageni","fibră de colagen","colagenul","collageni","colagen","colagen","colagenă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10829,"cartilago elastica","cartilaj elastic","cartilaj","cartilago","cartilaj","cartilaj",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10829,"cartilago elastica","cartilaj elastic","elastic","elastica","elastică","elastică","cartilaj","elastic",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10830,"perichondrium","pericondru","perichondrium","perichondrium","pericondru","pericondru",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10839,"textus osseus","țesut osos","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10839,"textus osseus","țesut osos","schelet","osseus","osos","osos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10843,"osteocytus","osteocit","osteocytus","osteocytus","osteocit","osteocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10845,"osteoclastus","osteoclast","osteoclastus","osteoclastus","osteoclast","osteoclast",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10863,"periosteum","periost","periost","periosteum","periost","periost",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10869,"endosteum","endost","endosteum","endosteum","endost","endost",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10902,"ossificatio","osificare","osificare","ossificatio","osificare","osificare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10941,"haemocyti","celule sanguine","haemocyti","haemocyti","sanguine","sanguine","celule",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10942,"erythrocytus","eritrocit","erythrocytus","erythrocytus","eritrocit","eritrocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10947,"anisocytosis","anizocitoză","anizocitoză","anisocytosis","anizocitoză","anizocitoză",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10956,"leucocytus","leucocit","premoniție","leucocytus","leucocit","leucocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10957,"lymphocytus","limfocit","limfocite","lymphocytus","limfocit","limfocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10958,"granulum azurophilum","granulă azurofilă","granulă","granulum","granulă","incluziune","granulă","incluzie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10958,"granulum azurophilum","granulă azurofilă","azurophilum","azurophilum","azurofilă","azurofilă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10961,"lymphocytus b","limfocit B","limfocite","lymphocytus","limfocit","limfocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10961,"lymphocytus b","limfocit B","b","b","B","limfocit","B",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10964,"lymphocytus t","limfocit T","limfocite","lymphocytus","limfocit","limfocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10964,"lymphocytus t","limfocit T","t","t","T","limfocit","T","helper",NA,NA,NA,NA,NA,NA,NA,NA,NA
+10970,"monocytus","monocit","monocytus","monocytus","monocit","monocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10973,"granulocytus neutrophilus","neutrofil","granulocytus","granulocytus","granulocit","granulocit","granulocitar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10973,"granulocytus neutrophilus","neutrofil","neutrofile","neutrophilus","neutrofil","neutrofil",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10973,"neutrophilus","neutrofil","neutrofile","neutrophilus","neutrofil","neutrofil",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10973,"granulocytus neutrophilus segmentonuclearis","neutrofil","granulocytus","granulocytus","granulocit","granulocit","granulocitar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10973,"granulocytus neutrophilus segmentonuclearis","neutrofil","neutrofile","neutrophilus","neutrofil","neutrofil",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10973,"granulocytus neutrophilus segmentonuclearis","neutrofil","segmentonuclearis","segmentonuclearis","segmentat","segmentat","polimorfonuclear",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10980,"granulocytus acidophilus","eozinofil","granulocytus","granulocytus","granulocit","granulocit","granulocitar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10980,"granulocytus acidophilus","eozinofil","acidophilus","acidophilus ","","eozinofil","granulocytus","acidophilus","eozinofile","eozinofile","granulocite","eozinofile","eozinofil","eozinofil","granulocit","eozinofil","eozinofil"
+10980,"eosinophilus","eozinofil","eozinofile","eosinophilus","eozinofil","eozinofil",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+10990,"thrombocytus","trombocit","thrombocytus","thrombocytus","trombocit","trombocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11000,"plasma","plasmă","plasma","plasma","plasmă","plasmă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11003,"chylomicron","chilomicron","chylomicron","chylomicron","chilomicron","chilomicron",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11033,"sinusoideus","sinusoid","sinusoideus","sinusoideus","sinusoid","sinusoid","sinus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11033,"sinus venularis","sinusoid","golf","sinus","sinus","sinus","intermediar","sinusoid","venos","subcapsular","marginal",NA,NA,NA,NA,NA,NA
+11033,"sinus venularis","sinusoid","venularis","venularis","venos","venos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11036,"erythroblastus","eritroblast","erythroblastus","erythroblastus","eritroblast","eritroblast",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11042,"myeloblastus","mieloblast","myeloblastus","myeloblastus","mieloblast","mieloblast",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11044,"myelocytus","mielocit","myelocytus","myelocytus","mielocit","mielocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11057,"megakaryocytus","megakariocit","megakaryocytus","megakaryocytus","megakariocit","megacariocit","megakariocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11075,"medulla ossium","măduvă osoasă","măduvă","medulla","medulară","măduva","medulară","medulosuprarenală","măduvă",NA,NA,NA,NA,NA,NA,NA,NA
+11075,"medulla ossium","măduvă osoasă","os","ossium","osoasă","osoasă","hematogenă","roşie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11078,"medulla ossium rubra","măduvă osoasă hematogenă","măduvă","medulla","medulară","măduva","medulară","medulosuprarenală","măduvă",NA,NA,NA,NA,NA,NA,NA,NA
+11078,"medulla ossium rubra","măduvă osoasă hematogenă","os","ossium","osoasă","osoasă","hematogenă","roşie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11078,"medulla ossium rubra","măduvă osoasă hematogenă","roșu","rubra","hematogenă","hematogenă","roşie","roșie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11083,"myocytus","celulă musculară","myocytes","myocytus","miocit","musculară","miocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11087,"myofilamentum","miofilament","myofilamentum","myofilamentum","miofilament","filament","miofilament","microfilament",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11088,"myofibrilla","miofibrilă","myofibrilla","myofibrilla","miofibrilă","miofibrilă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11089,"sarcomerum","sarcomer","sarcom","sarcomerum","sarcomer","sarcomer",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11089,"myomerum","sarcomer","miom","myomerum","sarcomer","sarcomer",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11092,"actinum","actină","actina","actinum","actină","actină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11099,"desminum","desmină","desminum","desminum","desmină","desmină","scheletină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11108,"tropomyosinum","tropomiozină","tropomyosinum","tropomyosinum","tropomiozină","tropomiozină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11125,"myofilamentum","miofilament","myofilamentum","myofilamentum","miofilament","filament","miofilament","microfilament",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11168,"macula adhaerens","desmozom","punct","macula","macula","macula","desmozomală","joncțiune","maculă","saculei","utriculei",NA,NA,NA,NA,NA,NA
+11168,"macula adhaerens","desmozom","aderare","adhaerens","adherens","adherens",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11168,"desmosoma","desmozom","desmosoma","desmosoma","desmozom","desmozom","desmozomală","desmozomică",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11188,"myoblastus","mioblast","myoblastus","myoblastus","mioblast","mioblast",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11193,"textus nervosus","țesut nervos","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11193,"textus nervosus","țesut nervos","puternic","nervosus","nervos","nervos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11194,"axolemma","axolemă","axolemma","axolemma","axolemă","axolemă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11195,"neuron","neuron","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+11197,"axolemma","axolemă","axolemma","axolemma","axolemă","axolemă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11198,"perikaryon","corp neuronal","perikaryon","perikaryon","pericarion","pericarion","perikarion",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11198,"neurosoma","corp neuronal","neurosoma","neurosoma","neuronal","neuronal","neuronului","soma",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11198,"soma","corp neuronal","soma","soma","neuronal","neuronal","soma",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11198,"corpus neuronis","corp neuronal","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
+11198,"corpus neuronis","corp neuronal","neuron","neuronis","neuronal","neuronal","neuronului",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11201,"neurofibrilla","neurofibrilă","neurofibrilla","neurofibrilla","neurofibrilă","neurofibrilă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11204,"neurofibra","fibră nervoasă","neurofibra","neurofibra","nervoasă","nervoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11209,"neurofibra sensoria","fibră nervoasă senzitivă","neurofibra","neurofibra","nervoasă","nervoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11209,"neurofibra sensoria","fibră nervoasă senzitivă","senzorial","sensoria","senzitivă","senzitivă","receptoare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11210,"neurofibra afferens","fibră nervoasă aferentă","neurofibra","neurofibra","nervoasă","nervoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11210,"neurofibra afferens","fibră nervoasă aferentă","aducere","afferens","aferentă","aferentă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11211,"neurofibra efferens","fibră nervoasă eferentă","neurofibra","neurofibra","nervoasă","nervoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11211,"neurofibra efferens","fibră nervoasă eferentă","subliniază","efferens","eferentă","eferentă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11214,"axon","axon","axon","axon","axon","axon","cilindrax",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11215,"axoplasma","axoplasmă","axoplasma","axoplasma","axoplasmă","axoplasmă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11222,"telodendron","arborizație terminală","telodendron","telodendron","telodendron","telodendrit","telodendron",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11235,"gemmula dendritica","spin dendritic","concert","gemmula","spin","spin","specializare","postsinaptică",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11235,"gemmula dendritica","spin dendritic","dendritic","dendritica","dendritic","dendritic","dendritică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11249,"neuron bipolare","neuron bipolar","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+11249,"neuron bipolare","neuron bipolar","bipolar","bipolare","bipolar","bipolar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11250,"neuron multipolare","neuron multipolar","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+11250,"neuron multipolare","neuron multipolar","multipolară","multipolare","multipolar","multipolar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11254,"motoneuron","neuron motor","motoneuron","motoneuron","motoneuron","neuron","motor","motoneuron",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11254,"neuron motorium","neuron motor","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+11254,"neuron motorium","neuron motor","motor","motorium","motor","motor","motoneuron",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11260,"interneuron","interneuron","interneuron","interneuron","interneuron","interneuron","neuron","intermediar","intercalar",NA,NA,NA,NA,NA,NA,NA,NA
+11260,"neuron internuntiale","interneuron","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+11260,"neuron internuntiale","interneuron","internuntiale","internuntiale","interneuron","interneuron","intermediar","intercalar",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11269,"terminationes neurales","terminații nervoase","terminale","terminationes","terminații","terminații",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11269,"terminationes neurales","terminații nervoase","neural","neurales","nervoase","nervoase",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11272,"synapsis axodendritica","sinapsă axodendritică","sinapselor","synapsis","sinapsă","joncțiune","comunicare","gap","nexus","communicans","comunicantă","tip","macula","de","sinapsă",NA,NA
+11272,"synapsis axodendritica","sinapsă axodendritică","axodendritica","axodendritica","axodendritică","axodendritică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11276,"synapsis axosomatica","sinapsă axosomatică","sinapselor","synapsis","sinapsă","joncțiune","comunicare","gap","nexus","communicans","comunicantă","tip","macula","de","sinapsă",NA,NA
+11276,"synapsis axosomatica","sinapsă axosomatică","axosomatica","axosomatica","axosomatică","axosomatică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11282,"receptor","receptor","receptor","receptor","receptor","receptor",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11299,"neuroglia","nevroglii","neuroglia","neuroglia","nevroglii","neurogliale","gliale","nevroglii","nevroglice","neuroglii",NA,NA,NA,NA,NA,NA,NA
+11300,"synapsis","sinapsă","sinapselor","synapsis","sinapsă","joncțiune","comunicare","gap","nexus","communicans","comunicantă","tip","macula","de","sinapsă",NA,NA
+11305,"microglia","microglie","microglia","microglia","microglie","microglie","nevroglie","microglial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11306,"vesicula synaptica","veziculă sinaptică","vezicii biliare","vesicula","veziculă","veziculă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11306,"vesicula synaptica","veziculă sinaptică","synaptic","synaptica","sinaptică","sinaptică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11306,"vesicula presynaptica","veziculă sinaptică","vezicii biliare","vesicula","veziculă","veziculă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11306,"vesicula presynaptica","veziculă sinaptică","presynaptica","presynaptica","sinaptică","sinaptică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11308,"gliocytus","celulă glială","gliocytus","gliocytus","celulă","glială","celulă","satelită",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11310,"neurotransmittens","neurotransmițător","neurotransmittens","neurotransmittens","neurotransmițător","neurotransmițător",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11325,"pars postsynaptica","componentă postsinaptică","de","pars","periferic","sistem","nervos","periferic","central","nevrax","componentă","postsinaptică",NA,NA,NA,NA,NA
+11325,"pars postsynaptica","componentă postsinaptică","postsynaptica","postsynaptica","postsinaptică","postsinaptică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11339,"ependymocytus","celulă ependimară","ependymocytus","ependymocytus","ependimară","ependimară","ependimală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11346,"astrocytus","astrocit","astrocytus","astrocytus","astrocit","astrocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11348,"astrocytus protoplasmicus","astrocit protoplasmatic","astrocytus","astrocytus","astrocit","astrocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11348,"astrocytus protoplasmicus","astrocit protoplasmatic","protoplasmic","protoplasmicus","protoplasmatic","protoplasmic","protoplasmatic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11350,"astrocytus fibrosus","astrocit fibros","astrocytus","astrocytus","astrocit","astrocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11350,"astrocytus fibrosus","astrocit fibros","fibros","fibrosus","fibros","fibros","fibrilar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11357,"oligodendrocytus","oligodendrocit","oligodendrocytus","oligodendrocytus","oligodendrocit","oligodendrocit","oligodendroglie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11367,"gliocytus ganglionaris","celulă satelită","gliocytus","gliocytus","celulă","glială","celulă","satelită",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11367,"gliocytus ganglionaris","celulă satelită","ganglionaris","ganglionaris","satelită","satelită","satelit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11370,"schwannocytus","celulă Schwann","schwannocytus","schwannocytus","Schwann","Schwann",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11370,"neurolemmocytus","celulă Schwann","neurolemmocytus","neurolemmocytus","Schwann","celulă","Schwann",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11378,"mesaxon","mezaxon","mesaxon","mesaxon","mezaxon","mezaxon",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11382,"stratum myelini","teacă de mielină","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+11382,"stratum myelini","teacă de mielină","mielina","myelini","mielină","tecii","mielină","mielină","Schmidt-Lanterman","Schmidt-Lantermann",NA,NA,NA,NA,NA,NA,NA
+11389,"incisura myelini","incizură Schmidt-Lanterman","nick","incisura","incizură","incizură",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11389,"incisura myelini","incizură Schmidt-Lanterman","mielina","myelini","mielină","tecii","mielină","mielină","Schmidt-Lanterman","Schmidt-Lantermann",NA,NA,NA,NA,NA,NA,NA
+11390,"nodus interruptionis myelini","nod Ranvier","nodul","nodus","nodul","nod","Ranvier","zonă","de","discontinuitate","mielină","strangulație","nodul","sinoatrial","sino-atrial","limfonodul",NA
+11390,"nodus interruptionis myelini","nod Ranvier","întrerupere","interruptionis myelini","ranvier","nod","Ranvier","nodul","întrerupere","mielina","mielina","teacă","decalaj","nod","Ranvier","nod","Ranvier"
+11390,"nodus interruptionis myelini","nod Ranvier","mielina","","","nod","Ranvier","nodul","întrerupere","mielina","mielina","teacă","decalaj","nod","Ranvier","nod","Ranvier"
+11408,"juncturae","articulații","cuplare","juncturae","articulații","articulații",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11436,"nucleus pulposus","nucleu pulpos","nucleu","nucleus","nucleu","nucleu","pulpos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11436,"nucleus pulposus","nucleu pulpos","moale","pulposus","pulpos","pulpos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11477,"fusus neuromuscularis","fus neuromuscular","vărsa","fusus","fus","fus","muscular","neuromuscular","neuro-muscular",NA,NA,NA,NA,NA,NA,NA,NA
+11477,"fusus neuromuscularis","fus neuromuscular","neuromusculare","neuromuscularis","neuromuscular","muscular","neuromuscular","neuro-muscular",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11515,"cavitas oris","cavitate bucală","cavitate","cavitas","cavitate","cavitate","pulpară","cameră",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11515,"cavitas oris","cavitate bucală","de","oris","orală","cavitate","orală","bucală","glande","salivare",NA,NA,NA,NA,NA,NA,NA
+11525,"glandula sebacea","glandă sebacee","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+11525,"glandula sebacea","glandă sebacee","seu","sebacea","sebacee","sebacee",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11546,"palatum","palat","cerul gurii","palatum","palat","palat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11552,"palatum molle","palat moale","cerul gurii","palatum","palat","palat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11552,"palatum molle","palat moale","moale","molle","moale","moale",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11552,"velum palatinum","palat moale","văl","velum","moale","palat","moale",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11552,"velum palatinum","palat moale","palatin","palatinum","palat","palat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11559,"tela submucosa","submucoasă","armament","","","submucoasă","armament","submucoasa","submucoasa","submucoasă","submucoasă","","submucoasă",NA,NA,NA,NA
+11559,"tela submucosa","submucoasă","submucoasa","tela submucosa","submucoasă","submucoasă","armament","submucoasa","submucoasa","submucoasă","submucoasă","","submucoasă",NA,NA,NA,NA
+11562,"gingiva","gingie","gume","gingiva","gingie","gingie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11571,"sulcus gingivalis","crevasă gingivală","canelură","sulcus","crevasă","crevasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11571,"sulcus gingivalis","crevasă gingivală","gingival","gingivalis","gingival","gingival","gingivală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11602,"glandulae salivariae","glande salivare","glande","glandulae","glande","glande",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11602,"glandulae salivariae","glande salivare","salivar","salivariae","salivare","salivare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11602,"glandulae oris","glande salivare","glande","glandulae","glande","glande",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11602,"glandulae oris","glande salivare","de","oris","orală","cavitate","orală","bucală","glande","salivare",NA,NA,NA,NA,NA,NA,NA
+11604,"glandula parotidea","glandă parotidă","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+11604,"glandula parotidea","glandă parotidă","parotidea","parotidea","parotidă","parotidă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11605,"glandula sublingualis","glandă sublinguală","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+11605,"glandula sublingualis","glandă sublinguală","sublingual","sublingualis","sublinguală","sublinguală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11606,"glandula submandibularis","glandă submandibulară","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+11606,"glandula submandibularis","glandă submandibulară","submandibularis","submandibularis","submandibulară","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11607,"glandulae salivariae minores","glande salivare minore","glande","glandulae","glande","glande",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11607,"glandulae salivariae minores","glande salivare minore","salivar","salivariae","salivare","salivare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11607,"glandulae salivariae minores","glande salivare minore","mai puțin","minores","minore","salivare","minore",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11635,"mucocytus","celulă mucoasă","mucocytus","mucocytus","mucoasă","mucoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11653,"dens","dinte","dinte","dens","dinte","dinte",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11654,"corona dentis","coroană dentară","coroană","corona","corona","corona","coroană",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11654,"corona dentis","coroană dentară","dinte","dentis","dentară","dentară","dentar","dintelui",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11655,"cervix dentis","gât al dintelui","gât","cervix","gât","dentar","colet","gât","dintelui",NA,NA,NA,NA,NA,NA,NA,NA
+11655,"cervix dentis","gât al dintelui","dinte","dentis","dentară","dentară","dentar","dintelui",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11657,"cavitas dentis","cameră pulpară","cavitate","cavitas","cavitate","cavitate","pulpară","cameră",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11657,"cavitas dentis","cameră pulpară","dinte","dentis","dentară","dentară","dentar","dintelui",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11657,"cavitas pulparis","cameră pulpară","cavitate","cavitas","cavitate","cavitate","pulpară","cameră",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11657,"cavitas pulparis","cameră pulpară","pulparis","pulparis","pulpară","pulpară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11660,"canalis radicis dentis","canal radicular","canal","canalis","canal","gastrointestinal","canal","alimentar",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11660,"canalis radicis dentis","canal radicular","rădăcină","radicis","radicular","radicular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11660,"canalis radicis dentis","canal radicular","dinte","dentis","dentară","dentară","dentar","dintelui",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11662,"foramen apicis dentis","foramen apical","deschidere","foramen","foramen","foramen",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11662,"foramen apicis dentis","foramen apical","calea","apicis","apical","orificiu","apical",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11662,"foramen apicis dentis","foramen apical","dinte","dentis","dentară","dentară","dentar","dintelui",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11663,"enamelum","smalț","email","enamelum","smalț","smalț",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11677,"dentinum","dentină","trent","dentinum","dentină","dentină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11678,"tubulus dentini","tubul dentinal","furtun","tubulus","tubul","tubul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11678,"tubulus dentini","tubul dentinal","trent","dentini","dentinal","dentinar","dentinal",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11678,"canaliculus dentini","tubul dentinal","aparat","canaliculus","canalicul","canalicul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11678,"canaliculus dentini","tubul dentinal","trent","dentini","dentinal","dentinar","dentinal",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11680,"processus dentinoblasti","proces odontoblastic","proces","processus","proces","proces",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11680,"processus dentinoblasti","proces odontoblastic","dentinoblasti","dentinoblasti","odontoblastic","odontoblastic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11680,"processus odontoblasti","proces odontoblastic","proces","processus","proces","proces",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11680,"processus odontoblasti","proces odontoblastic","odontoblasti","odontoblasti","odontoblastic","odontoblastic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11694,"predentinum","predentină","predentinum","predentinum","predentină","predentină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11701,"cementum","cement","ciment","cementum","cement","cement",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11712,"pulpa dentis","pulpă dentară","pulpă","pulpa","pulpă","pulpă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11712,"pulpa dentis","pulpă dentară","dinte","dentis","dentară","dentară","dentar","dintelui",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11714,"dentinoblastus","odontoblast","dentinoblastus","dentinoblastus","odontoblast","odontoblast",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11714,"odontoblastus","odontoblast","odontoblastus","odontoblastus","odontoblast","odontoblast",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11720,"textus connectivus compactus","țesut conjunctiv dens","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11720,"textus connectivus compactus","țesut conjunctiv dens","conjunctiv","connectivus","conjunctiv","conjunctiv",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11720,"textus connectivus compactus","țesut conjunctiv dens","cd","compactus","dens","țesut","conjunctiv","dens",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11725,"ligamentum periodontale","ligament periodontal","ligament","ligamentum","ligament","ligament",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11725,"ligamentum periodontale","ligament periodontal","parodontale","periodontale","periodontal","periodontal","periodontală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11732,"alveolus dentalis","alveolă dentară","prin mica","alveolus","alveolă","alveolă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11732,"alveolus dentalis","alveolă dentară","dentar","dentalis","dentară","dentară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11766,"lingua","limbă","limbă","lingua","limbă","limbă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11799,"nodulus lymphoideus","folicul limfoid","noduli","nodulus","folicul","folicul","nodul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11799,"nodulus lymphoideus","folicul limfoid","lymphoideus","lymphoideus","limfoid","limfoid","limfatic","limfonodul",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11813,"epithelium respiratorium","epiteliu respirator","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11813,"epithelium respiratorium","epiteliu respirator","respirator","respiratorium","respirator","respirator","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11821,"canalis digestorius","canal alimentar","canal","canalis","canal","gastrointestinal","canal","alimentar",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11821,"canalis digestorius","canal alimentar","alimentar","digestorius","digestiv","digestiv","alimentar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11821,"canalis oesophagogastrointestinalis","canal alimentar","canal","canalis","canal","gastrointestinal","canal","alimentar",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11821,"canalis oesophagogastrointestinalis","canal alimentar","oesophagogastrointestinalis","oesophagogastrointestinalis","gastrointestinal","gastrointestinal",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11874,"oesophagus","esofag","esofag","oesophagus","esofag","esofag",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11877,"cellula dendritiformis","celulă dendritică","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+11877,"cellula dendritiformis","celulă dendritică","dendritiformis","dendritiformis","dendritică","dendritică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11881,"lamina muscularis mucosae","musculara mucoasei","placă","lamina muscularis","musculara","musculara","mucoasei","placă","muscular","mucos","foiță","musculara","de","mucoasa","musculara","mucoasei","musculara"
+11881,"lamina muscularis mucosae","musculara mucoasei","muscular","","","musculara","mucoasei","placă","muscular","mucos","foiță","musculara","de","mucoasa","musculara","mucoasei","musculara"
+11881,"lamina muscularis mucosae","musculara mucoasei","mucos","mucosae","mucoasei","musculara","mucoasei","mucoaselor",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11886,"myoepitheliocytus","celulă mioepitelială","myoepitheliocytus","myoepitheliocytus","mioepitelială","mioepitelială",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11905,"granulum zymogeni","granulă de zimogen","granulă","granulum","granulă","incluziune","granulă","incluzie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11905,"granulum zymogeni","granulă de zimogen","zymogeni","zymogeni","zimogen","zimogen",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11913,"lamina muscularis mucosae","musculara mucoasei","placă","lamina muscularis","musculara","musculara","mucoasei","placă","muscular","mucos","musculara","mucoaselor","musculara","mucoasei","musculara","mucoasei","musculara"
+11913,"lamina muscularis mucosae","musculara mucoasei","muscular","","","musculara","mucoasei","placă","muscular","mucos","musculara","mucoaselor","musculara","mucoasei","musculara","mucoasei","musculara"
+11913,"lamina muscularis mucosae","musculara mucoasei","mucos","mucosae","mucoasei","musculara","mucoasei","mucoaselor",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11929,"glycocalyx","glicocalix","glycocalyx","glycocalyx","glicocalix","glicocalix",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+11941,"lamina muscularis mucosae","musculara mucoasei","placă","lamina muscularis","musculara","musculara","mucoasei","placă","muscular","mucos","musculara","mucoaselor","musculara","mucoasei","musculara","mucoasei","musculara"
+11941,"lamina muscularis mucosae","musculara mucoasei","muscular","","","musculara","mucoasei","placă","muscular","mucos","musculara","mucoaselor","musculara","mucoasei","musculara","mucoasei","musculara"
+11941,"lamina muscularis mucosae","musculara mucoasei","mucos","mucosae","mucoasei","musculara","mucoasei","mucoaselor",NA,NA,NA,NA,NA,NA,NA,NA,NA
+11968,"lamina muscularis mucosae","musculara mucoasei","placă","lamina muscularis","musculara","musculara","mucoasei","placă","muscular","mucos","musculara","mucoaselor","musculara","mucoasei","musculara","mucoasei","musculara"
+11968,"lamina muscularis mucosae","musculara mucoasei","muscular","","","musculara","mucoasei","placă","muscular","mucos","musculara","mucoaselor","musculara","mucoasei","musculara","mucoasei","musculara"
+11968,"lamina muscularis mucosae","musculara mucoasei","mucos","mucosae","mucoasei","musculara","mucoasei","mucoaselor",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12000,"hepar","ficat","ficat","hepar","ficat","ficat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12009,"canaliculus bilifer","canalicul biliar","aparat","canaliculus","canalicul","canalicul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12009,"canaliculus bilifer","canalicul biliar","bilifer","bilifer","biliar","biliar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12014,"cellula perisinusoidalis","celulă Ito-Nemoto","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+12014,"cellula perisinusoidalis","celulă Ito-Nemoto","perisinusoidalis","perisinusoidalis","perisinusoidală","perisinusoidală","Ito-Nemoto",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12014,"cellula accumulans adipem","celulă Ito-Nemoto","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+12014,"cellula accumulans adipem","celulă Ito-Nemoto","accumulans","accumulans","Ito-Nemoto","celulă","stelată","perisinusoidală","adipocit","hepatic","Ito-Nemoto",NA,NA,NA,NA,NA,NA
+12014,"cellula accumulans adipem","celulă Ito-Nemoto","grăsime","adipem","adipocit","adipocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12015,"vas sinusoideum","sinusoid","vas","vas sinusoideum","sinusoid","sinusoid","vas","sinusoideum","sinusoidă","sinusoid","sinusoid","sinusoid","",NA,NA,NA,NA
+12015,"vas sinusoideum","sinusoid","sinusoideum","","","sinusoid","vas","sinusoideum","sinusoidă","sinusoid","sinusoid","sinusoid","",NA,NA,NA,NA
+12019,"spatium portale","spațiu port","spațiu","spatium","spațiu","spațiu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12019,"spatium portale","spațiu port","portal","portale","portal","portal","port",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12061,"pancreas","pancreas","pancreas","pancreas","pancreas","pancreas",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12067,"granulum zymogeni","granulă de zimogen","granulă","granulum","granulă","incluziune","granulă","incluzie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12067,"granulum zymogeni","granulă de zimogen","zymogeni","zymogeni","zimogen","zimogen",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12068,"cellula centroacinosa","celulă centroacinară","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+12068,"cellula centroacinosa","celulă centroacinară","centroacinosa","centroacinosa","centroacinară","centroacinară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12069,"ductus intercalatus","duct intercalat","conducere","ductus","duct","duct",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12069,"ductus intercalatus","duct intercalat","intercalare","intercalatus","intercalat","intercalat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12070,"ductus intralobularis","duct intralobular","conducere","ductus","duct","duct",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12070,"ductus intralobularis","duct intralobular","intralobularis","intralobularis","intralobular","intralobular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12071,"ductus interlobularis","duct interlobular","conducere","ductus","duct","duct",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12071,"ductus interlobularis","duct interlobular","interlobularis","interlobularis","interlobular","interlobular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12089,"systema respiratorium","sistem respirator","sistem","systema","sistem","sistem",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12089,"systema respiratorium","sistem respirator","respirator","respiratorium","respirator","respirator","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12092,"epithelium pseudostratificatum columnare ciliatum","epiteliu pseudostratificat columnar ciliat","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12092,"epithelium pseudostratificatum columnare ciliatum","epiteliu pseudostratificat columnar ciliat","pseudostratificatum","pseudostratificatum","pseudostratificat","pseudostratificat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12092,"epithelium pseudostratificatum columnare ciliatum","epiteliu pseudostratificat columnar ciliat","în formă de coloană","columnare","columnar","cilindric","columnar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12092,"epithelium pseudostratificatum columnare ciliatum","epiteliu pseudostratificat columnar ciliat","ciliat","ciliatum","ciliat","pseudostratificat","cilindric","ciliat","columnar",NA,NA,NA,NA,NA,NA,NA,NA
+12111,"myoepitheliocytus","celulă mioepitelială","myoepitheliocytus","myoepitheliocytus","mioepitelială","mioepitelială",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12149,"trachea","trahee","trahee","trachea","trahee","trahee",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12152,"corpus neuroepitheliale","corp neuroepitelial","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
+12152,"corpus neuroepitheliale","corp neuroepitelial","neuroepitheliale","neuroepitheliale","neuroepitelial","neuroepitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12161,"cartilagines tracheales","cartilaje ale traheei","cartilajelor","cartilagines","cartilaje","cartilaje",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12161,"cartilagines tracheales","cartilaje ale traheei","tracheales","tracheales","traheei","traheale","traheei",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12163,"tunica adventitia","adventice","mantie","tunica adventitia","adventice","adventice","mantie","întâmplător","adventitial","strat","tunică","adventice","adventice","adventice","",NA,NA
+12163,"tunica adventitia","adventice","întâmplător","","","adventice","mantie","întâmplător","adventitial","strat","tunică","adventice","adventice","adventice","",NA,NA
+12165,"bronchus","bronhie","bronhiile","bronchus","bronhie","bronhie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12180,"bronchiolus","bronhiolă","bronhiolă","bronchiolus","bronhiolă","bronhiolă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12213,"fibra collageni","fibră de colagen","fibră","fibra","fibră","fibră",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12213,"fibra collageni","fibră de colagen","colagenul","collageni","colagen","colagen","colagenă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12233,"systema urinarium","sistem urinar","sistem","systema","sistem","sistem",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12233,"systema urinarium","sistem urinar","neer ren","urinarium","urinar","urinar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12296,"diaphragma rimae","diafragm al fantei de filtrare","diafragmă","diaphragma","diafragm","diafragmă","diafragm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12296,"diaphragma rimae","diafragm al fantei de filtrare","crăpătură","rimae","filtrare","diafragmă","filtrare","diafragm",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12356,"a. interlobaris","arteră interlobară","o.","a.","arteră","arteră","interlobară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12356,"a. interlobaris","arteră interlobară","interlobaris","interlobaris","interlobară","interlobară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12414,"systemata genitalia","sisteme genitale","sisteme","systemata","sisteme","sisteme",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12414,"systemata genitalia","sisteme genitale","organele genitale","genitalia","genitale","genitale",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12418,"ovarium","ovar","ovar","ovarium","ovar","ovar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12421,"tunica albuginea ovarii","albuginee","mantie","","","albuginee","mantie","albuginea","ovar","tunica","albuginea","tunică","albuginee","ovariană","albuginee","","albuginee"
+12421,"tunica albuginea ovarii","albuginee","albuginea","tunica albuginea","albuginee","albuginee","mantie","albuginea","ovar","tunica","albuginea","tunică","albuginee","ovariană","albuginee","","albuginee"
+12421,"tunica albuginea ovarii","albuginee","ovar","ovarii","ovariană","ovariană","corticală","cortex","ovarian","medulară","ovarului",NA,NA,NA,NA,NA,NA
+12422,"cortex ovarii","corticală ovariană","cortexul","cortex","cortex","cortex","cerebelos","cerebral","cerebrală","corticală","corticosuprarenală",NA,NA,NA,NA,NA,NA
+12422,"cortex ovarii","corticală ovariană","ovar","ovarii","ovariană","ovariană","corticală","cortex","ovarian","medulară","ovarului",NA,NA,NA,NA,NA,NA
+12423,"stroma ovarii","stromă ovariană","stroma","stroma","stromă","stromă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12423,"stroma ovarii","stromă ovariană","ovar","ovarii","ovariană","ovariană","corticală","cortex","ovarian","medulară","ovarului",NA,NA,NA,NA,NA,NA
+12425,"medulla ovarii","medulară ovariană","măduvă","medulla","medulară","măduva","medulară","medulosuprarenală","măduvă",NA,NA,NA,NA,NA,NA,NA,NA
+12425,"medulla ovarii","medulară ovariană","ovar","ovarii","ovariană","ovariană","corticală","cortex","ovarian","medulară","ovarului",NA,NA,NA,NA,NA,NA
+12428,"folliculus ovaricus primordialis","folicul ovarian primordial","înfășura","folliculus","folicul","folicul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12428,"folliculus ovaricus primordialis","folicul ovarian primordial","ovaricus","ovaricus","ovarian","folicul","ovarian",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12428,"folliculus ovaricus primordialis","folicul ovarian primordial","primar","primordialis","primordială","primordială","ovarian","primordial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12435,"folliculus ovaricus primarius","folicul ovarian primar","înfășura","folliculus","folicul","folicul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12435,"folliculus ovaricus primarius","folicul ovarian primar","ovaricus","ovaricus","ovarian","folicul","ovarian",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12435,"folliculus ovaricus primarius","folicul ovarian primar","primar","primarius","primar","ovarian","primar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12436,"zona pellucida","zona pellucida","zonă","zona","zona","zona","zonă","marginală",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12436,"zona pellucida","zona pellucida","transparent","pellucida","pellucida","pellucida",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12436,"capsula pellucida","zona pellucida","capsula","capsula","capsulă","capsulă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12436,"capsula pellucida","zona pellucida","transparent","pellucida","pellucida","pellucida",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12440,"folliculus ovaricus secundarius","folicul ovarian antral","înfășura","folliculus","folicul","folicul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12440,"folliculus ovaricus secundarius","folicul ovarian antral","ovaricus","ovaricus","ovarian","folicul","ovarian",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12440,"folliculus ovaricus secundarius","folicul ovarian antral","secundar","secundarius","secundar","secundar","antral",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12444,"theca folliculi","teacă foliculară","caz","theca","teacă","teacă","foliculară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12444,"theca folliculi","teacă foliculară","coji","folliculi","foliculară","foliculară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12448,"epitheliocytus granularis","celulă foliculară","epitheliocytus","epitheliocytus","celulă","epitelială","celulă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12448,"epitheliocytus granularis","celulă foliculară","granular","granularis","granuloasă","granuloasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12448,"folliculocytus granularis","celulă foliculară","folliculocytus","folliculocytus","foliculară","foliculară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12448,"folliculocytus granularis","celulă foliculară","granular","granularis","granuloasă","granuloasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12450,"antrum folliculare","cavitate foliculară","pestera","antrum","antru","antru","cavitate","antrală",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12450,"antrum folliculare","cavitate foliculară","folicular","folliculare","foliculară","folicular","foliculară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12451,"liquor follicularis","lichid folicular","lichidul","liquor","lichid","lichid","folicular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12451,"liquor follicularis","lichid folicular","celulă","follicularis","folicular","melanocit","folicular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12458,"folliculus ovaricus maturus","folicul de Graaf","înfășura","folliculus","folicul","folicul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12458,"folliculus ovaricus maturus","folicul de Graaf","ovaricus","ovaricus","ovarian","folicul","ovarian",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12458,"folliculus ovaricus maturus","folicul de Graaf","matur","maturus","matur","matur","preovulator",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12459,"cumulus oophorus","cumulus oophorus","acumulare","cumulus","cumulus","cumulus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12459,"cumulus oophorus","cumulus oophorus","oophorus","oophorus","oophorus","oophorus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12460,"corona radiata","corona radiata","coroană","corona","corona","corona","coroană",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12460,"corona radiata","corona radiata","radia","radiata","radiata","radiata","radiată",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12461,"oocytus secundarius","ovocit secundar","oocytus","oocytus","ovocit","ovocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12461,"oocytus secundarius","ovocit secundar","secundar","secundarius","secundar","secundar","antral",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12462,"stigma folliculare","stigmă foliculară","stigmat","stigma","stigmă","stigmat","stigmă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12462,"stigma folliculare","stigmă foliculară","folicular","folliculare","foliculară","folicular","foliculară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12465,"corpus luteum","corp galben","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
+12465,"corpus luteum","corp galben","galben","luteum","galben","galben","luteal",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12469,"granulosoluteocytus","celulă granuloasă luteală","granulosoluteocytus","granulosoluteocytus","luteală","granuloasă","luteală","celulă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12470,"thecaluteocytus","celulă luteală tecală","thecaluteocytus","thecaluteocytus","tecală","tecală","luteală","celulă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12472,"corpus albicans","corp albicans","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
+12472,"corpus albicans","corp albicans","albicans","albicans","albicans","albicans",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12485,"corpus polare primum","prim globul polar","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
+12485,"corpus polare primum","prim globul polar","polar","polare","polar","polar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12485,"corpus polare primum","prim globul polar","în primul rând","primum","prim","prim",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12485,"polocytus primus","prim globul polar","polocytus","polocytus","polar","globul","polar","prim","corp",NA,NA,NA,NA,NA,NA,NA,NA
+12485,"polocytus primus","prim globul polar","în primul rând","primus","prim","prim",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12613,"tunica albuginea","albuginee","mantie","","","albuginee","mantie","albuginea","tunica","albuginea","tunică","albuginee","albuginee","","albuginee",NA,NA
+12613,"tunica albuginea","albuginee","albuginea","tunica albuginea","albuginee","albuginee","mantie","albuginea","tunica","albuginea","tunică","albuginee","albuginee","","albuginee",NA,NA
+12628,"zonula occludens","joncțiune strânsă","brâu mic","zonula","zonula","zonula","joncțiune",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12628,"zonula occludens","joncțiune strânsă","închide","occludens","ocludens","ocluzie","ocluzivă","ocludens","ocludentă","strânsă",NA,NA,NA,NA,NA,NA,NA
+12721,"textus muscularis levis","țesut muscular neted","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12721,"textus muscularis levis","țesut muscular neted","muscular","muscularis","musculara","musculara","mucoasei","muscular",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12721,"textus muscularis levis","țesut muscular neted","lumina","levis","neted","țesut","neted",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12764,"granulum lipofuscini","granulă de lipofuscină","granulă","granulum","granulă","incluziune","granulă","incluzie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12764,"granulum lipofuscini","granulă de lipofuscină","lipofuscini","lipofuscini","lipofuscină","lipofuscină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12808,"stroma","stromă","stroma","stroma","stromă","stromă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12818,"penis","penis","penis","penis","penisului","penis","spongios","cavernos","uretrei","penisului",NA,NA,NA,NA,NA,NA,NA
+12827,"corpus cavernosum penis","corp cavernos al penisului","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
+12827,"corpus cavernosum penis","corp cavernos al penisului","cavernos","cavernosum","cavernos","cavernos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12827,"corpus cavernosum penis","corp cavernos al penisului","penis","penis","penisului","penis","spongios","cavernos","uretrei","penisului",NA,NA,NA,NA,NA,NA,NA
+12828,"tunica albuginea corporis cavernosi","albuginee a corpului cavernos","mantie","","","albuginee","a","corpului","cavernos","mantie","albuginea","corp","cavernos","tunica","albuginea","de","corp"
+12828,"tunica albuginea corporis cavernosi","albuginee a corpului cavernos","albuginea","tunica albuginea","albuginee","albuginee","a","corpului","cavernos","mantie","albuginea","corp","cavernos","tunica","albuginea","de","corp"
+12828,"tunica albuginea corporis cavernosi","albuginee a corpului cavernos","corp","corporis","corpului","corpului",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12828,"tunica albuginea corporis cavernosi","albuginee a corpului cavernos","cavernos","cavernosi","cavernos","cavernos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12831,"fibroblastus","fibroblast","fibroblaste","fibroblastus","fibroblast","fibroblast",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12835,"corpus spongiosum penis","corp cavernos al uretrei","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
+12835,"corpus spongiosum penis","corp cavernos al uretrei","spongios","spongiosum penis","cavernos al uretrei","corp","cavernos","al","uretrei","corp","spongios","penis","corp","spongios","de","penis","corp"
+12835,"corpus spongiosum penis","corp cavernos al uretrei","penis","","","corp","cavernos","al","uretrei","corp","spongios","penis","corp","spongios","de","penis","corp"
+12836,"tunica albuginea corporis spongiosi","albuginee a corpului spongios","mantie","","","albuginee","a","corpului","spongios","mantie","albuginea","corp","burete","tunica","albuginea","de","corp"
+12836,"tunica albuginea corporis spongiosi","albuginee a corpului spongios","albuginea","tunica albuginea","albuginee","albuginee","a","corpului","spongios","mantie","albuginea","corp","burete","tunica","albuginea","de","corp"
+12836,"tunica albuginea corporis spongiosi","albuginee a corpului spongios","corp","corporis","corpului","corpului",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12836,"tunica albuginea corporis spongiosi","albuginee a corpului spongios","burete","spongiosi","spongios","albuginee","spongios",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12914,"infundibulum","infundibul","pâlnie","infundibulum","infundibul","infundibul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12916,"eminentia mediana","eminență mediană","grad ridicat de","eminentia","eminență","eminență","mediană",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12916,"eminentia mediana","eminență mediană","mediana","mediana","mediană","eminență","mediană",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12922,"ependymocytus","celulă ependimară","ependymocytus","ependymocytus","ependimară","ependimară","ependimală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12924,"neurofibra non myelinata","fibră nervoasă amielinică","neurofibra","neurofibra","nervoasă","nervoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12924,"neurofibra non myelinata","fibră nervoasă amielinică","nu","non myelinata","amielinică","fibră","nervoasă","amielinică","neurofibra","nu","myelinata","nonmyelinated","nerv","fibră","fibră","nervoasă","nemielinizată"
+12924,"neurofibra non myelinata","fibră nervoasă amielinică","myelinata","","","fibră","nervoasă","amielinică","neurofibra","nu","myelinata","nonmyelinated","nerv","fibră","fibră","nervoasă","nemielinizată"
+12944,"glandula pinealis","glandă pineală","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+12944,"glandula pinealis","glandă pineală","pineala","pinealis","pineală","pineală","pineal","pinealocit",NA,NA,NA,NA,NA,NA,NA,NA,NA
+12944,"corpus pineale","glandă pineală","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
+12944,"corpus pineale","glandă pineală","pineala","pineale","pineală","pineală","pineal",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12945,"pinealocytus","pinealocit","pinealocytus","pinealocytus","pinealocit","pinealocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12945,"endocrinocytus pinealis","pinealocit","endocrinocytus","endocrinocytus pinealis","pinealocit","pinealocit","pinealocytus","endocrinocytus","pineala","pinealocyte","pinealocit","pinealocit","pinealocit","pinealocit","pinealocit","",NA
+12945,"endocrinocytus pinealis","pinealocit","pineala","","","pinealocit","pinealocytus","endocrinocytus","pineala","pinealocyte","pinealocit","pinealocit","pinealocit","pinealocit","pinealocit","",NA
+12946,"astrocytus","astrocit","astrocytus","astrocytus","astrocit","astrocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12948,"neurofibra non myelinata","fibră nervoasă amielinică","neurofibra","neurofibra","nervoasă","nervoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12948,"neurofibra non myelinata","fibră nervoasă amielinică","nu","non myelinata","amielinică","fibră","nervoasă","amielinică","neurofibra","nu","myelinata","nonmyelinated","nerv","fibră","fibră","nervoasă","nemielinizată"
+12948,"neurofibra non myelinata","fibră nervoasă amielinică","myelinata","","","fibră","nervoasă","amielinică","neurofibra","nu","myelinata","nonmyelinated","nerv","fibră","fibră","nervoasă","nemielinizată"
+12965,"glandula parathyroidea","glandă paratiroidă","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+12965,"glandula parathyroidea","glandă paratiroidă","parathyroidea","parathyroidea","paratiroidă","paratiroidă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12967,"parathyrocytus endocrinus lucidus","celulă principală","parathyrocytus","parathyrocytus endocrinus lucidus","celulă principală","celulă","principală","parathyrocytus","endocrin","clar","pal","principal","celulă","celulă","paratiroidiană","principală","celulă"
+12967,"parathyrocytus endocrinus lucidus","celulă principală","endocrin","","","celulă","principală","parathyrocytus","endocrin","clar","pal","principal","celulă","celulă","paratiroidiană","principală","celulă"
+12967,"parathyrocytus endocrinus lucidus","celulă principală","clar","","","celulă","principală","parathyrocytus","endocrin","clar","pal","principal","celulă","celulă","paratiroidiană","principală","celulă"
+12969,"parathyrocytus oxyphilicus","celulă oxifilă","parathyrocytus","parathyrocytus oxyphilicus","celulă oxifilă","celulă","oxifilă","parathyrocytus","oxyphilicus","paratiroidian","oxyphil","celulă","celulă","paratiroidiană","oxifilă","celulă","oxifilă"
+12969,"parathyrocytus oxyphilicus","celulă oxifilă","oxyphilicus","","","celulă","oxifilă","parathyrocytus","oxyphilicus","paratiroidian","oxyphil","celulă","celulă","paratiroidiană","oxifilă","celulă","oxifilă"
+12974,"cortex","corticosuprarenală","cortexul","cortex","cortex","cortex","cerebelos","cerebral","cerebrală","corticală","corticosuprarenală",NA,NA,NA,NA,NA,NA
+12981,"corticosterocytus spongiosus","spongiocit","corticosterocytus","corticosterocytus spongiosus","spongiocit","spongiocit","corticosterocytus","spongios","spongios","cortical","adrenalocyte","spongiocit","spongiocit","spongiocit","",NA,NA
+12981,"corticosterocytus spongiosus","spongiocit","spongios","","","spongiocit","corticosterocytus","spongios","spongios","cortical","adrenalocyte","spongiocit","spongiocit","spongiocit","",NA,NA
+12983,"medulla","medulosuprarenală","măduvă","medulla","medulară","măduva","medulară","medulosuprarenală","măduvă",NA,NA,NA,NA,NA,NA,NA,NA
+12990,"insula pancreatica","insulă pancreatică","insulă","insula","insulă","insulă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12990,"insula pancreatica","insulă pancreatică","pancreatic","pancreatica","pancreatică","pancreatică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12999,"glomus caroticum","corp carotidian","masa","glomus","corp","corp","carotidian",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+12999,"glomus caroticum","corp carotidian","carotida","caroticum","carotidian","carotidian",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13050,"nodus sinuatrialis","nodul sinoatrial","nodul","nodus","nodul","nod","Ranvier","zonă","de","discontinuitate","mielină","strangulație","nodul","sinoatrial","sino-atrial","limfonodul",NA
+13050,"nodus sinuatrialis","nodul sinoatrial","sinuatrialis","sinuatrialis","sinoatrial","sinoatrial","sino-atrial",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13052,"nodus atrioventricularis","nodul atrioventricular","nodul","nodus","nodul","nod","Ranvier","zonă","de","discontinuitate","mielină","strangulație","nodul","sinoatrial","sino-atrial","limfonodul",NA
+13052,"nodus atrioventricularis","nodul atrioventricular","atriovcntricular","atrioventricularis","atrioventricular","atrioventricular","atrio-ventricular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13071,"vasa sanguinea et lymphatica","vase sangvine și limfatice","vase","vasa","vase","vase","sangvine","sanguine","sanghine",NA,NA,NA,NA,NA,NA,NA,NA
+13071,"vasa sanguinea et lymphatica","vase sangvine și limfatice","sânge","sanguinea","sangvine","sangvine","sanguine","sanghine",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13071,"vasa sanguinea et lymphatica","vase sangvine și limfatice","și","et","limfatice","vase","sangvine","și","limfatice","sanguine","sanghine",NA,NA,NA,NA,NA,NA
+13071,"vasa sanguinea et lymphatica","vase sangvine și limfatice","limfatica","lymphatica","limfatice","limfatice",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13081,"arteria","arteră","arteră","arteria","arteră","arteră",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13082,"tunica intima","intimă","mantie","tunica intima","intimă","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă","intimă",""
+13082,"tunica intima","intimă","cel mai intim","","","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă","intimă",""
+13082,"tunica interna","intimă","mantie","tunica intima","intimă","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă","intimă",""
+13082,"tunica interna","intimă","intern","","","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă","intimă",""
+13083,"endothelium vasculare","endoteliu vascular","endoteliul","endothelium","endoteliu","endoteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13083,"endothelium vasculare","endoteliu vascular","vasculare","vasculare","vascular","vascular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13104,"vas capillare","capilar","vas","vas capillare","capilar","capilar","vas","scapulo","capilar","vas","capilar","capilar","vas","capilar","capilar","",NA
+13104,"vas capillare","capilar","scapulo","","","capilar","vas","scapulo","capilar","vas","capilar","capilar","vas","capilar","capilar","",NA
+13109,"pericytus","pericit","pericytus","pericytus","pericit","pericit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13155,"vas lymphocapillare","capilar limfatic","vas","vas lymphocapillare","capilar limfatic","capilar","limfatic","vas","lymphocapillare","limfatic","capilar","capilar","limfatic","capilar","limfatic","capilar limfatic",""
+13155,"vas lymphocapillare","capilar limfatic","lymphocapillare","","","capilar","limfatic","vas","lymphocapillare","limfatic","capilar","capilar","limfatic","capilar","limfatic","capilar limfatic",""
+13178,"textus lymphoideus","țesut limfoid","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13178,"textus lymphoideus","țesut limfoid","lymphoideus","lymphoideus","limfoid","limfoid","limfatic","limfonodul",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13180,"cellula dendritica nodularis","celulă dendritică foliculară","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+13180,"cellula dendritica nodularis","celulă dendritică foliculară","dendritic","dendritica","dendritic","dendritic","dendritică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13180,"cellula dendritica nodularis","celulă dendritică foliculară","nodular","nodularis","foliculară","dendritică","foliculară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13183,"thymus","timus","timus","thymus","timus","timus",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13209,"cellula t adjuvans","limfocit T helper","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+13209,"cellula t adjuvans","limfocit T helper","t","t","T","limfocit","T","helper",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13209,"cellula t adjuvans","limfocit T helper","ajuta","adjuvans","helper","helper",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13243,"textus lymphoideus adjunctus broncho","țesut limfoid asociat bronşiilor","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13243,"textus lymphoideus adjunctus broncho","țesut limfoid asociat bronşiilor","lymphoideus","lymphoideus","limfoid","limfoid","limfatic","limfonodul",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13243,"textus lymphoideus adjunctus broncho","țesut limfoid asociat bronşiilor","legat","adjunctus","asociat","asociat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13243,"textus lymphoideus adjunctus broncho","țesut limfoid asociat bronşiilor","bronhiile","broncho","bronşiilor","bronşic","bronşiilor",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13245,"textus lymphoideus adjunctus mucosae","țesut limfoid asociat mucoaselor","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13245,"textus lymphoideus adjunctus mucosae","țesut limfoid asociat mucoaselor","lymphoideus","lymphoideus","limfoid","limfoid","limfatic","limfonodul",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13245,"textus lymphoideus adjunctus mucosae","țesut limfoid asociat mucoaselor","legat","adjunctus","asociat","asociat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13245,"textus lymphoideus adjunctus mucosae","țesut limfoid asociat mucoaselor","mucos","mucosae","mucoasei","musculara","mucoasei","mucoaselor",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13251,"nodus lymphoideus","ganglion limfatic","nodul","nodus","nodul","nod","Ranvier","zonă","de","discontinuitate","mielină","strangulație","nodul","sinoatrial","sino-atrial","limfonodul",NA
+13251,"nodus lymphoideus","ganglion limfatic","lymphoideus","lymphoideus","limfoid","limfoid","limfatic","limfonodul",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13251,"nodus lymphaticus: lymphonodus","ganglion limfatic","nodul","nodus","nodul","nod","Ranvier","zonă","de","discontinuitate","mielină","strangulație","nodul","sinoatrial","sino-atrial","limfonodul",NA
+13251,"nodus lymphaticus: lymphonodus","ganglion limfatic","frenetică:","lymphaticus:","limfatic","limfatic","limfonodul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13251,"nodus lymphaticus: lymphonodus","ganglion limfatic","ganglionii limfatici","lymphonodus","limfonodul","limfonodul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13257,"cortex","corticală","cortexul","cortex","cortex","cortex","cerebelos","cerebral","cerebrală","corticală","corticosuprarenală",NA,NA,NA,NA,NA,NA
+13263,"sinus marginalis","sinus subcapsular","golf","sinus","sinus","sinus","intermediar","sinusoid","venos","subcapsular","marginal",NA,NA,NA,NA,NA,NA
+13263,"sinus marginalis","sinus subcapsular","marginal","marginalis","marginală","marginal","marginală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13263,"sinus subcapsularis","sinus subcapsular","golf","sinus","sinus","sinus","intermediar","sinusoid","venos","subcapsular","marginal",NA,NA,NA,NA,NA,NA
+13263,"sinus subcapsularis","sinus subcapsular","subcapsularis","subcapsularis","subcapsular","subcapsular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13264,"sinus internodularis","sinus intermediar","golf","sinus","sinus","sinus","intermediar","sinusoid","venos","subcapsular","marginal",NA,NA,NA,NA,NA,NA
+13264,"sinus internodularis","sinus intermediar","internodularis","internodularis","intermediar","intermediar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13271,"sinus lymphaticus medullaris","sinus medular","golf","sinus","sinus","sinus","intermediar","sinusoid","venos","subcapsular","marginal",NA,NA,NA,NA,NA,NA
+13271,"sinus lymphaticus medullaris","sinus medular","wood","lymphaticus","medular","sinus","medular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13271,"sinus lymphaticus medullaris","sinus medular","medular","medullaris","medular","medular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13283,"trabecula splenica","trabecul splenic","mic beam","trabecula","trabecul","trabeculă","trabecul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13283,"trabecula splenica","trabecul splenic","melancolic","splenica","splenic","splenică","splenic","Billroth",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13286,"pulpa alba","pulpă albă","pulpă","pulpa","pulpă","pulpă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13286,"pulpa alba","pulpă albă","alb","alba","albă","substanță","albă","pulpă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13287,"zona marginalis pulpae albae","zonă marginală a pulpei albe","zonă","zona","zona","zona","zonă","marginală",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13287,"zona marginalis pulpae albae","zonă marginală a pulpei albe","marginal","marginalis","marginală","marginal","marginală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13287,"zona marginalis pulpae albae","zonă marginală a pulpei albe","pulpă","pulpae","pulpei","pulpei",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13287,"zona marginalis pulpae albae","zonă marginală a pulpei albe","alb","albae","albe","marginală","a","pulpei","albe",NA,NA,NA,NA,NA,NA,NA,NA
+13290,"nodulus lymphoideus splenicus","folicul limfoid splenic","noduli","nodulus","folicul","folicul","nodul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13290,"nodulus lymphoideus splenicus","folicul limfoid splenic","lymphoideus","lymphoideus","limfoid","limfoid","limfatic","limfonodul",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13290,"nodulus lymphoideus splenicus","folicul limfoid splenic","splenic","splenicus","splenic","folicul","splenic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13292,"pulpa rubra","pulpă roșie","pulpă","pulpa","pulpă","pulpă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13292,"pulpa rubra","pulpă roșie","roșu","rubra","hematogenă","hematogenă","roşie","roșie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13295,"arteriola penicillaris","arteriolă penicilată","arteră","arteriola","arteriolă","arteriolă","penicilată",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13295,"arteriola penicillaris","arteriolă penicilată","penicillaris","penicillaris","penicilată","penicilată",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13302,"chorda splenica","cordon Billroth","șir","chorda","cordon","cordon","splenic","Billroth",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13302,"chorda splenica","cordon Billroth","melancolic","splenica","splenic","splenică","splenic","Billroth",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13305,"tonsilla","amigdală","amigdalele","tonsilla","amigdală","amigdală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13306,"systema nervosum","sistem nervos","sistem","systema","sistem","sistem",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13306,"systema nervosum","sistem nervos","nervos","nervosum","nervos","nervos","nevrax",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13307,"pars centralis","sistem nervos central","de","pars","periferic","sistem","nervos","periferic","central","nevrax","componentă","postsinaptică",NA,NA,NA,NA,NA
+13307,"pars centralis","sistem nervos central","central","centralis","central","central",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13307,"systema nervosum centrale","sistem nervos central","sistem","systema","sistem","sistem",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13307,"systema nervosum centrale","sistem nervos central","nervos","nervosum","nervos","nervos","nevrax",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13307,"systema nervosum centrale","sistem nervos central","central","centrale","central","central",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13308,"substantia grisea","substanță cenușie","substanță","substantia","substanță","substanță",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13308,"substantia grisea","substanță cenușie","gri","grisea","cenușie","cenușie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13309,"substantia alba","substanță albă","substanță","substantia","substanță","substanță",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13309,"substantia alba","substanță albă","alb","alba","albă","substanță","albă","pulpă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13312,"claustrum hematoencephalicum","barieră hematoencefalică","mănăstire","claustrum","barieră","barieră","bariera",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13312,"claustrum hematoencephalicum","barieră hematoencefalică","hematoencephalicum","hematoencephalicum","hematoencefalică","hemato-encefalică","hematoencefalică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13313,"claustrum hematoliquorosum","barieră sânge-lichid cerebrospinal","mănăstire","claustrum","barieră","barieră","bariera",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13313,"claustrum hematoliquorosum","barieră sânge-lichid cerebrospinal","hematoliquorosum","hematoliquorosum","cerebrospinal","cerebrospinal","barieră","sânge-lichid","cerebro-spinal",NA,NA,NA,NA,NA,NA,NA,NA
+13325,"meninges","meninge","meninge","meninges","meninge","meninge",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13326,"pachymeninx","dura mater","pachymeninx","pachymeninx","pachimeninge","pachimeninge","pahimeninge",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13326,"dura mater","dura mater","greu","dura","dura","dura","pachimeninge","pahimeninge",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13326,"dura mater","dura mater","mamă","mater","mater","arahnoidă","mater","pachimeninge","pahimeninge","piamater",NA,NA,NA,NA,NA,NA,NA
+13335,"arachnoidea mater","arahnoidă","arachnoid","arachnoidea","arahnoidă","arahnoidă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13335,"arachnoidea mater","arahnoidă","mamă","mater","mater","arahnoidă","mater","pachimeninge","pahimeninge","piamater",NA,NA,NA,NA,NA,NA,NA
+13337,"spatium subarachnoideum","spațiu subarahnoidian","spațiu","spatium","spațiu","spațiu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13337,"spatium subarachnoideum","spațiu subarahnoidian","subarachnoideum","subarachnoideum","subarahnoidian","subarahnoidian",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13337,"spatium leptomeningeum","spațiu subarahnoidian","spațiu","spatium","spațiu","spațiu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13337,"spatium leptomeningeum","spațiu subarahnoidian","leptomeningeum","leptomeningeum","subarahnoidian","spațiu","subarahnoidian",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13342,"villus arachnoideus","vil arahnoidian","villus","villus","vil","vilozitate","arahnoidiană","vil","arahnoidian",NA,NA,NA,NA,NA,NA,NA,NA
+13342,"villus arachnoideus","vil arahnoidian","arachnoid","arachnoideus","arahnoidian","arahnoidiană","arahnoidian",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13354,"pia mater","pia mater","pios","pia","pia","pia","mater","piamater",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13354,"pia mater","pia mater","mamă","mater","mater","arahnoidă","mater","pachimeninge","pahimeninge","piamater",NA,NA,NA,NA,NA,NA,NA
+13361,"plexus choroideus","plex coroid","plex","plexus","plex","plex",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13361,"plexus choroideus","plex coroid","coroid","choroideus","coroid","coroidian","coroid",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13368,"medulla spinalis","măduva spinării","măduvă","medulla","medulară","măduva","medulară","medulosuprarenală","măduvă",NA,NA,NA,NA,NA,NA,NA,NA
+13368,"medulla spinalis","măduva spinării","măduva spinării","spinalis","spinării","spinării",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13376,"encephalon","creier","encefal","encephalon","creier","creier","encefal",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13389,"cerebellum","cerebel","creier","cerebellum","cerebel","cerebel",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13391,"cortex cerebelli","cortex cerebelos","cortexul","cortex","cortex","cortex","cerebelos","cerebral","cerebrală","corticală","corticosuprarenală",NA,NA,NA,NA,NA,NA
+13391,"cortex cerebelli","cortex cerebelos","cerebel","cerebelli","cerebelos","cerebelos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13392,"stratum granulosum","strat granular","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+13392,"stratum granulosum","strat granular","granulozei","granulosum","granular","endoplasmic","reticul","neted","rugos","granular","granulos",NA,NA,NA,NA,NA,NA
+13405,"neuron purkinjense","celulă Purkinje","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13405,"neuron purkinjense","celulă Purkinje","purkinjense","purkinjense","Purkinje","Purkinje",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13406,"stratum moleculare","strat molecular","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+13406,"stratum moleculare","strat molecular","molecular","moleculare","molecular","molecular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13410,"neuron corbiforme","celulă în coșuleț","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13410,"neuron corbiforme","celulă în coșuleț","corbiforme","corbiforme","coșuleț","coșuleț",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13410,"neuron corbiferum","celulă în coșuleț","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13410,"neuron corbiferum","celulă în coșuleț","corbiferum","corbiferum","coșuleț","coșuleț","celulă","neuron","cu",NA,NA,NA,NA,NA,NA,NA,NA
+13436,"cortex cerebri","cortex cerebral","cortexul","cortex","cortex","cortex","cerebelos","cerebral","cerebrală","corticală","corticosuprarenală",NA,NA,NA,NA,NA,NA
+13436,"cortex cerebri","cortex cerebral","creier","cerebri","cerebral","cerebral","cerebrală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13459,"neuron corbiforme","celulă în coșuleț","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13459,"neuron corbiforme","celulă în coșuleț","corbiforme","corbiforme","coșuleț","coșuleț",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13494,"neuron corbiforme","celulă în coșuleț","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13494,"neuron corbiforme","celulă în coșuleț","corbiforme","corbiforme","coșuleț","coșuleț",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13494,"neuron corbiferum","celulă în coșuleț","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13494,"neuron corbiferum","celulă în coșuleț","corbiferum","corbiferum","coșuleț","coșuleț","celulă","neuron","cu",NA,NA,NA,NA,NA,NA,NA,NA
+13503,"neuron pyramidale","celulă piramidală","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13503,"neuron pyramidale","celulă piramidală","piramidal","pyramidale","piramidală","piramidală","piramidal",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13602,"pars peripherica","sistem nervos periferic","de","pars","periferic","sistem","nervos","periferic","central","nevrax","componentă","postsinaptică",NA,NA,NA,NA,NA
+13602,"pars peripherica","sistem nervos periferic","periferic","peripherica","periferic","periferic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13602,"systema nervosum periphericum","sistem nervos periferic","sistem","systema","sistem","sistem",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13602,"systema nervosum periphericum","sistem nervos periferic","nervos","nervosum","nervos","nervos","nevrax",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13602,"systema nervosum periphericum","sistem nervos periferic","periferic","periphericum","periferic","periferic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13603,"nervus","nerv","nerv","nervus","nerv","nerv",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13608,"neurofibra preganglionica","fibră nervoasă preganglionară","neurofibra","neurofibra","nervoasă","nervoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13608,"neurofibra preganglionica","fibră nervoasă preganglionară","preganglionica","preganglionica","preganglionară","preganglionară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13609,"neurofibra postganglionica","fibră nervoasă postganglionară","neurofibra","neurofibra","nervoasă","nervoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13609,"neurofibra postganglionica","fibră nervoasă postganglionară","postganglionic","postganglionica","postganglionară","postganglionară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13610,"plexus neuralis autonomicus","plex nervos autonom","plex","plexus","plex","plex",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13610,"plexus neuralis autonomicus","plex nervos autonom","neural","neuralis","nervos","nervoasă","nervos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13610,"plexus neuralis autonomicus","plex nervos autonom","autonom","autonomicus","autonom","autonom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13611,"endoneurium","endonerv","endoneurium","endoneurium","endonerv","endonerv",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13612,"perineurium","perinerv","perineurium","perineurium","perinerv","perinerv",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13615,"epineurium","epinerv","epineurium","epineurium","epinerv","epinerv",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13618,"ganglion","ganglion","ganglion","ganglion","ganglion","ganglion",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13620,"ganglion sensorium","ganglion senzitiv","ganglion","ganglion","ganglion","ganglion",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13620,"ganglion sensorium","ganglion senzitiv","senzorial","sensorium","senzitiv","senzitiv","senzorial","senzitivo-senzorial",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13626,"ganglion autonomicum","ganglion autonom","ganglion","ganglion","ganglion","ganglion",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13626,"ganglion autonomicum","ganglion autonom","de autonome","autonomicum","autonom","autonom",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13661,"corpusculum ovoideum","corpuscul Meissner","corp","corpusculum","corpuscul","corpuscul","corp",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13661,"corpusculum ovoideum","corpuscul Meissner","ovoid","ovoideum","Meissner","corpuscul","Meissner",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13661,"corpusculum tactile","corpuscul Meissner","corp","corpusculum","corpuscul","corpuscul","corp",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13661,"corpusculum tactile","corpuscul Meissner","tactil","tactile","Meissner","Meissner",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13663,"corpusculum lamellosum","corpuscul Vater-Pacini","corp","corpusculum","corpuscul","corpuscul","corp",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13663,"corpusculum lamellosum","corpuscul Vater-Pacini","lamelat","lamellosum","Vater-Pacini","Vater-Pacini",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13672,"fusus neuromuscularis","fus neuromuscular","vărsa","fusus","fus","fus","muscular","neuromuscular","neuro-muscular",NA,NA,NA,NA,NA,NA,NA,NA
+13672,"fusus neuromuscularis","fus neuromuscular","neuromusculare","neuromuscularis","neuromuscular","muscular","neuromuscular","neuro-muscular",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13687,"bulbus oculi","glob ocular","bulb","bulbus","bulb","glob","ocular","bulb","firului",NA,NA,NA,NA,NA,NA,NA,NA
+13687,"bulbus oculi","glob ocular","ochi","oculi","ocular","ocular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13690,"sclera","scleră","sclerotică","sclera","scleră","sclerotică","scleră",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13694,"melanocytus","melanocit","melanocite","melanocytus","melanocit","melanocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13699,"cornea","cornee","corneei","cornea","cornee","cornee",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13701,"lamina limitans anterior","membrană Bowman","placă","lamina","musculara","musculara","lamă","osoasă","spirală","membrană","supracoroidală","lamina","strat","coriocapilar","bazilară",NA,NA
+13701,"lamina limitans anterior","membrană Bowman","cuprinde","limitans anterior","bowman","membrană","Bowman","placă","cuprinde","anterior","anterior","limitativ","membrană","membrană","Bowman","membrană","Bowman"
+13701,"lamina limitans anterior","membrană Bowman","anterior","","","membrană","Bowman","placă","cuprinde","anterior","anterior","limitativ","membrană","membrană","Bowman","membrană","Bowman"
+13704,"lamina limitans posterior","membrană Descemet","placă","lamina","musculara","musculara","lamă","osoasă","spirală","membrană","supracoroidală","lamina","strat","coriocapilar","bazilară",NA,NA
+13704,"lamina limitans posterior","membrană Descemet","cuprinde","limitans posterior","descemet","membrană","Descemet","placă","cuprinde","mai târziu","posterior","limitativ","membrană","membrană","Descemet","membrană","Descemet"
+13704,"lamina limitans posterior","membrană Descemet","mai târziu","","","membrană","Descemet","placă","cuprinde","mai târziu","posterior","limitativ","membrană","membrană","Descemet","membrană","Descemet"
+13711,"choroidea","coroidă","coroid","choroidea","coroidă","coroidă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13713,"lamina suprachoroidea","lamina supracoroidală","placă","lamina","musculara","musculara","lamă","osoasă","spirală","membrană","supracoroidală","lamina","strat","coriocapilar","bazilară",NA,NA
+13713,"lamina suprachoroidea","lamina supracoroidală","suprachoroidea","suprachoroidea","supracoroidală","supracoroidală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13716,"lamina choroidocapillaris","strat coriocapilar","placă","lamina","musculara","musculara","lamă","osoasă","spirală","membrană","supracoroidală","lamina","strat","coriocapilar","bazilară",NA,NA
+13716,"lamina choroidocapillaris","strat coriocapilar","choroidocapillaris","choroidocapillaris","coriocapilar","coriocapilar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13717,"complexus basalis","membrană Bruch","complex","complexus","membrană","membrană",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13717,"complexus basalis","membrană Bruch","bazale","basalis","bazală","membrană","bazală","bazal","Bruch",NA,NA,NA,NA,NA,NA,NA,NA
+13723,"corpus ciliare","corp ciliar","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
+13723,"corpus ciliare","corp ciliar","împăcat;","ciliare","ciliar","ciliar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13726,"processus ciliaris","proces ciliar","proces","processus","proces","proces",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13726,"processus ciliaris","proces ciliar","©","ciliaris","ciliar","proces","ciliar","mușchi",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13728,"ora serrata","ora serrata","coastă","ora","ora","ora","serrata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13728,"ora serrata","ora serrata","zimțat","serrata","serrata","serrata",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13730,"m. ciliaris","mușchi ciliar","m.","m.","mușchi","mușchi",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13730,"m. ciliaris","mușchi ciliar","©","ciliaris","ciliar","proces","ciliar","mușchi",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13736,"epithelium pigmentosum","epiteliu pigmentar","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13736,"epithelium pigmentosum","epiteliu pigmentar","pigmentat","pigmentosum","pigmentar","pigmentar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13738,"iris","iris","curcubeu","iris","iris","iris",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13746,"melanocytus","melanocit","melanocite","melanocytus","melanocit","melanocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13748,"m. sphincter pupillae","mușchi constrictor pupilar","m.","m.","mușchi","mușchi",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13748,"m. sphincter pupillae","mușchi constrictor pupilar","sfincter","sphincter","sfincter","sfincter","constrictor",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13748,"m. sphincter pupillae","mușchi constrictor pupilar","corupt","pupillae","pupilar","pupilar","constrictor","pupilei",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13750,"pigmentocytus","celulă pigmentară","pigmentocytus","pigmentocytus","pigmentară","pigmentară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13751,"m. dilatator pupillae","dilatator pupilar","m.","m.","mușchi","mușchi",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13751,"m. dilatator pupillae","dilatator pupilar","evoluțiile","dilatator","dilatator","dilatator","pupilar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13751,"m. dilatator pupillae","dilatator pupilar","corupt","pupillae","pupilar","pupilar","constrictor","pupilei",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13754,"retina","retină","retină","retina","retină","retină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13768,"stratum limitans externum","membrană limitantă externă","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+13768,"stratum limitans externum","membrană limitantă externă","cuprinde","limitans","limitantă","membrană","Bowman","limitantă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13768,"stratum limitans externum","membrană limitantă externă","extern","externum","extern","extern","externă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13770,"stratum plexiforme externum","strat plexiform extern","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+13770,"stratum plexiforme externum","strat plexiform extern","plexiforme","plexiforme","plexiform","plexiform",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13770,"stratum plexiforme externum","strat plexiform extern","extern","externum","extern","extern","externă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13772,"stratum plexiforme internum","strat plexiform intern","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+13772,"stratum plexiforme internum","strat plexiform intern","plexiforme","plexiforme","plexiform","plexiform",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13772,"stratum plexiforme internum","strat plexiform intern","intern","internum","intern","intern","limitantă","internă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13775,"stratum limitans internum","membrană limitantă internă","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+13775,"stratum limitans internum","membrană limitantă internă","cuprinde","limitans","limitantă","membrană","Bowman","limitantă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13775,"stratum limitans internum","membrană limitantă internă","intern","internum","intern","intern","limitantă","internă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13776,"macula lutea","maculă","punct","macula","macula","macula","desmozomală","joncțiune","maculă","saculei","utriculei",NA,NA,NA,NA,NA,NA
+13776,"macula lutea","maculă","galben","lutea","maculă","maculă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13783,"neuron bacilliferum","celulă cu bastonaș","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13783,"neuron bacilliferum","celulă cu bastonaș","bacilliferum","bacilliferum","bastonaș","bastonaș",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13799,"neuron coniferum","celulă cu conuri","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13799,"neuron coniferum","celulă cu conuri","conifer","coniferum","conuri","conuri",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13833,"neuron amacrinum","celulă amacrină","neuron","neuron","neuron","neuron","coșuleț","celulă","eferent","motoneuron","interneuron","conuri",NA,NA,NA,NA,NA
+13833,"neuron amacrinum","celulă amacrină","amacrinum","amacrinum","amacrină","amacrină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13853,"lens","cristalin","lentilă","lens","cristalin","cristalin",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13869,"humor aquosus","umoare apoasă","umor","humor","umoare","umoare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13869,"humor aquosus","umoare apoasă","apos","aquosus","apoasă","apoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13870,"camera anterior","cameră anterioară","aparat foto","camera","cameră","cameră","anterioară","posterioară","spațiu",NA,NA,NA,NA,NA,NA,NA,NA
+13870,"camera anterior","cameră anterioară","anterior","anterior","anterioară","anterioară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13871,"camera posterior","cameră posterioară","aparat foto","camera","cameră","cameră","anterioară","posterioară","spațiu",NA,NA,NA,NA,NA,NA,NA,NA
+13871,"camera posterior","cameră posterioară","mai târziu","posterior","posterioară","posterioară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13872,"camera postrema","spațiu vitros","aparat foto","camera","cameră","cameră","anterioară","posterioară","spațiu",NA,NA,NA,NA,NA,NA,NA,NA
+13872,"camera postrema","spațiu vitros","final","postrema","vitros","spațiu","vitros",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13872,"camera vitrea","spațiu vitros","aparat foto","camera","cameră","cameră","anterioară","posterioară","spațiu",NA,NA,NA,NA,NA,NA,NA,NA
+13872,"camera vitrea","spațiu vitros","sticlă","vitrea","vitros","vitros",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13880,"palpebrae","pleoape","pleoapă","palpebrae","pleoape","pleoape",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13902,"auris","ureche","ureche","auris","ureche","ureche",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13904,"auris externa","ureche externă","ureche","auris","ureche","ureche",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13904,"auris externa","ureche externă","extern","externa","externă","externă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13910,"auris media","ureche medie","ureche","auris","ureche","ureche",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13910,"auris media","ureche medie","mass-media","media","medie","medie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13917,"membrana tympanica","timpan","filme","membrana tympanica","timpan","timpan","filme","tympanica","timpanice","membrană","membrană","timpanică","timpan","membrană","timpanică","timpan","timpan"
+13917,"membrana tympanica","timpan","tympanica","","","timpan","filme","tympanica","timpanice","membrană","membrană","timpanică","timpan","membrană","timpanică","timpan","timpan"
+13931,"epithelium pseudostratificatum","epiteliu pseudostratificat","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13931,"epithelium pseudostratificatum","epiteliu pseudostratificat","pseudostratificatum","pseudostratificatum","pseudostratificat","pseudostratificat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13934,"auris interna","ureche internă","ureche","auris","ureche","ureche",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13934,"auris interna","ureche internă","intern","interna","internă","intimă","internă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13935,"labyrinthus osseus","labirint osos","labirint","labyrinthus","labirint","labirint",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13935,"labyrinthus osseus","labirint osos","schelet","osseus","osos","osos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13939,"perilympha","perilimfă","perilympha","perilympha","perilimfă","perilimfă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13941,"lamina spiralis cochleae","lamă osoasă spirală","placă","lamina","musculara","musculara","lamă","osoasă","spirală","membrană","supracoroidală","lamina","strat","coriocapilar","bazilară",NA,NA
+13941,"lamina spiralis cochleae","lamă osoasă spirală","spirală","spiralis","spirală","spirală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13941,"lamina spiralis cochleae","lamă osoasă spirală","melcii","cochleae","osoasă","osoasă","columelă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13942,"modiolus cochleae","modiol","modiolus","modiolus","modiol","modiol",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13942,"modiolus cochleae","modiol","melcii","cochleae","osoasă","osoasă","columelă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13944,"labyrinthus membranaceus","labirint membranos","labirint","labyrinthus","labirint","labirint",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13944,"labyrinthus membranaceus","labirint membranos","pergament","membranaceus","membranos","membranos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13946,"endolympha","endolimfă","endolympha","endolympha","endolimfă","endolimfă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13948,"vestibulocytus","celulă receptoare","vestibulocytus","vestibulocytus","receptoare","receptoare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13948,"cellula sensoria pilosa","celulă receptoare","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
+13948,"cellula sensoria pilosa","celulă receptoare","senzorial","sensoria","senzitivă","senzitivă","receptoare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13948,"cellula sensoria pilosa","celulă receptoare","tunica","pilosa","păroasă","păroasă","receptoare",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13959,"macula sacculi","maculă a saculei","punct","macula","macula","macula","desmozomală","joncțiune","maculă","saculei","utriculei",NA,NA,NA,NA,NA,NA
+13959,"macula sacculi","maculă a saculei","sac","sacculi","saculei","maculă","a","saculei",NA,NA,NA,NA,NA,NA,NA,NA,NA
+13960,"macula utriculi","maculă a utriculei","punct","macula","macula","macula","desmozomală","joncțiune","maculă","saculei","utriculei",NA,NA,NA,NA,NA,NA
+13960,"macula utriculi","maculă a utriculei","sticle de piele","utriculi","utriculei","utriculei",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13966,"crista ampullaris","cristă ampulară","creastă","crista","cristă","creastă","cristă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13966,"crista ampullaris","cristă ampulară","ampullaris","ampullaris","ampulară","ampulară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13972,"saccus endolymphaticus","sac endolimfatic","sac","saccus","sac","sac","endolimfatic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13972,"saccus endolymphaticus","sac endolimfatic","endolymphaticus","endolymphaticus","endolimfatic","endolimfatic",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+13995,"lamina basilaris","membrană bazilară","placă","lamina","musculara","musculara","lamă","osoasă","spirală","membrană","supracoroidală","lamina","strat","coriocapilar","bazilară",NA,NA
+13995,"lamina basilaris","membrană bazilară","basilar","basilaris","bazilară","bazilară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14004,"membrana tectoria","membrană tectoria","filme","membrana","membrană","membrană",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14004,"membrana tectoria","membrană tectoria","suprafete","tectoria","tectoria","tectoria",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14005,"membrana vestibularis","membrană vestibulară","filme","membrana","membrană","membrană",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14005,"membrana vestibularis","membrană vestibulară","vestibul","vestibularis","vestibulară","vestibulară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14041,"cochleocytus externus","celulă păroasă externă","cochleocytus","cochleocytus","externă","celulă","păroasă","externă",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14041,"cochleocytus externus","celulă păroasă externă","extern","externus","externă","externă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14058,"gliocytus ganglionicus","celulă satelită","gliocytus","gliocytus","celulă","glială","celulă","satelită",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14058,"gliocytus ganglionicus","celulă satelită","ganglionicus","ganglionicus","satelită","satelită",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14068,"epidermis","epiderm","epidermă","epidermis","epiderm","epiderm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14071,"stratum corneum","strat cornos","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+14071,"stratum corneum","strat cornos","excitat","corneum","cornos","cornos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14072,"stratum lucidum","strat lucid","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+14072,"stratum lucidum","strat lucid","lumina","lucidum","lucidum","lucidum","lucid",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14073,"stratum granulosum","strat granulos","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+14073,"stratum granulosum","strat granulos","granulozei","granulosum","granular","endoplasmic","reticul","neted","rugos","granular","granulos",NA,NA,NA,NA,NA,NA
+14074,"stratum spinosum","strat spinos","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+14074,"stratum spinosum","strat spinos","înțepător","spinosum","spinos","spinos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14075,"stratum basale","strat germinativ","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+14075,"stratum basale","strat germinativ","bazale","basale","bazal","bazal","germinativ",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14078,"tonofibrilla","tonofibrilă","tonofibrilla","tonofibrilla","tonofibrilă","tonofibrilă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14079,"tonofilamentum","tonofilament","tonofilamentum","tonofilamentum","tonofilament","tonofilament",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14080,"macula adhaerens","desmozom","punct","macula","macula","macula","desmozomală","joncțiune","maculă","saculei","utriculei",NA,NA,NA,NA,NA,NA
+14080,"macula adhaerens","desmozom","aderare","adhaerens","adherens","adherens",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14080,"desmosoma","desmozom","desmosoma","desmosoma","desmozom","desmozom","desmozomală","desmozomică",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14083,"granulum keratohyalini","granulă de keratohialin","granulă","granulum","granulă","incluziune","granulă","incluzie",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14083,"granulum keratohyalini","granulă de keratohialin","keratohyalini","keratohyalini","keratohialin","cheratohialină","keratohialin",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14084,"filamentum keratini","filament de keratină","filament","filamentum","filament","filament","microfilament","miofilament",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14084,"filamentum keratini","filament de keratină","cheratină","keratini","keratină","cheratină","keratină",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14090,"terminatio neuralis","terminație nervoasă","terminal","terminatio","terminație","terminație",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14090,"terminatio neuralis","terminație nervoasă","neural","neuralis","nervos","nervoasă","nervos",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14091,"melanocytus","melanocit","melanocite","melanocytus","melanocit","melanocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14101,"dermis","derm","dermul","dermis","derm","derm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14101,"corium","derm","piele","corium","derm","derm",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14102,"stratum papillare","derm papilar","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+14102,"stratum papillare","derm papilar","papillate","papillare","papilar","papilar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14103,"papilla","papilă","biberon","papilla","papilă","papilă","dermală","pilos",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14104,"stratum reticulare","derm reticular","pat","stratum","strat","strat","granular","molecular","teacă","bazal","germinativ","plexiform","extern","intern","granulos","spinos","papilar"
+14104,"stratum reticulare","derm reticular","rețea","reticulare","reticular","reticular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14123,"pilus","fir de păr","păr","pilus","păr","fir","păr",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14142,"bulbus pili","bulb pilos","bulb","bulbus","bulb","glob","ocular","bulb","firului",NA,NA,NA,NA,NA,NA,NA,NA
+14142,"bulbus pili","bulb pilos","păr","pili","pilos","firului","păr","pilos","folicul","papilă","dermică","dermală","foliculului",NA,NA,NA,NA
+14143,"papilla dermalis pili","papilă dermală a foliculului pilos","biberon","papilla","papilă","papilă","dermală","pilos",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14143,"papilla dermalis pili","papilă dermală a foliculului pilos","dermic","dermalis","dermală","dermică","dermală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14143,"papilla dermalis pili","papilă dermală a foliculului pilos","păr","pili","pilos","firului","păr","pilos","folicul","papilă","dermică","dermală","foliculului",NA,NA,NA,NA
+14146,"melanocytus follicularis","melanocit","melanocite","melanocytus","melanocit","melanocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14146,"melanocytus follicularis","melanocit","celulă","follicularis","folicular","melanocit","folicular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14156,"folliculus pili","folicul pilos","înfășura","folliculus","folicul","folicul",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14156,"folliculus pili","folicul pilos","păr","pili","pilos","firului","păr","pilos","folicul","papilă","dermică","dermală","foliculului",NA,NA,NA,NA
+14176,"unguis","unghie","cuie","unguis","unghie","unghie","matrice","unghială",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14183,"eponychium","cuticulă","eponychium","eponychium","cuticulă","cuticulă","eponichiu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14184,"lectulus","pat unghial","canapea","lectulus","unghial","unghial",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14195,"matrix unguis","matrice unghială","matrice","matrix","matrice","matrice","extracelulară","citoplasmatică",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14195,"matrix unguis","matrice unghială","cuie","unguis","unghie","unghie","matrice","unghială",NA,NA,NA,NA,NA,NA,NA,NA,NA
+14223,"sebum","sebum","sebum","sebum","sebum","sebum",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14229,"glandula mammaria","glandă mamară","glandă","glandula","glandă","glandă","tubulară","sublinguală","submandibulară","submaxilară",NA,NA,NA,NA,NA,NA,NA
+14229,"glandula mammaria","glandă mamară","mammaria","mammaria","mamară","mamară",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14230,"lobus mammae","lob","lob","lobus","lob","lob",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+14230,"lobus mammae","lob","sanii","mammae","lob","lob",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
