@@ -1616,8 +1616,22 @@ ratioOffNewWords <- function(terms, offLang, newLang, sourc){
 }
 findInText <- function(text, terms, sources, langs){
   find <- as.character(terms[terms$lang %in% langs & terms$source %in% sources, "term"]);
+  nwo <- list();
   for(term in find){
-    text <- sub(paste(" ",term, " ", sep=""), paste("<", term, ">", sep=""),text);
+    nwords <- length(unlist(strsplit(term, " ")));
+    if(as.character(nwords) %in% names(nwo)){
+      nwo[[as.character(nwords)]] <- c(nwo[[as.character(nwords)]], term);
+    }
+    else{ nwo[[as.character(nwords)]] <- c(); nwo[[as.character(nwords)]] <- c(nwo[[as.character(nwords)]], term);}
+  }
+  ord <- as.integer(names(nwo));
+  ord <- order(ord, decreasing = TRUE);
+  for(or in ord){
+    for(term in nwo[[as.character(or)]]) {
+      #text <- sub(paste(" ",term, " ", sep=""), paste(" <", term, "> ", sep=""),text, ignore.case = TRUE);
+      #text <- sub(paste("[ ,.;?!\n()\\]",term, "[ ,.;?!\n()\\]", sep=""), paste(" <", term, "> ", sep=""),text, ignore.case = TRUE, fixed = FALSE);
+      text <- gsub(paste("\\b",term, "\\b", sep=""), paste("<", term, ">", sep=""),text, ignore.case = TRUE, fixed = FALSE);
+    }
   }
   return(text);
 }
@@ -1720,6 +1734,12 @@ findInText <- function(text, terms, sources, langs){
 #finalWords3 <- appenddf(df=data.frame(V1 = LaRoRelAutoOk[, "matchWords"]) , finalWords2, "ro", "autoOk", as.character(LaRoRelAutoOk[, "term_id"]));
 #final3 <- woToTermsBase(LaRoRelAutoOk, final2, "la", "ro", "autoOk", "matchWords");
 #final3 <- autoReduce(final3, "autoOk", "autoRed", "ro");
+#text <- "O celulă are multe organite și este de mai multe feluri. Avem o celulă scuamoasă cu margine striată și platou microvilos cu microvil și stereocil. Epiteliu pseudostratificat există."
+#text <- findInText(text,final3, c("autoRed"), "ro");
+#txt <- readLines("../Test Files/textGT.txt");
+#txt2 <- findInText(txt, final3, c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
+#writeLines(txt2, "../Test Files/textGT2.txt")
+#system.time( replicate(10000, myfunction(with,arguments) ) )
 
 #compareRatioWT2(finalLaEn2, final, finalWords, c("la","en"), "ro", c("reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"), c("reference", "reference", "gtLaRoWords", "gtEnRoWords", "gtLaRoWords", "gtEnRoWords"));
 #                  T    TQ     W      WQ     W/T
@@ -1732,7 +1752,7 @@ findInText <- function(text, terms, sources, langs){
 #gtLaRoWords:     566 | 517 | 990  | 539 | 1.749117
 #gtEnRoWords:     581 | 534 | 1056 | 549 | 1.817556
 
-#compareSynoT(finalLaEn2, final, c("la","en"), "ro", c("reference", "referenceWordsLa", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
+#compareSynoT(finalLaEn2, final, c("la","en"), "ro", c("reference", "referenceWordsLa", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006", "autoOk", "autoRed"));
 
 #                     noConcepts noTerms noConceptsWithSyno RatioSynoT minSynoT maxSynoT
 # la                      500     566                 57   1.132000        1        4
@@ -1744,6 +1764,8 @@ findInText <- function(text, terms, sources, langs){
 # tm2004                  193     230                 32   1.191710        1        3
 # buc1987                  31      54                 12   1.741935        1        5
 # craiova2006              68     125                 35   1.838235        1        5
+# autoOk                  500     566                 57   1.132000        1        4
+# autoRed                 500     500                  0   1.000000        1        1
 
 #la         nexus, macula communicans, synapsis non vesicularis, synapsis electrica ; perikaryon, neurosoma, soma, corpus neuronis
 #en         gap junction, nonvesicular synapse, electrical synapse ; neutrophilic granulocyte, neutrophil, segmented neutrophilic granulocyte ; plasmalemma, cell membrane, plasma membrane ; desmosome, macula adherens, spot desmosome ; secretory vacuole vesicle, secretory granule, secretory ; plasmocyte, plasma cell, plasmacyte ; stratum basale, basal cell layer, stratum germinativum ; microvillous border, brush border, striated border ; perisinusoidal cell, fat storing cell, hepatic stellate cell [hsc] ; portal area, portal canal, portal zone
@@ -1754,6 +1776,7 @@ findInText <- function(text, terms, sources, langs){
 #tm2004     celulă epitelială endocrină principală, celulă principală, celulă cromofobă ; celulă epitelială endocrină oxifilă, celulă oxifilă, celulă acidofilă ; celule nevroglice, celule gliale, nevroglii ; ganglion cerebro-spinal, ganglion senzitivo-senzorial, ganglion aferent ; neuron de asociație, interneuron, neuron intermediar
 #buc1987    celulă stem, celulă sușă, precursor, progenitor, tulpină a altor tipuri de celule
 #craiova2006 leucocit granulocitar neutrofil, granulocit neutrofil, granulocit neutrofil segmentat, neutrofil, polimorfonuclear neutrofil
+#autoOk     nexus, macula comunicantă, sinapsă  , sinapsă  ; pericarion, neurozom, soma, corp neuronal
 
 # syn <- synoW(LaRoRelOk);
 # length(names(syn));   #530 unique terms with transl != 0 (582 uniq la terms)
@@ -1789,6 +1812,17 @@ findInText <- function(text, terms, sources, langs){
 # [2,] 480.00 480.00
 # [3,]   0.96   0.96
 
+# correctTerms(final3, "autoOk", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
+# [,1]        [,2]
+# [1,] 500.00 566.0000000
+# [2,] 385.00 405.0000000
+# [3,]   0.77   0.7155477
+
+# correctTerms(final3, "autoRed", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
+# [,1]    [,2]
+# [1,] 500.000 500.000
+# [2,] 371.000 371.000
+# [3,]   0.742   0.742
 
 #correctWords(finalWords, "reference", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
 # [,1] [,2]
@@ -1814,6 +1848,13 @@ findInText <- function(text, terms, sources, langs){
 # [2,] 474.000 771.0000000
 # [3,]   0.948   0.7787879
 
+# correctWords(finalWords3, "autoOk", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
+# [,1]        [,2]
+# [1,] 500.000 990.0000000
+# [2,] 457.000 801.0000000
+# [3,]   0.914   0.8090909
+
+
 #ratioOffNewWords(final2, "la","ro","reference")
 # [,1]    [,2]
 # [1,] 500.000 500.000
@@ -1838,7 +1879,17 @@ findInText <- function(text, terms, sources, langs){
 # [2,] 477.000 536.0000000
 # [3,]   0.954   0.9469965
 
+# ratioOffNewWords(final3, "la","ro","autoOk")
+# [,1] [,2]
+# [1,]  500  566
+# [2,]  500  566
+# [3,]    1    1
 
+# ratioOffNewWords(final3, "la","ro","autoRed")
+# [,1] [,2]
+# [1,]  500  500
+# [2,]  500  500
+# [3,]    1    1
 
 # write.csv(finalLaEn2, "../Data/finalLaEn.csv");
 # writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");

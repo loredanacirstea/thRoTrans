@@ -1,0 +1,500 @@
+celulă în coșuleț
+sistem nervos periferic
+adipocit
+arahnoidă
+arborizație terminală
+arteră interlobară
+astrocit
+astrocit
+astrocit fibros
+astrocit protoplasmatic
+axolemă
+axolemă
+axon
+barieră hematoencefalică
+cavitate bucală
+celulă
+celulă în coșuleț
+celulă endotelială
+celulă ependimară
+celulă ependimară
+celulă epitelială
+celulă gigantă
+celulă glială
+celulă piramidală
+celulă piramidală
+celulă germinală primordială
+celulă progenitoare
+celulă Purkinje
+celulă satelită
+celulă satelită
+celulă Schwann
+centriol
+centriol
+cerebel
+cisternă
+citoplasmă
+citoschelet
+corpuscul Vater-Pacini
+cortex cerebelos
+cortex cerebral
+desmozom
+dinte
+dura mater
+eminență mediană
+endonerv
+endoteliu
+eozinofil
+epinerv
+epiteliu simplu scuamos
+esofag
+fascicul de colagen
+fibră de colagen
+fibră elastică
+fibră nervoasă aferentă
+fibră nervoasă amielinică
+fibră nervoasă amielinică
+fibră nervoasă eferentă
+fibroblast
+fibroblast
+ficat
+filament de actină
+fus neuromuscular
+ganglion
+ganglion autonom
+glandă pineală
+infundibul
+joncțiune gap
+joncțiune strânsă
+joncțiune strânsă
+limbă
+limfocit
+macrofag
+măduva spinării
+mastocit
+matrice extracelulară
+melanocit
+melanocit
+melanocit
+melanocit
+membrană bazală
+meninge
+mezaxon
+microtubul
+microvil
+mitocondrie
+monocit
+musculara mucoasei
+musculara mucoasei
+musculara mucoasei
+musculara mucoasei
+nerv
+neurofibrilă
+neurofilament
+neuron
+neuron bipolar
+neuron motor
+neuron multipolar
+neurotransmițător
+neutrofil
+nucleol
+nucleu
+odontoblast
+oligodendrocit
+palat
+pancreas
+parenchim
+corp neuronal
+pericit
+perinerv
+periost
+pia mater
+pinocitoză
+plasmă
+plasmalemă
+plex coroid
+poliribozom
+receptor
+reticul endoplasmic
+reticul endoplasmic neted
+reticul endoplasmic rugos
+sinapsă
+sinapsă axodendritică
+sinapsă axosomatică
+sistem nervos
+sistem nervos central
+sistem respirator
+sistem urinar
+spațiu subarahnoidian
+spin dendritic
+nod Ranvier
+strat granular
+strat molecular
+stromă
+substanță albă
+substanță cenușie
+teacă de mielină
+terminație nervoasă
+terminații nervoase
+țesut adipos
+țesut conjunctiv dens
+țesut conjunctiv dens
+țesut conjunctiv lax
+țesut muscular neted
+țesut nervos
+țesut osos
+veziculă de pinocitoză
+vil arahnoidian
+desmozom
+filament de actină
+filament de actină
+desmozom
+fibră de colagen
+joncțiune gap
+fibră de colagen
+ligament periodontal
+pinealocit
+celulă principală
+celulă oxifilă
+folicul limfoid splenic
+celulă în coșuleț
+celulă musculară
+nevroglii
+creier
+fibră nervoasă
+ganglion senzitiv
+glande salivare
+incluziune de glicogen
+incizură Schmidt-Lanterman
+barieră sânge-lichid cerebrospinal
+melanocit
+fibră nervoasă senzitivă
+interneuron
+sisteme genitale
+plex nervos autonom
+canal alimentar
+medulosuprarenală
+cavitate foliculară
+stigmă foliculară
+prim globul polar
+stromă
+albuginee a corpului spongios
+corticosuprarenală
+celulă dendritică foliculară
+sinus intermediar
+corpuscul Meissner
+fibră nervoasă postganglionară
+fibră nervoasă preganglionară
+granulă secretorie
+incluziune lipidică
+citosol
+organite
+celulă poliedrică
+celulă scuamoasă
+glicocalix
+stereocil
+cil
+( microtubul central )
+flagel
+joncțiuni intercelulare
+hemidesmozom
+nucleu picnotic
+nucleu sferic
+cromatină
+ribozom
+lizozom
+corp rezidual
+peroxizom
+matrice a peroxizomului
+exocitoză
+endocitoză
+vacuolă de fagocitoză
+corp rezidual
+cil
+flagel
+miozină
+interfază
+mitoză
+profază
+metafază
+cromozom
+capsulă
+țesut epitelial
+epiteliu
+pol apical
+pol bazal
+suprafață apicală
+mezoteliu
+glandă
+secreție apocrină
+secreție exocrină
+glandă exocrină
+celulă caliciformă
+glandă tubulară simplă
+glandă tubulară ramificată
+glandă tubuloacinară compusă
+acin
+celulă mioepitelială
+celulă mioepitelială
+glandă endocrină
+plasmocit
+celulă pigmentară
+proteoglican
+colagen
+procolagen
+tropocolagen
+elastină
+celule sanguine
+eritroblast
+actină
+desmină
+celulă mioepitelială
+granulă de zimogen
+glicocalix
+granulă de zimogen
+celulă mioepitelială
+papilă
+celulă stem
+kinocil
+dineină
+nucleu
+heterocromatină
+centrozom
+veziculă Golgi
+fagocitoză
+tubulină
+dineină
+tonofilament
+tonofibrilă
+hiperplazie
+hipertrofie
+metaplazie
+fibrocit
+miofibroblast
+glicozaminoglican
+ligamente
+condrocit
+cartilaj elastic
+pericondru
+osteocit
+osteoclast
+osificare
+anizocitoză
+leucocit
+granulă azurofilă
+trombocit
+chilomicron
+sinusoid
+mieloblast
+mielocit
+megakariocit
+măduvă osoasă
+măduvă osoasă hematogenă
+miofilament
+miofibrilă
+sarcomer
+tropomiozină
+miofilament
+mioblast
+axoplasmă
+microglie
+veziculă sinaptică
+epiteliu respirator
+celulă dendritică
+trahee
+cartilaje ale traheei
+adventice
+bronhie
+bronhiolă
+ovar
+albuginee
+albuginee
+penis
+corp cavernos al uretrei
+folicul ovarian primar
+folicul ovarian antral
+corona radiata
+ovocit secundar
+corp cavernos al penisului
+albuginee a corpului cavernos
+sinus subcapsular
+sinus medular
+epiteliu glandular
+celulă dendritică
+celulă seroasă
+endost
+articulații
+nucleu pulpos
+fus neuromuscular
+glandă sebacee
+palat moale
+submucoasă
+gingie
+crevasă gingivală
+glandă parotidă
+glandă sublinguală
+glande salivare minore
+celulă mucoasă
+coroană dentară
+gât al dintelui
+cameră pulpară
+canal radicular
+foramen apical
+smalț
+dentină
+tubul dentinal
+proces odontoblastic
+predentină
+cement
+pulpă dentară
+alveolă dentară
+diafragm al fantei de filtrare
+glandă paratiroidă
+labirint osos
+perilimfă
+lamă osoasă spirală
+modiol
+endolimfă
+componentă postsinaptică
+glandă submandibulară
+corp neuroepitelial
+vase sangvine și limfatice
+celulă endocrină
+epiteliu de acoperire
+epiteliu simplu cubic
+epiteliu simplu columnar
+epiteliu pseudostratificat columnar
+epiteliu stratificat scuamos nekeratinizat
+epiteliu pseudostratificat columnar ciliat
+granulă de lipofuscină
+arteră
+intimă
+endoteliu vascular
+strat germinativ
+celulă multinucleată
+corticală ovariană
+stromă ovariană
+medulară ovariană
+folicul ovarian primordial
+zona pellucida
+teacă foliculară
+celulă foliculară
+lichid folicular
+folicul de Graaf
+cumulus oophorus
+corp galben
+celulă granuloasă luteală
+celulă luteală tecală
+corp albicans
+țesut limfoid
+timus
+țesut limfoid asociat bronşiilor
+țesut limfoid asociat mucoaselor
+trabecul splenic
+pulpă albă
+zonă marginală a pulpei albe
+pulpă roșie
+arteriolă penicilată
+cordon Billroth
+amigdală
+glob ocular
+scleră
+cornee
+coroidă
+corp ciliar
+proces ciliar
+ora serrata
+mușchi ciliar
+epiteliu pigmentar
+iris
+mușchi constrictor pupilar
+celulă pigmentară
+dilatator pupilar
+retină
+strat plexiform extern
+strat plexiform intern
+maculă
+celulă cu bastonaș
+celulă cu conuri
+celulă amacrină
+cristalin
+umoare apoasă
+cameră anterioară
+cameră posterioară
+spațiu vitros
+pleoape
+epiderm
+strat cornos
+strat lucid
+strat granulos
+strat spinos
+tonofibrilă
+tonofilament
+granulă de keratohialin
+filament de keratină
+derm
+derm papilar
+derm reticular
+fir de păr
+bulb pilos
+folicul pilos
+unghie
+cuticulă
+pat unghial
+matrice unghială
+sebum
+eritrocit
+folicul limfoid
+spongiocit
+insulă pancreatică
+corp carotidian
+nodul sinoatrial
+nodul atrioventricular
+capilar
+capilar limfatic
+ganglion limfatic
+corticală
+membrană Bowman
+membrană Descemet
+lamina supracoroidală
+strat coriocapilar
+membrană Bruch
+membrană limitantă externă
+membrană limitantă internă
+papilă dermală a foliculului pilos
+margine striată
+epiteliu stratificat scuamos keratinizat
+epiteliu stratificat cubic
+epiteliu stratificat cilindric
+glandă simplă
+glandă tubulară
+glandă acinară
+limfocit B
+limfocit T
+canalicul biliar
+celulă Ito-Nemoto
+sinusoid
+spațiu port
+celulă centroacinară
+duct intercalat
+duct intralobular
+duct interlobular
+limfocit T helper
+ureche
+ureche externă
+ureche medie
+timpan
+epiteliu pseudostratificat
+ureche internă
+labirint membranos
+celulă receptoare
+maculă a saculei
+maculă a utriculei
+cristă ampulară
+sac endolimfatic
+membrană bazilară
+membrană tectoria
+membrană vestibulară
+celulă păroasă externă
+glandă mamară
+lob
