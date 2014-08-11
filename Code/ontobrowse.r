@@ -801,44 +801,6 @@ horizNoTerms <- function(df){
    #heat.colors(length(rownames(data)))
    return(g);
 }
-vertNoTerms <- function(df){
-  add <- c();
-  noconcepts <- c();
-  sources <- factor(df[, "source"]);
-  for(so in levels(sources)) {
-    add[so] <- 0;
-    noconcepts[so] <- length(unique(final[final$source == so & as.character(final$term) != "", "term_id"]));
-  }
-  noconcepts <- sort(noconcepts, decreasing = TRUE);
-  for(row in row.names(df)) {
-    if(as.character(df[row, "term"]) != "" | length(as.character(df[row, "term"]) != 0)) {
-      if(as.character(df[row, "term"]) == as.character(df[df$term_id == df[row, "term_id"] & df$source == "reference", "term"])) {
-        add[df[row,"source"]] <- add[df[row,"source"]] +1;
-      }
-    }
-  }
-  correct <- c();
-  for(so in names(noconcepts)) { correct[so] <- add[so]; }
-  data <- matrix(c(noconcepts, correct), nrow = 2, ncol = 6, byrow = TRUE,
-                 dimnames = list(c("concepte găsite", "termeni referință incluși \nîn conceptele găsite"),
-                                 as.character(names(noconcepts))));
-  ycoord <- c();
-  for(i in 1:6) { ycoord <- c(ycoord, data[1,i], data[2,i]); }
-  title <- "Valori comparate ale conceptelor găsite și ale \ntermenilor referință incluși în acestea \npentru fiecare sursă";
-  par(mar = c(5.1, 7.1, 5.1, 7.1), xpd = TRUE, las = 1);
-  g <- barplot(data, main = title,
-               xlab = "Sursele folosite pentru traducerea termenilor",
-               ylab = "Numărul de concepte/termeni",
-               col = c("lightblue", "mistyrose"), beside = TRUE, width = 2);
-  leg <- legend("topright", inset = c(0, 0), fill = c("lightblue", "mistyrose"), 
-         legend = rownames(data), xjust=1, yjust=0, cex = 0.9, pt.cex = 1);
-  text(g, ycoord, round(ycoord, 2), cex=1, pos=3);
-  #heat.colors(length(rownames(data)))
-  return(g);
-}
-vertSinTerms <- function(df){
-  
-}
 comp <- function(df1,df2){
   for(row in length(row.names(df1))) {
     if(df1[row,] != df2[row,]) {
@@ -1396,9 +1358,9 @@ autoReduce <- function(terms, sourc = "autoOk", so = "autoRed", newLang = "ro"){
   for(id in term_id){
     tt <- as.character(terms[terms$term_id == id & terms$source == sourc, "term"]);
     if(length(tt) > 1){
-      max <- 0; ind <- c();
+      min <- 100; ind <- c();
       for(t in tt){
-        if(length(unlist(strsplit(t, " "))) > max) { max <- length(unlist(strsplit(t, " "))); ok <- t;}
+        if(length(unlist(strsplit(t, " "))) < min) { min <- length(unlist(strsplit(t, " "))); ok <- t;}
         if(t %in% as.character(terms[terms$term_id == id, "term"])){ ind[t] <- 1; }
       }
       tt <- ok;
@@ -1473,14 +1435,54 @@ compareRatioWT2 <- function(oTerms, terms, words, offLang = "la", newLang = "ro"
     ratioWT[lg] <- noWords[lg]/noTerms[lg];
   }
   for(so in 1:length(sourcesT)){
-    noWords[sourcesT[so]] <- length(as.character(words[words$lang == newLang & words$source == sourcesW[so], "term"]));
-    noWordsQ[sourcesT[so]] <- length(unique(as.character(words[words$lang == newLang & words$source == sourcesW[so], "term"])));
-    noTerms[sourcesT[so]] <- length(as.character(terms[terms$lang == newLang & terms$source == sourcesW[so], "term"]));
-    noTermsQ[sourcesT[so]] <- length(unique(as.character(terms[terms$lang == newLang & terms$source == sourcesW[so], "term"])));
+    noWords[sourcesT[so]] <- length(as.character(words[words$lang == newLang & words$source == sourcesW[so] & words$term != "", "term"]));
+    noWordsQ[sourcesT[so]] <- length(unique(as.character(words[words$lang == newLang & words$source == sourcesW[so] & words$term != "", "term"])));
+    noTerms[sourcesT[so]] <- length(as.character(terms[terms$lang == newLang & terms$source == sourcesT[so] & terms$term != "", "term"]));
+    noTermsQ[sourcesT[so]] <- length(unique(as.character(terms[terms$lang == newLang & terms$source == sourcesT[so] & terms$term != "", "term"])));
     ratioWT[sourcesT[so]] <- noWords[sourcesT[so]]/noTerms[sourcesT[so]];
   }
   df<-data.frame(noTerms, noTermsQ, noWords, noWordsQ, ratioWT);
   return(df);
+}
+compareRatioWTgraph <- function(df, title="", xtitle="", ytitle="", sources="", val="", leg="", lim=0, set=c(0, 0)){
+  #df2 <- t(df[sources, val]);
+  df<-df[order(df[,1], decreasing=TRUE),];
+  if(sources == "") { sources <- row.names(df);}
+  df2 <- t(df);
+  df2 <- as.data.frame(df2);
+  data <- as.matrix(df2);
+  #data <- data.table(df2, key="noTerms");
+  ycoord <- c();
+  for(i in 1:length(sources)) { ycoord <- c(ycoord, data[1,i], data[2,i]); }
+  par(mar = c(5.1, 10, 5.1, 10.1), xpd = TRUE, las=2);
+  g <- barplot(data, main = title, xlab = xtitle, ylab = ytitle, axis.lty=1,
+               col = c("lightblue", "mistyrose"), beside = TRUE, width = 4,
+               ann = FALSE, cex.names=0.8, horiz = TRUE, bty='L', xlim=range(0:lim));
+    legend("topright", inset = set, fill = c("lightblue", "mistyrose"), 
+         legend = leg, xjust=1, yjust=1, cex = 0.9, pt.cex = 1, bty="n");
+  text(ycoord , g, round(ycoord, 3), cex=0.8, pos=4);
+}
+compareRatioWTgraphS <- function(df, title="", xtitle="", ytitle="", sources="", val="", leg="", lim=0){
+  df<-df[order(df[,1], decreasing=TRUE), , drop = FALSE];
+  if(sources == "") { sources <- row.names(df);}
+  df2 <- t(df);
+  df2 <- as.data.frame(df2);
+  data <- as.matrix(df2);
+  #data <- data.table(df2, key="noTerms");
+  ycoord <- c();
+  colours <- c();
+  for(i in 1:length(sources)) {
+    ycoord <- c(ycoord, data[1,i]);
+    if(sources[i] %in% c("la", "en")) { colours <- c(colours, c("mistyrose")); }
+    else { colours <- c(colours, c("lightblue")); }
+  }
+  par(mar = c(5.1, 10, 5.1, 7.1), xpd = TRUE, las=2);
+  g <- barplot(data, main = title, xlab = xtitle, ylab = ytitle, axis.lty=1,
+               col = colours, beside = TRUE, width = 4,
+               ann = FALSE, cex.names=0.9, horiz = TRUE, bty='L', xlim=range(0:lim));
+  #legend("topright", inset = set, fill = c("lightblue", "mistyrose"), 
+         #legend = leg, xjust=1, yjust=1, cex = 0.9, pt.cex = 1, bty="n");
+  text(ycoord , g, round(ycoord, 2), cex=0.8, pos=4);
 }
 compareSynoT <- function(oTerms, terms, offLang = "la", newLang = "ro", sources){
   noConcepts <- c();
@@ -1593,6 +1595,40 @@ correctWords <- function(terms, this, sources, lang){
   }
   return(matrix(c(c(length(unique(ids)), concept, concept/length(unique(ids))), c(length(ids), sino, sino/length(ids))), ncol=2));
 }
+correctTermsTable <- function(terms, this=c(), sources=c(), lang){
+  noConc <- c();
+  noCorrConc <- c();
+  ratioCC <- c();
+  noTerms <- c();
+  noCorrTerms <- c();
+  rationCT <- c();
+  for(th in this){
+    func <- correctTerms(terms, th, sources, lang);
+    noConc <- c(noConc, func[1,1]);
+    noCorrConc <- c(noCorrConc, func[2,1]);
+    ratioCC <- c(ratioCC, func[3,1]);
+    noTerms <- c(noTerms, func[1,2]);
+    noCorrTerms <- c(noCorrTerms, func[2,2]);
+    rationCT <- c(rationCT, func[3,2]);
+  }
+  df <- data.frame(noConc, noCorrConc, ratioCC, noTerms, noCorrTerms, rationCT);
+  row.names(df) <- this;
+  return(df);
+}
+correctWordsTable <- function(words, this=c(), sources=c(), lang){
+  noWords <- c();
+  noCorrWor <- c();
+  ratioCorr <- c();
+  for(th in this){
+    func <- correctWords(words, th, sources, lang);
+    noWords <- c(noWords, func[1,2]);
+    noCorrWor <- c(noCorrWor, func[2,2]);
+    ratioCorr <- c(ratioCorr, func[3,2]);
+  }
+  df <- data.frame(noWords, noCorrWor, ratioCorr);
+  row.names(df) <- this;
+  return(df);
+}
 ratioOffNewWords <- function(terms, offLang, newLang, sourc){
   ids <- as.character(terms[terms$source == sourc & terms$lang == newLang, "term_id"]);
   sameRatioWordsC <- 0;
@@ -1614,6 +1650,49 @@ ratioOffNewWords <- function(terms, offLang, newLang, sourc){
   }
   return(matrix(c(c(length(unique(ids)), sameRatioWordsC, sameRatioWordsC/length(unique(ids))), c(length(ids), sameRatioWordsT, sameRatioWordsT/length(ids))), ncol=2));
 }
+ratioOffNewWordsTable <- function(terms, offLang, newLang, sources){
+  noConc <- c();
+  noCorrConc <- c();
+  ratioCC <- c();
+  noTerms <- c();
+  noCorrTerms <- c();
+  rationCT <- c();
+  for(sourc in sources){
+    func <- ratioOffNewWords(terms, offLang, newLang, sourc);
+    noConc <- c(noConc, func[1,1]);
+    noCorrConc <- c(noCorrConc, func[2,1]);
+    ratioCC <- c(ratioCC, func[3,1]);
+    noTerms <- c(noTerms, func[1,2]);
+    noCorrTerms <- c(noCorrTerms, func[2,2]);
+    rationCT <- c(rationCT, func[3,2]);
+  }
+  df <- data.frame(noConc, noCorrConc, ratioCC, noTerms, noCorrTerms, rationCT);
+  row.names(df) <- sources;
+  return(df);
+}
+fromSourceNo <- function(terms, transl = "reference", sourc = "junqueira", lang = "ro"){
+  no <- 0;
+  for(id in as.character(terms[terms$source == transl & terms$lang == lang & terms$term != "","term_id"])){
+    if(as.character(terms[terms$source == transl & terms$term_id == id & terms$term != "", "term"]) %in% as.character(terms[terms$source == sourc & terms$term_id == id & terms$term != "", "term"])){
+      no <- no + 1;
+    }
+  }
+  return(no);
+}
+fromSourceTable <- function(terms, transl = "reference", sources = c("junqueira"), lang = "ro"){
+  no <- 0;
+  sourc <- c();
+  for(so in sources){ sourc[so] <- 0;}
+  for(id in as.character(terms[terms$source == transl & terms$lang == lang & terms$term != "","term_id"])){
+    for(so in sources){
+      if(as.character(terms[terms$source == transl & terms$term_id == id & terms$term != "", "term"]) %in% as.character(terms[terms$source == so & terms$term_id == id & terms$term != "", "term"])){
+        sourc[so] <- sourc[so] + 1;
+      }
+    }
+  }
+  return(sourc);
+}
+#length(which(final3[final3$source == "reference","term"] %in% final3[final3$source == "junqueira","term"])) # same as fromSource
 findInText <- function(text, terms, sources, langs){
   find <- as.character(terms[terms$lang %in% langs & terms$source %in% sources, "term"]);
   nwo <- list();
@@ -1734,6 +1813,9 @@ findInText <- function(text, terms, sources, langs){
 #finalWords3 <- appenddf(df=data.frame(V1 = LaRoRelAutoOk[, "matchWords"]) , finalWords2, "ro", "autoOk", as.character(LaRoRelAutoOk[, "term_id"]));
 #final3 <- woToTermsBase(LaRoRelAutoOk, final2, "la", "ro", "autoOk", "matchWords");
 #final3 <- autoReduce(final3, "autoOk", "autoRed", "ro");
+#autoRed <- sourceWordsList2(final3, "ro", "autoRed");
+#autoRed <- autoRed[which(autoRed != "")];
+#finalWords3 <- listtodf(finalWords3, autoRed, "ro", sourc = "autoRed");
 #text <- "O celulă are multe organite și este de mai multe feluri. Avem o celulă scuamoasă cu margine striată și platou microvilos cu microvil și stereocil. Epiteliu pseudostratificat există."
 #text <- findInText(text,final3, c("autoRed"), "ro");
 #txt <- readLines("../Test Files/textGT.txt");
@@ -1741,31 +1823,46 @@ findInText <- function(text, terms, sources, langs){
 #writeLines(txt2, "../Test Files/textGT2.txt")
 #system.time( replicate(10000, myfunction(with,arguments) ) )
 
-#compareRatioWT2(finalLaEn2, final, finalWords, c("la","en"), "ro", c("reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"), c("reference", "reference", "gtLaRoWords", "gtEnRoWords", "gtLaRoWords", "gtEnRoWords"));
-#                  T    TQ     W      WQ     W/T
-#la:              566 | 518 | 990  | 582 | 1.749117
-#en:              581 | 535 | 1056 | 556 | 1.817556
-#reference:       500 | 455 | 909  | 537 | 1.818000
-#referenceWordsLa:500 | 455 | 909  | 537 | 1.818000
-#gtLaRoTerms:     566 | 517 | 990  | 539 | 1.749117
-#gtEnRoTerms:     581 | 534 | 1056 | 549 | 1.817556
-#gtLaRoWords:     566 | 517 | 990  | 539 | 1.749117
-#gtEnRoWords:     581 | 534 | 1056 | 549 | 1.817556
+# compareRatioWT2(finalLaEn2, final3, finalWords3, c("la","en"), "ro", c("autoOk", "autoRed", "reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), c("autoOk", "autoRed", "reference", "reference", "gtLaRoWords", "gtEnRoWords", "gtLaRoWords", "gtEnRoWords", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
+#                   noTerms noTermsQ noWords noWordsQ  ratioWT
+# la                   566      518     990      582 1.749117
+# en                   581      535    1056      556 1.817556
+# autoOk               566      513     984      570 1.738516
+# autoRed              500      461     857      521 1.714000
+# reference            500      455     909      537 1.818000
+# referenceWordsLa     500      455     909      537 1.818000
+# gtLaRoTerms          566      518     990      539 1.749117
+# gtEnRoTerms          581      530    1056      549 1.817556
+# gtLaRoWords          566      517     990      539 1.749117
+# gtEnRoWords          581      534    1056      549 1.817556
+# junqueira            583      533    1088      597 1.866209
+# tm2009               547      495    1019      564 1.862888
+# tm2004               230      200     420      255 1.826087
+# buc1987               54       39     123       64 2.277778
+# craiova2006          125      104     293      135 2.344000
 
-#compareSynoT(finalLaEn2, final, c("la","en"), "ro", c("reference", "referenceWordsLa", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006", "autoOk", "autoRed"));
+#df<-compareRatioWT2(finalLaEn2, final3, finalWords3, c("la", "en"), "ro", c("autoOk", "autoRed", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"), c("autoOk", "autoRed", "reference", "reference", "gtLaRoWords", "gtEnRoWords", "gtLaRoWords", "gtEnRoWords"));
+#gRatioT <- compareRatioWTgraph(df[,1:2], "Numărul total de termeni și numărul de termeni unici \ncorespunzătoare surselor folosite", "Numărul de termeni", leg = c("număr total de termeni", "număr de termeni unici"),lim=650, set=c(-0.25, -0.1));
+#gRatioW <- compareRatioWTgraph(df[,3:4], "Numărul total de cuvinte și numărul de cuvinte unice \ncorespunzătoare surselor folosite", "Numărul de cuvinte", leg = c("număr total de cuvinte", "număr de cuvinte unice"),lim=1150, set=c(-0.2, -0.1));
+#gRatioWT <- compareRatioWTgraphS(df[5], "Raportul dintre numărul total de cuvinte și numărul total de termeni, \ncorespunzător surselor folosite", "Valoarea raportului",lim=2);
 
+# compareSynoT(finalLaEn2, final3, c("la","en"), "ro", c("autoOk", "autoRed", "reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
 #                     noConcepts noTerms noConceptsWithSyno RatioSynoT minSynoT maxSynoT
 # la                      500     566                 57   1.132000        1        4
 # en                      500     581                 70   1.162000        1        3
+# autoOk                  500     566                 57   1.132000        1        4
+# autoRed                 500     500                  0   1.000000        1        1
 # reference               500     500                  0   1.000000        1        1
 # referenceWordsLa        500     500                  0   1.000000        1        1
+# gtLaRoTerms             500     566                 57   1.132000        1        4
+# gtEnRoTerms             500     581                 70   1.162000        1        3
+# gtLaRoWords             500     566                 57   1.132000        1        4
+# gtEnRoWords             500     581                 70   1.162000        1        3
 # junqueira               496     583                 69   1.175403        1        4
 # tm2009                  483     547                 55   1.132505        1        4
 # tm2004                  193     230                 32   1.191710        1        3
 # buc1987                  31      54                 12   1.741935        1        5
 # craiova2006              68     125                 35   1.838235        1        5
-# autoOk                  500     566                 57   1.132000        1        4
-# autoRed                 500     500                  0   1.000000        1        1
 
 #la         nexus, macula communicans, synapsis non vesicularis, synapsis electrica ; perikaryon, neurosoma, soma, corpus neuronis
 #en         gap junction, nonvesicular synapse, electrical synapse ; neutrophilic granulocyte, neutrophil, segmented neutrophilic granulocyte ; plasmalemma, cell membrane, plasma membrane ; desmosome, macula adherens, spot desmosome ; secretory vacuole vesicle, secretory granule, secretory ; plasmocyte, plasma cell, plasmacyte ; stratum basale, basal cell layer, stratum germinativum ; microvillous border, brush border, striated border ; perisinusoidal cell, fat storing cell, hepatic stellate cell [hsc] ; portal area, portal canal, portal zone
@@ -1777,13 +1874,34 @@ findInText <- function(text, terms, sources, langs){
 #buc1987    celulă stem, celulă sușă, precursor, progenitor, tulpină a altor tipuri de celule
 #craiova2006 leucocit granulocitar neutrofil, granulocit neutrofil, granulocit neutrofil segmentat, neutrofil, polimorfonuclear neutrofil
 #autoOk     nexus, macula comunicantă, sinapsă  , sinapsă  ; pericarion, neurozom, soma, corp neuronal
+#autoRed    -
+#gtLaRoTerms legătură, partaja un loc, sinapsele nu veziculoase, sinapse electrice ; perikaryon, neurosoma, soma, neuroni corp
+#gtEnRoTerms joncțiune gap, synapse nonvesicular, sinapsă electrică ; granulocite neutrofile, neutrofile, granulocite neutrofile segmentate ; plasmalema, membranei celulare, membranei plasmatice ; desmosome, adherens macula, la fața locului desmosome ; secretorie veziculă vacuole, granule secretorii, secretorie ; plasmocyte, celulelor plasmatice, plasmacyte ; stratul bazal, strat de celule bazale, strat germinativum ; frontieră microvillous, perie de frontieră, frontieră striat ; celulă perisinusoidală, celulă de stocare de grasime, celulelor hepatice stelat [hsc] ; zona de portal, canal portal, zona de portal
+#gtLaRoWords legătură, punct comunicarea, sinapselor nu veziculoase, sinapselor electric ; perikaryon, neurosoma, soma, corp neuron
+#gtEnRoWords plasmalema, celulă membrană, plasma membrană ; microvillous frontieră, perie frontieră, striat frontieră ; desmosome, macula adherens, punct desmosome ; decalaj joncțiune, nonvesicular synapse, electric synapse ; secretorie vacuole veziculă, secretorie granulă, secretorie ; plasmocyte, plasma celulă, plasmacyte ; neutrofilica granulocite, neutrofile, segmentat neutrofilica granulocite ; perisinusoidală celulă, grăsime stocarea celulă, hepatic stelat celulă hsc ; portal domeniu, portal canal, portal zonă ; strat bazal, bazale celulă strat, strat germinativum
+
+#dfSyn <- compareSynoT(finalLaEn2, final3, c("la","en"), "ro", c("autoOk", "autoRed", "reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"));
+#gRatioSynT <- compareRatioWTgraphS(dfSyn[4], "Raportul dintre numărul de sinonime și numărul de termeni, \ncorespunzător surselor folosite", "Valoarea raportului",lim=2);
+#RatioSynC <- compareRatioWTgraphS(dfSyn[3], "Numărul de concepte care prezintă sinonime, \ncorespunzător surselor folosite", "Numărul de concepte",lim=80);
+
+
+#dfCorr <- correctTermsTable(final3, c("autoOk", "autoRed", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"), c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
+#dfCorrW <- correctWordsTable(finalWords3, c("autoOk", "autoRed", "reference", "gtLaRoWords", "gtEnRoWords"), c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
+#gRatioCorrT <- compareRatioWTgraph(dfCorr[,c(3,6)], "Raportul dintre numărul de concepte/termeni corecți \nși numărul total de concepte/termeni", "Valoarea raportului", leg = c("raport concepte corecte/totale", "raport termeni corecți/totali"), lim=1.5,set=c(-0.25, 0));
+#gRatioCorrW <- compareRatioWTgraphS(dfCorrW[3], "Raportul dintre numărul de cuvinte corecte \nși numărul total de cuvinte", "Valoarea raportului", lim=1.5);
+
 
 # syn <- synoW(LaRoRelOk);
+# synA <- synoW(LaRoRelAutoOk); # 580 unique terms
 # length(names(syn));   #530 unique terms with transl != 0 (582 uniq la terms)
 # noUniqueWords<-noElemList(syn, byElem = TRUE);   #vector of frequency
+# noUniqueWordsAuto<-noElemList(synA, byElem = TRUE);
 # max(noUniqueWords)     #20 = cellula
+# max(noUniqueWordsAuto) #20 = cellula
 # syn[which(noUniqueWords >10)]
+# synA[which(noUniqueWordsAuto >10)] # same translation for the words
 # woDif <- synDif(syn)   #40 words with diff synon
+# woDifA <- synDif(synA) #27
 # syn[woDif]            #the diff words
 
 # LaRoRelOk2 <- autoTranslRef(LaRoRelOk2) # sino reduced
@@ -1854,6 +1972,17 @@ findInText <- function(text, terms, sources, langs){
 # [2,] 457.000 801.0000000
 # [3,]   0.914   0.8090909
 
+# ratioOffNewWords(final3, "la","ro","autoOk")
+# [,1] [,2]
+# [1,]  500  566
+# [2,]  500  566
+# [3,]    1    1
+
+# ratioOffNewWords(final3, "la","ro","autoRed")
+# [,1] [,2]
+# [1,]  500  500
+# [2,]  500  500
+# [3,]    1    1
 
 #ratioOffNewWords(final2, "la","ro","reference")
 # [,1]    [,2]
@@ -1890,6 +2019,11 @@ findInText <- function(text, terms, sources, langs){
 # [1,]  500  500
 # [2,]  500  500
 # [3,]    1    1
+
+#dfRatioWords <- ratioOffNewWordsTable(final3, "la", "ro", c("autoOk", "autoRed", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"));
+#gRatioTerms <- compareRatioWTgraph(dfRatioWords[,c(4,5)], "Numărul de termeni \ncu aceeași rație de cuvinte per termen", "Numărul de termeni", leg = c("număr total de termeni", "număr de termeni \ncu aceeași rație \nde cuvinte per termen"), lim=600, set = c(-0.43, -0.1));
+#gRatioRatioWT <- compareRatioWTgraph(dfRatioWords[,c(3,6)], "Raportul dintre numărul de concepte/termeni \ncu aceeași rație de cuvinte per concept/termen", "Valoarea raportului", leg = c("concepte", "termeni"), lim=1, set = c(-0.25, -0.1));
+
 
 # write.csv(finalLaEn2, "../Data/finalLaEn.csv");
 # writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
