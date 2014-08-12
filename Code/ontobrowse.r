@@ -1,6 +1,9 @@
 #install.packages("RCurl");
-library(RCurl);
-
+#library(RCurl);
+#install.packages("ggplot2");
+#library("ggplot2");
+#install.packages("microbenchmark");
+#library(microbenchmark);
 #install.packages("translate");
 #library(translate);
 #set.key("AIzaSyC5nT8bwUjdNXJxRbiloQhy6qhybDsdPNo")
@@ -1714,9 +1717,105 @@ findInText <- function(text, terms, sources, langs){
   }
   return(text);
 }
+findInText2 <- function(text, terms, sources, langs){
+  if(length(sources) == 1){ find <- as.character(terms[terms$lang %in% langs & terms$source %in% sources, "term"]); }
+  else { find <- unique(as.character(terms[terms$lang %in% langs & terms$source %in% sources, "term"])); }
+  nwo <- list();
+  ind <- list();
+  ind["ind"] <- c();
+  ind["len"] <- c();
+  for(term in find){
+    nwords <- length(unlist(strsplit(term, " ")));
+    if(as.character(nwords) %in% names(nwo)){
+      nwo[[as.character(nwords)]] <- c(nwo[[as.character(nwords)]], term);
+    }
+    else{ nwo[[as.character(nwords)]] <- c(); nwo[[as.character(nwords)]] <- c(nwo[[as.character(nwords)]], term);}
+  }
+  ord <- as.integer(names(nwo));
+  ord <- sort.int(ord, decreasing = TRUE);
+  for(or in ord){
+    for(term in nwo[[as.character(or)]]) {
+      interm <- gregexpr(paste("\\b", term, "\\b", sep = "", collapse = ""), text, TRUE);
+      if(interm[[1]][1] != -1){
+        for(i in 1: length(interm[[1]])){
+          if(interm[[1]][i] %in% ind[["ind"]] == FALSE){
+            ind[["ind"]] <- c(ind[["ind"]], interm[[1]][i]);
+            ind[["len"]] <- c(ind[["len"]], attr(interm[[1]],"match.length")[i]);
+          }
+        }
+      }
+    }
+  }
+  if(length(ind[["ind"]]) != 0){
+    txt <- c();
+    tm <- c();
+    df <- data.frame(ind[["ind"]], ind[["len"]]);
+    df <- df[order(df[,1]),];
+    ini <- 1;
+    for(i in row.names(df)){
+      txt <- c(txt, substr(text, ini, df[i,1]-1));
+      tm <- c(tm, substr(text, df[i,1], df[i,1]+df[i,2]-1));
+      ini <- df[i,1]+df[i,2];
+    }
+    text2 <- c();
+    for(i in 1: length(txt)){
+      text2 <- c(text2, txt[i], c("<"), tm[i], c(">"));
+    }
+    if(df[length(row.names(df)),1] < nchar(text)){ text2 <- c(text2, substr(text, df[length(row.names(df)),1]+ df[length(row.names(df)),2], nchar(text))); }
+    text2 <- paste(text2, sep = "", collapse = "");
+    return(text2);
+  } else { return(text); }
+}
+createText <- function(terms, sources=c(), langs=c(), noChar=c(), noTerms){
+  text <- c();
+  ind <- list();
+  matches <- list();
+  for(no in 1:length(noChar)){
+    ind[[no]] <- which(nchar(as.character(terms[terms$source %in% sources & terms$lang %in% langs, "term"])) == noChar[no]);
+    matches[[no]] <- unique(terms[row.names(terms[terms$source %in% sources & terms$lang %in% langs, ])[ind[[no]]], "term"]);
+    if(length(matches[[no]]) < noTerms) {cat("Found only ", length(matches), " terms."); return();}
+    else{
+      txt <- paste(matches[[no]][1:noTerms], sep = " lorem ipsum ");
+      text <- paste(text, txt , sep = " lorem ipsum "); 
+    }
+  }
+  return(paste(text, collapse = " "));
+}
+time <- function(text, terms, sources, langs, repeats, loops){
+  values <- c();
+  for(i in 1:loops){
+    val <- system.time( replicate(repeats, findInText2(text, terms, sources, langs)));
+    values <- c(values, val[[3]]);
+  }
+  return(values);
+}
+compareTime <- function(terms, sources = list(), langs = list(), noChar = c(), noTerms, repeats, loops){
+  times <- list();
+  for(so in 1:length(sources)){
+    times[[so]] <- c();
+  }
+  for(so in 1:length(sources)){
+    text <- createText(terms, sources[[so]], langs[[so]], noChar, noTerms);
+    times[[so]] <- time(text, terms, sources[[so]], langs[[so]], repeats, loops);
+  }
+  df <- data.frame(times);
+  return(df);
+}
+plotdf <- function(df, rep){
+  val <- c();
+  sources <- c();
+  noRep <- c();
+  for(col in names(df)){
+    val <- c(val, df[,col]);
+    sources <- c(sources, rep(col, length(row.names(df))));
+    noRep <- c(noRep, rep(rep, length(row.names(df))));
+  }
+  df2 <- data.frame(elapsed = val, sources = sources, noRepet = noRep);
+  return(df2);
+}
 #global data frames: terms and relations
 #cat("Connecting to database ...");
-
+#compareT <- compareTime(txt)
 # x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
 # allTerms <- read.csv(text = x);
 # y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
@@ -1816,12 +1915,6 @@ findInText <- function(text, terms, sources, langs){
 #autoRed <- sourceWordsList2(final3, "ro", "autoRed");
 #autoRed <- autoRed[which(autoRed != "")];
 #finalWords3 <- listtodf(finalWords3, autoRed, "ro", sourc = "autoRed");
-#text <- "O celulă are multe organite și este de mai multe feluri. Avem o celulă scuamoasă cu margine striată și platou microvilos cu microvil și stereocil. Epiteliu pseudostratificat există."
-#text <- findInText(text,final3, c("autoRed"), "ro");
-#txt <- readLines("../Test Files/textGT.txt");
-#txt2 <- findInText(txt, final3, c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
-#writeLines(txt2, "../Test Files/textGT2.txt")
-#system.time( replicate(10000, myfunction(with,arguments) ) )
 
 # compareRatioWT2(finalLaEn2, final3, finalWords3, c("la","en"), "ro", c("autoOk", "autoRed", "reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), c("autoOk", "autoRed", "reference", "reference", "gtLaRoWords", "gtEnRoWords", "gtLaRoWords", "gtEnRoWords", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
 #                   noTerms noTermsQ noWords noWordsQ  ratioWT
@@ -2024,6 +2117,46 @@ findInText <- function(text, terms, sources, langs){
 #gRatioTerms <- compareRatioWTgraph(dfRatioWords[,c(4,5)], "Numărul de termeni \ncu aceeași rație de cuvinte per termen", "Numărul de termeni", leg = c("număr total de termeni", "număr de termeni \ncu aceeași rație \nde cuvinte per termen"), lim=600, set = c(-0.43, -0.1));
 #gRatioRatioWT <- compareRatioWTgraph(dfRatioWords[,c(3,6)], "Raportul dintre numărul de concepte/termeni \ncu aceeași rație de cuvinte per concept/termen", "Valoarea raportului", leg = c("concepte", "termeni"), lim=1, set = c(-0.25, -0.1));
 
+#sources <- list(c("fipat"), c("fipat"), c("autoRed"), c("autoOk"),c("reference"), c("referenceWordsLa"), c("gtLaRoTerms"), c("gtEnRoTerms"), c("gtLaRoWords"), c("gtEnRoWords"), c("junqueira","tm2009", "tm2004", "buc1987", "craiova2006"));
+#langs <- list(c("la"), c("en"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro","ro","ro","ro","ro"))
+
+#compareAll<-compareTime(final3, sources, langs, c(6,15,20), 5, 10, 10);
+#names(compareAll) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
+
+#compareAll100R<-compareTime(final3, sources, langs, c(6,15,20), 5, 100, 10);
+#names(compareAll100R) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
+
+#compareAll10R100L<-compareTime(final3, sources, langs, c(6,15,20), 5, 10, 100);
+#names(compareAll10R100L) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
+
+#compare100<-plotdf(compareAll10R100L, 10);
+#plot(compare100$elapsed, compare100$noRepet, pch=5, col= compare100$sources);
+#legend('topright',levels(factor(compare100$sources)),col=seq_along(levels(factor(compare100$sources))),pch=10);
+#plot(compare100[compare100$sources != "allSources", "elapsed"], compare100[compare100$sources != "allSources", "noRepet"], pch=5, col= compare100$sources)
+#legend('topright',compare100$sources,col=compare100$sources,pch=10);
+#qplot(elapsed, noRepet, data = compare100[compare100$sources != "allSources",], color = sources, size = I(6));
+
+# compareAll10<-compareTime(final3, sources, langs, c(6,15,20), 5, 10, 10);
+# compareAll20<-compareTime(final3, sources, langs, c(6,15,20), 5, 20, 10);
+# compareAll30<-compareTime(final3, sources, langs, c(6,15,20), 5, 30, 10);
+# compareAll40<-compareTime(final3, sources, langs, c(6,15,20), 5, 40, 10);
+# compareAll50<-compareTime(final3, sources, langs, c(6,15,20), 5, 50, 10);
+# names(compareAll10) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
+# names(compareAll20) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
+# names(compareAll30) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
+# names(compareAll40) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
+# compare10 <- plotdf(compareAll10, 10);
+# compare20 <- plotdf(compareAll10, 20);
+# compare30 <- plotdf(compareAll10, 30);
+# compare40 <- plotdf(compareAll10, 40);
+# compareFR <- rbind(compare10, compare20, compare30, compare40);
+# 
+# g <- qplot(noRepet, elapsed, data = compareFR[compareFR$sources != "allSources",], color = sources, size = I(6), main = "Variația duratei de execuție a unei căutări de termeni \nîntr-un text, corespunzător surselor", xlab = "Numărul de repetiții al execuției funcției de căutare", ylab = "Durata de execuție", margins = TRUE);
+# g+theme(axis.text=element_text(size=14), axis.title=element_text(size=14,face="bold"));
+# gAll <- qplot(noRepet, elapsed, data = compareFR, color = sources, size = I(6), main = "Variația duratei de execuție a unei căutări de termeni \nîntr-un text, corespunzător surselor", xlab = "Numărul de repetiții al execuției funcției de căutare", ylab = "Durata de execuție", margins = TRUE);
+# gAll+theme(axis.text=element_text(size=14), axis.title=element_text(size=14,face="bold"));
+
+
 
 # write.csv(finalLaEn2, "../Data/finalLaEn.csv");
 # writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
@@ -2038,17 +2171,112 @@ findInText <- function(text, terms, sources, langs){
 #write.csv(finalWords, "../Data/finalWords.csv");
 #write.csv(final, "../Data/final.csv");
 
+
+#final3[row.names(final3[final3$source == "autoOk", ])[which(nchar(as.character(final3[final3$source == "autoOk", "term"])) == 6)], "term"];
+#"celulă" "nucleu" "flagel" "mitoză" "papilă"
+#final3[row.names(final3[final3$source == "autoOk", ])[which(nchar(as.character(final3[final3$source == "autoOk", "term"])) == 15)], "term"];
+#"glande salivare" "glandă parotidă" "coroană dentară" "alveolă dentară" "folicul limfoid"
+#final3[row.names(final3[final3$source == "autoOk", ])[which(nchar(as.character(final3[final3$source == "autoOk", "term"])) == 20)], "term"];
+#"celulă multinucleată" "țesut conjunctiv lax" "granulocit neutrofil" "neurofibră senzitivă" "proces odontoblastic"
+
+#final3[row.names(final3[final3$source == "autoRed", ])[which(nchar(as.character(final3[final3$source == "autoRed", "term"])) == 6)], "term"];
+#"celulă" "esofag" "neuron" "nucleu" "plasmă"
+#final3[row.names(final3[final3$source == "autoRed", ])[which(nchar(as.character(final3[final3$source == "autoRed", "term"])) == 15)], "term"];
+#"arahnoidă mater" "astrocit fibros" "neuron purkinje" "cortex cerebral" "zonula ocludens"
+#final3[row.names(final3[final3$source == "autoRed", ])[which(nchar(as.character(final3[final3$source == "autoRed", "term"])) == 20)], "term"];
+#"țesut conjunctiv lax" "țesut muscular neted" "ligament periodontal" "neurofibră senzitivă" "celulă multinucleată"
+
+#final3[row.names(final3[final3$source == "reference", ])[which(nchar(as.character(final3[final3$source == "reference", "term"])) == 6)], "term"];
+#"celulă" "esofag" "neuron" "nucleu" "plasmă"
+#final3[row.names(final3[final3$source == "reference", ])[which(nchar(as.character(final3[final3$source == "reference", "term"])) == 15)], "term"];
+#"astrocit fibros" "cavitate bucală" "celulă satelită"  "cortex cerebral" "măduva spinării"
+#final3[row.names(final3[final3$source == "reference", ])[which(nchar(as.character(final3[final3$source == "reference", "term"])) == 20)], "term"];
+#"țesut conjunctiv lax" "țesut muscular neted" "ligament periodontal" "celulă mioepitelială" "celulă centroacinară"
+
+#final3[row.names(final3[final3$source == "referenceWordsLa", ])[which(nchar(as.character(final3[final3$source == "referenceWordsLa", "term"])) == 6)], "term"];
+#"celulă" "nucleu" "flagel" "mitoză" "stromă"
+#final3[row.names(final3[final3$source == "referenceWordsLa", ])[which(nchar(as.character(final3[final3$source == "referenceWordsLa", "term"])) == 15)], "term"];
+#"margine striată" "nucleu picnotic" "heterocromatină" "membrană bazală" "țesut epitelial"
+#final3[row.names(final3[final3$source == "referenceWordsLa", ])[which(nchar(as.character(final3[final3$source == "referenceWordsLa", "term"])) == 20)], "term"];
+#"celulă multinucleată" "celulă mioepitelială" "proces odontoblastic" "ligament periodontal" "celulă centroacinară"
+
+#final3[row.names(final3[final3$source == "gtLaRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtLaRoTerms", "term"])) == 6)], "term"];
+#"celulă" "creier" "esofag" "neuron" "nucleu"
+#final3[row.names(final3[final3$source == "gtLaRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtLaRoTerms", "term"])) == 15)], "term"];
+#"canal alimentar" "țesut epitelial" "glanda exocrina" "tropocollagenum" "myofibroblastus"
+#final3[row.names(final3[final3$source == "gtLaRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtLaRoTerms", "term"])) == 20)], "term"];
+#"precursori de celule" "epiteliul respirator" "strat de accidentale" "cavitatea unui dinte" "capsule transparente"
+
+#final3[row.names(final3[final3$source == "gtEnRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtEnRoTerms", "term"])) == 6)], "term"];
+#"celulă" "esofag" "neuron" "nucleu" "plasma"
+#final3[row.names(final3[final3$source == "gtEnRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtEnRoTerms", "term"])) == 15)], "term"];
+#"mater arahnoida" "cavitatea orală" "celule purkinje" "citoscheletului" "adherens macula"
+#final3[row.names(final3[final3$source == "gtEnRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtEnRoTerms", "term"])) == 20)], "term"];
+#"cortexul cerebeloasa" "synapse axodendritic" "țesut muscular neted" "veziculă pinocytotic" "microbutule centrală"
+
+#final3[row.names(final3[final3$source == "gtLaRoWords", ])[which(nchar(as.character(final3[final3$source == "gtLaRoWords", "term"])) == 6)], "term"];
+#"celulă" "nucleu" "organe" "flagel" "nucleu"
+#final3[row.names(final3[final3$source == "gtLaRoWords", ])[which(nchar(as.character(final3[final3$source == "gtLaRoWords", "term"])) == 15)], "term"];
+#"celulă gigantic" "filament actina" "neurofilamentum" "citoscheletului" "microfilamentum"
+#final3[row.names(final3[final3$source == "gtLaRoWords", ])[which(nchar(as.character(final3[final3$source == "gtLaRoWords", "term"])) == 20)], "term"];
+#"matrice cytoplasmica" "celulă multinucleata" "microtubulus central" "matrice extracelular" "neurofibra senzorial"
+
+#final3[row.names(final3[final3$source == "gtEnRoWords", ])[which(nchar(as.character(final3[final3$source == "gtEnRoWords", "term"])) == 6)], "term"];
+#"celulă" "nucleu" "cilium" "dynein" "flagel"
+#final3[row.names(final3[final3$source == "gtEnRoWords", ])[which(nchar(as.character(final3[final3$source == "gtEnRoWords", "term"])) == 15)], "term"];
+#"celulă membrană" "plasma membrană" "perie frontieră" "macula adherens" "punct desmosome"
+#final3[row.names(final3[final3$source == "gtEnRoWords", ])[which(nchar(as.character(final3[final3$source == "gtEnRoWords", "term"])) == 20)], "term"];
+#"multinucleate celulă" "nonvesicular synapse" "endoplasmatic stomac" "pinocytotic veziculă" "nonvesicular synapse"
+
+#file <- "../Test Files/txt.txt";
+#txt <- readChar(file, file.info(file)$size);
+#txt2 <- findInText2(txt, final3, "autoRed", "ro");
+
+#system.time( replicate(100, findInText2(txt, final3, "autoRed", "ro") ) )
+# user  system elapsed 
+# 9.126   0.290   9.461 
+
+#system.time( replicate(100, findInText2(txt, final3, "autoOk", "ro") ) )
+# user  system elapsed 
+# 10.248   0.314  10.835 
+
+#system.time( replicate(100, findInText2(txt, final3, "reference", "ro") ) )
+# user  system elapsed 
+# 9.351   0.281   9.959 
+
+#system.time( replicate(100, findInText2(txt, final3, "referenceWordsLa", "ro") ) )
+# user  system elapsed 
+# 9.184   0.263   9.677
+
+#system.time( replicate(100, findInText2(txt, final3, "gtLaRoTerms", "ro") ) )
+# user  system elapsed 
+# 10.062   0.304  10.521 
+
+#system.time( replicate(100, findInText2(txt, final3, "gtEnRoTerms", "ro") ) )
+# user  system elapsed 
+# 10.374   0.294  11.164 
+
+#system.time( replicate(100, findInText2(txt, final3, "gtLaRoWords", "ro") ) )
+# user  system elapsed 
+# 10.148   0.260  10.611 
+
+#system.time( replicate(100, findInText2(txt, final3, "gtEnRoWords", "ro") ) )
+# user  system elapsed 
+# 10.331   0.308  10.844 
+
+
+#txt2 <- findInText(txt, final3, c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
+#system.time( replicate(10, myfunction(with,arguments) ) )
+# user  system elapsed 
+# 30.676   0.374  31.160 
+
+
 #length(LaRoRel[LaRoRel$matchWords != "", "matchWords"]) #722 from 990
 #length(EnRoRel[EnRoRel$matchWords != "", "matchWords"]) #895 from 1056
 #length(LaRoRelOk[LaRoRelOk$matchWords != "", "matchWords"]) #856 from 990
 #length(which(LaRoRel[, "matchWords"] == LaRoRelOk[, "matchWords"])); #654
 #length(which(LaRoRel[, "matchWords"] == "" & LaRoRelOk[, "matchWords"] == "")); #87 - "" -> 567 usable from 856
 #length(as.character(finalWords[finalWords$source=="junqueira" & finalWords$lang == "ro","term"])); #1088
-
-
-
-
-
 
 # unused
 # termidsjunqueiraW <- rep(names(wordsjunqueira), noElemList(wordsjunqueira, byElem = TRUE)); # 1088 words - unused
@@ -2063,6 +2291,13 @@ findInText <- function(text, terms, sources, langs){
 #finalWords2 <- appenddf(df=data.frame(V1 = LaRoRelOk[, "matchWords"]) , finalWords2, "ro", "referenceOk", as.character(LaRoRelOk[, "term_id"]));
 #LaRoRelJ <- wordMatchCsv2(finalLaEn2, final, finalWords2, "la", "ro", "junqueira", c("gtLaRoWords", "referenceOk"));
 # write.csv(LaRoRelJ, "../Data/LaRoRelJ.csv", row.names = TRUE);
+
+#text <- "O celulă are multe organite și este de mai multe feluri. Avem o celulă scuamoasă cu margine striată și platou microvilos cu microvil și stereocil. Epiteliu pseudostratificat există."
+#text <- findInText(text,final3, c("autoRed"), "ro");
+#txt <- readLines("../Test Files/textGT.txt");
+#txt2 <- findInText(txt, final3, c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
+#writeLines(txt2, "../Test Files/textGT2.txt")
+#system.time( replicate(10000, myfunction(with,arguments) ) )
 
 #uniqueWo <- makeUniqueWords(final,"ro");
 #g <- horizNoTerms(final);
