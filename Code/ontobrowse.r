@@ -1,12 +1,7 @@
 #install.packages("RCurl");
-#library(RCurl);
+library(RCurl);
 #install.packages("ggplot2");
-#library("ggplot2");
-#install.packages("microbenchmark");
-#library(microbenchmark);
-#install.packages("translate");
-#library(translate);
-#set.key("AIzaSyC5nT8bwUjdNXJxRbiloQhy6qhybDsdPNo")
+library("ggplot2");
 
 #translation function - example: translate("term", "ro") (! attention term with language!! different terminologies gives only the first)
 translateT <- function(term, lang) {
@@ -69,34 +64,6 @@ uniqueWordsVector <- function(terms = tm,lang) {
   return(words);
 }
 sourceWordsList <- function(terms = tm,lang, sourc = 0) {
-  allTerms = c();
-  termids <- unique(as.character(terms[,"term_id"]));
-  #termids <- as.character(terms[,"term_id"]);
-  if(sourc != 0) {
-    for(termid in termids) {
-      allTerms[termid] <- as.character(terms[terms$lang == lang & terms$term_id == termid & terms$source == sourc, "term"]);
-    }
-  }
-  else {
-    for(termid in termids) {
-      allTerms[termid] <- as.character(terms[terms$lang == lang & terms$term_id == termid, "term"]);
-    }
-  }
-  #allTerms <- allTerms[!is.na(allTerms)];
-  allTerms[termids[1]] <- strsplit(allTerms[1], " ");
-  for(termid in termids) {
-    if(allTerms[[termid]] != ""){
-      if(termid != termids[1]) { allTerms[[termid]] <- strsplit(allTerms[[termid]], " "); }
-      allTerms[[termid]] <- unlist(allTerms[[termid]]);
-      for(char in c(",", "(", ")", ";", "[", "]", "{", "}", "/")) {
-        allTerms[[termid]] <- unlist(strsplit(allTerms[[termid]], char, fixed = TRUE));
-      }
-      allTerms[[termid]] <- unlist(strsplit(allTerms[[termid]], "[0123456789]"));
-    }
-  }
-  return(allTerms);
-}
-sourceWordsList2 <- function(terms = tm,lang, sourc = 0) {
   allTerms = list();
   if(sourc == 0) {
     termsV <- as.character(terms[terms$lang == lang,"term"]);
@@ -188,10 +155,6 @@ sourceWordFrame<- function(terms = tm, langs, sources = 0) {
   wo[,"id"] <- ids;
   return(wo);
 }
-#update data frame with same structure as the terminologies
-#updates existing row or inserts a new one (new = TRUE)
-#maybe add the findTerm function?
-#update words also
 updateFrame <- function(dataF, term, lang, termId = NA, new = FALSE, partSpeech = NA, gender = NA, descript = NA, wiki = NA) {
   if(new == FALSE) {
     dataF[dataF$term_id == termId & dataF$lang == lang, "term"] <- term;
@@ -240,53 +203,6 @@ transWords <- function(words,langs, newLang, new = FALSE) {
     words <- rbind(words, wot);        
   }
   return(words);
-}
-#pt browse: cat("What's your name? ") x <- readLines(file("stdin"),1) print(x) pui asa ceva in a while loop ! origin ! same term in diff languages
-#browse() - root-ul in en + info
-#browse("term") - multipl term+lang
-#browse(id)
-oldbrowse<-function(){ 
-  kk<-0;
-  if(kk == 1){
-    cat("Write the digit/number of the chosen term:");
-    opt <- readLines(n=1);
-    termId <- termId[as.numeric(opt)];
-    cat("Ancestry:","\n");
-    parents <- ancestry(termId, lang);
-    no <- 1;
-    pPares <- list()
-    for(i in length(parents):2) {
-      cat(paste(letters[no], parents[i]), "\n");
-      pPares[letters[no]] = parents[i];
-      no <- no+1;
-    }
-    equiv <- langTerms(parents[1]); 
-    cat("Term:", "\n");
-    cat("Term id: ", termId, "\n"); 
-    for(i in 1:nrow(equiv)) {
-      cat(paste(equiv[i, "lang"], ": ", equiv[i, "term"], sep = ""), "\n");
-    }
-    cat("Children:", "\n");
-    kids <- children(termId, lang);
-    if(length(kids) == 0) {
-      cat("No children.", "\n");
-    }
-    no <- 1;
-    kPares <- list()
-    for(kid in kids) {
-      cat(paste(no, kid), "\n");
-      kPares[as.character(no)] = kid;
-      no <- no+1;
-    }
-    cat("Write the number or letter of the chosen term (or \".\" for closing browse) and press Enter:");
-    input <- readLines(n=1);
-    if(input %in% names(pPares)) {
-      term <- pPares[input][[1]];
-    }
-    else if(input %in% names(kPares)) {
-      term <- kPares[input][[1]];
-    }
-  }
 }
 
 tree <- function(allTerms = tm, allRel = rel, origin = orig, path = c()) {
@@ -718,78 +634,6 @@ ontobrowse <- function() {
   }  
   
 }
-graphdemo <- function(){
-  samplet <- data.frame(t(rep(NA,length(names(tm)))));
-  names(samplet)<-names(tm);
-  samplet<-samplet[-1,];
-  term_id <- c(13459, 13459, 13459, 13602, 13602, 13602, 10738, 10738, 10738);
-  lang <- c("ro", "ro", "ro", "ro", "ro", "ro", "ro", "ro", "ro");
-  term <- c("celulă în coșuleț", "celulă cu coșuleț", "neuron în coșuleț", "sistem nervos periferic", "sistem nervos periferic", "sistem nervos periferic", "adipocit", "celulă adipoasă", "adipocit");
-  sources <- c(1, 2, 3, 1, 2, 3, 1, 2, 3);
-  samplet <- data.frame(term_id, lang, term, sources);
-  add <- c();
-  for(so in sources) { add[so] <- 0;}
-  for(row in row.names(samplet)) {
-    if(as.character(samplet[row, "term"]) == as.character(samplet[samplet$term_id == samplet[row, "term_id"] & samplet$sources == 1, "term"])) {
-      add[samplet[row,"sources"]] <- add[samplet[row,"sources"]] +1;
-    }
-  }
-  ref <- add[1];
-  for(elem in 1:length(add)){ add[elem] <- add[elem]*100/ref; }
-  #prop = prop.table(add, margin = 2);
-  g <- barplot(add, main = "Procentul de suprapunere a variantelor de traducere peste referință", 
-               xlab = "Variantele de traducere", ylab = "Procent de suprapunere %", ylim = c(0, 100),
-               names.arg = unique(sources), col = c("lightblue", "mistyrose", "lavender"),);
-  text(g, 0, round(add, 2), cex=1, pos=3);
-  return(g);
-  
-}
-horizNoTerms <- function(df){
-  add <- c();
-  noconcepts <- c();
-  #bysource <- c();
-  sources <- factor(df[, "source"]);
-  for(so in levels(sources)) {
-    add[so] <- 0;
-    noconcepts[so] <- length(unique(final[final$source == so & as.character(final$term) != "", "term_id"]));
-    #bysource[so] <- character(0);
-  }
-  noconcepts <- sort(noconcepts, decreasing = TRUE);
-  for(row in row.names(df)) {
-    if(as.character(df[row, "term"]) != "" | length(as.character(df[row, "term"]) != 0)) {
-      if(as.character(df[row, "term"]) == as.character(df[df$term_id == df[row, "term_id"] & df$source == "reference", "term"])) {
-        add[df[row,"source"]] <- add[df[row,"source"]] +1;
-        #bysource[df[row,"source"]] <- c(bysource[df[row,"source"]], as.character(df[row, "term"]));
-      }
-    }
-  }
-  correct <- c();
-  for(so in names(noconcepts)) {
-    correct[so] <- add[so];
-  }
-  data <- matrix(c(noconcepts, correct), nrow = 2, ncol = 6, byrow = TRUE,
-                 dimnames = list(c("concepte găsite", "termeni referință incluși \nîn conceptele găsite"),
-                                 as.character(names(noconcepts))));
-  ycoord <- c();
-  for(i in 1:6) { ycoord <- c(ycoord, data[1,i], data[2,i]); }
-  #for(elem in 1:length(add)){ add[elem] <- add[elem]*100/ref; }
-  #prop = prop.table(add, margin = 2);
-  #  g <- barplot(noconcepts, main = "Procentul de suprapunere a variantelor de traducere peste referință", 
-  #                xlab = "Variantele de traducere", ylab = "Procent de suprapunere %", ylim = c(0, 500),
-  #                names.arg = names(noconcepts), col = c("lightblue", "mistyrose", "lavender"),);
-  title <- "Valori comparate ale conceptelor găsite și ale \ntermenilor referință incluși în acestea \npentru fiecare sursă";
-  par(mar = c(5.1, 7.1, 5.1, 7.1), xpd = TRUE, las = 1);
-  g <- barplot(data, main = title,
-               xlab = "Numărul de concepte/termeni",
-               ylab = "Sursele folosite pentru traducerea termenilor",
-               col = c("lightblue", "mistyrose"), beside = TRUE, 
-               horiz = TRUE, width = 2, ann = FALSE);
-  legend("topright", inset = c(0, 0), fill = c("lightblue", "mistyrose"), 
-         legend = rownames(data), xjust=1, yjust=1, cex = 0.9, pt.cex = 1);
-  text(ycoord , g, round(ycoord, 2), cex=1, pos=4);
-  #heat.colors(length(rownames(data)))
-  return(g);
-}
 comp <- function(df1,df2){
   for(row in length(row.names(df1))) {
     if(df1[row,] != df2[row,]) {
@@ -896,6 +740,7 @@ wordMatchCsv <- function(offTerms, newTerms, words, offLang = "la", newLang = "r
   termids <- as.integer(levels(offTerms[offTerms$lang == offLang, "term_id"]));
   term_id <- c();
   oTerms <- c();
+  nTerms <- c();
   owo <- words[words$lang == offLang,];
   oWords <- as.character(words[order(owo[,"term_id"]),"term"]);
   basedf <- words[words$lang == newLang & words$source == baseTransl,];
@@ -1727,7 +1572,6 @@ fromSourceTable <- function(terms, transl = "reference", sources = c("junqueira"
   }
   return(sourc);
 }
-#length(which(final3[final3$source == "reference","term"] %in% final3[final3$source == "junqueira","term"])) # same as fromSource
 findInText <- function(text, terms, sources, langs){
   find <- as.character(terms[terms$lang %in% langs & terms$source %in% sources, "term"]);
   nwo <- list();
@@ -1866,164 +1710,121 @@ translateText <- function(text, terms, sources, langs){
 }
 #global data frames: terms and relations
 #cat("Connecting to database ...");
-#compareT <- compareTime(txt)
-# x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
-# allTerms <- read.csv(text = x);
-# y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
-# allRel <- read.csv(text = y);
-# z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
-# sample500 <- read.csv(text = z);
-# tm <- allTerms;
-# rel <- allRel;
-# orig <- 10001;
-# displayLg <-"la";
-# finalLa <- cleardf(csvtodf(sample500[,2:15], "ro", 3));
-# final <- referenceTrans(finalLa);
-# finalLaEn <- csvtodf(sample500, off = TRUE);
-# finalLaEn[,"term"] <- tolower(finalLaEn[,"term"]);
-# finalLaEn[,"term"] <- sub("(", "", finalLaEn[,"term"], fixed=TRUE);
-# finalLaEn[,"term"] <- sub(")", "", finalLaEn[,"term"], fixed=TRUE);
-# finalLaEn[,"term"] <- sub("{ see page 73}", "", finalLaEn[,"term"], fixed=TRUE);
-# finalLaEn[,"term"] <- sub("{see page 3}", "", finalLaEn[,"term"], fixed=TRUE);
-# finalLaEn[,"term"] <- sub("{see also epidermis page 119}", "", finalLaEn[,"term"], fixed=TRUE);
-# finalLaEn[,"term"] <- sub("41", "", finalLaEn[,"term"], fixed=TRUE);
-# finalLaEn[,"term"] <- sub("{ vide paginam  }", "", finalLaEn[,"term"], fixed=TRUE);
-# finalLaEn[,"term"] <- sub("{vide paginam }", "", finalLaEn[,"term"], fixed=TRUE);
-# finalLaEn[,"term"] <- sub("{vide etiam epidermis paginam }", "", finalLaEn[,"term"], fixed=TRUE);
-# finalLaEn[finalLaEn$term_id == 12965, "term"] <- "glandula parathyroidea"; #glandula parathyroideaglandula parathyroidea
-# finalLaEn[finalLaEn$term_id == 12965 & finalLaEn$lang == "en", "term"] <- "parathyroid gland";
-# finalLaEn2 <- separateTerms(finalLaEn, sources = FALSE);
-# finalLaEn2 <- cleardf(finalLaEn2);
-# finalLaWords <- sourceWordsList2(finalLaEn2,"la");
-# finalEnWords <- sourceWordsList2(finalLaEn2,"en");
-# wordsReference <- sourceWordsList2(final,"ro","reference");
-# finalWords <- data.frame(t(rep(NA,length(names(final)))));
-# names(finalWords)<-names(final);
-# finalWords<-finalWords[-1,];
-# finalWords <- listtodf(finalWords, finalLaWords, "la", termdf = finalLaEn2);
-# finalWords <- listtodf(finalWords, finalEnWords, "en", termdf = finalLaEn2);
-# finalWords <- listtodf(finalWords, wordsReference, "ro", sourc = "reference", termdf = final);
-# termidsLaT <- as.character(finalLaEn2[finalLaEn2$lang == "la", "term_id"]);
-# termidsEnT <- as.character(finalLaEn2[finalLaEn2$lang == "en", "term_id"]);
-# termidsLaW <- as.character(finalWords[finalWords$lang == "la", "term_id"]);
-# termidsEnW <- as.character(finalWords[finalWords$lang == "en", "term_id"]);
 
-# gtLaRoTerms <- read.csv("../Data/gtLaRoTerms.csv", header = FALSE, sep = "\n");
-# gtEnRoTerms <- read.csv("../Data/gtEnRoTerms.csv", header = FALSE, sep = "\n");
-# gtLaRoWords <- read.csv("../Data/gtLaRoWords.csv", header = FALSE, sep = "\n");
-# gtEnRoWords <- read.csv("../Data/gtEnRoWords.csv", header = FALSE, sep = "\n");
-# gtLaRoTerms[,"V1"] <- sub(",", "", gtLaRoTerms[,"V1"], fixed=TRUE);
-# gtLaRoTerms <- cleardf(gtLaRoTerms);
-# gtLaRoTerms[,"V1"] <- tolower(gtLaRoTerms[,"V1"]);
-# gtLaRoTerms[407,"V1"] <- "m.";
-# gtEnRoTerms[,"V1"] <- sub(",", "", gtEnRoTerms[,"V1"], fixed=TRUE);
-# gtEnRoTerms <- cleardf(gtEnRoTerms);
-# gtEnRoTerms[,"V1"] <- tolower(gtEnRoTerms[,"V1"]);
-# gtLaRoWords[,"V1"] <- sub(",", "", gtLaRoWords[,"V1"], fixed=TRUE);
-# gtLaRoWords <- cleardf(gtLaRoWords);
-# gtLaRoWords[,"V1"] <- tolower(gtLaRoWords[,"V1"]);
-# gtEnRoWords[,"V1"] <- sub(",", "", gtEnRoWords[,"V1"], fixed=TRUE);
-# gtEnRoWords <- cleardf(gtEnRoWords);
-# gtEnRoWords[,"V1"] <- tolower(gtEnRoWords[,"V1"]);
+x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
+allTerms <- read.csv(text = x);
+y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
+allRel <- read.csv(text = y);
+tm <- allTerms;
+rel <- allRel;
+orig <- 10001;
+displayLg <-"la";
 
-# final <- appenddf(gtLaRoTerms, final, "ro", "gtLaRoTerms", termidsLaT); # a iesit in la
-# final <- appenddf(gtEnRoTerms, final, "ro", "gtEnRoTerms", termidsEnT);
-# finalWords <- appenddf(gtLaRoWords, finalWords, "ro", "gtLaRoWords", termidsLaW);
-# finalWords <- appenddf(gtEnRoWords, finalWords, "ro", "gtEnRoWords", termidsEnW);
+z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
+sample500 <- read.csv(text = z);
+final <- cleardf(csvtodf(sample500[,2:15], "ro", 3));
+final <- referenceTrans(final);
+finalLaEn <- csvtodf(sample500, off = TRUE);
+finalLaEn[,"term"] <- tolower(finalLaEn[,"term"]);
+finalLaEn[,"term"] <- sub("(", "", finalLaEn[,"term"], fixed=TRUE);
+finalLaEn[,"term"] <- sub(")", "", finalLaEn[,"term"], fixed=TRUE);
+finalLaEn[,"term"] <- sub("{ see page 73}", "", finalLaEn[,"term"], fixed=TRUE);
+finalLaEn[,"term"] <- sub("{see page 3}", "", finalLaEn[,"term"], fixed=TRUE);
+finalLaEn[,"term"] <- sub("{see also epidermis page 119}", "", finalLaEn[,"term"], fixed=TRUE);
+finalLaEn[,"term"] <- sub("41", "", finalLaEn[,"term"], fixed=TRUE);
+finalLaEn[,"term"] <- sub("{ vide paginam  }", "", finalLaEn[,"term"], fixed=TRUE);
+finalLaEn[,"term"] <- sub("{vide paginam }", "", finalLaEn[,"term"], fixed=TRUE);
+finalLaEn[,"term"] <- sub("{vide etiam epidermis paginam }", "", finalLaEn[,"term"], fixed=TRUE);
+finalLaEn[finalLaEn$term_id == 12965, "term"] <- "glandula parathyroidea"; #glandula parathyroideaglandula parathyroidea
+finalLaEn[finalLaEn$term_id == 12965 & finalLaEn$lang == "en", "term"] <- "parathyroid gland";
+finalLaEn <- separateTerms(finalLaEn, sources = FALSE);
+finalLaEn <- cleardf(finalLaEn);
 
-# LaRoRel <- wordMatchCsv(finalLaEn2, final, finalWords, "la", "ro", "reference", "gtLaRoWords");
-# EnRoRel <- wordMatchCsv(finalLaEn2, final, finalWords, "en", "ro", "reference", "gtEnRoWords");
-# LaRoRelOk <- read.csv("../Data/LaRoRelOk.csv");
-# LaRoRelOk <- LaRoRelOk[,2:length(names(LaRoRelOk))];
-# LaRoRelOk[,"matchWords"] <- tolower(LaRoRelOk[,"matchWords"]);
-#final <- woToTermsBase(LaRoRelOk, final, "la", "ro", "gtLaRoWords");
-#final <- woToTermsBase(EnRoRel, final, "la", "ro", "gtEnRoWords");
-#final <- woToTermsRef(LaRoRelOk, final, "la", "ro", "referenceWordsLa");
+finalLaWords <- sourceWordsList(finalLaEn,"la");
+finalEnWords <- sourceWordsList(finalLaEn,"en");
+wordsReference <- sourceWordsList(final,"ro","reference");
+finalWords <- data.frame(t(rep(NA,length(names(final)))));
+names(finalWords)<-names(final);
+finalWords<-finalWords[-1,];
+finalWords <- listtodf(finalWords, finalLaWords, "la", termdf = finalLaEn);
+finalWords <- listtodf(finalWords, finalEnWords, "en", termdf = finalLaEn);
+finalWords <- listtodf(finalWords, wordsReference, "ro", sourc = "reference", termdf = final);
+termidsLaT <- as.character(finalLaEn[finalLaEn$lang == "la", "term_id"]);
+termidsEnT <- as.character(finalLaEn[finalLaEn$lang == "en", "term_id"]);
+termidsLaW <- as.character(finalWords[finalWords$lang == "la", "term_id"]);
+termidsEnW <- as.character(finalWords[finalWords$lang == "en", "term_id"]);
 
-# wordsjunqueira <- sourceWordsList2(final,"ro","junqueira");
-# wordsjunqueira <- wordsjunqueira[which(wordsjunqueira != "")];
-# wordsbuc1987 <- sourceWordsList2(final,"ro","buc1987");
-# wordsbuc1987 <- wordsbuc1987[which(wordsbuc1987 != "")];
-# wordstm2009 <- sourceWordsList2(final,"ro","tm2009");
-# wordstm2009 <- wordstm2009[which(wordstm2009 != "")];
-# wordstm2004 <- sourceWordsList2(final,"ro","tm2004");
-# wordstm2004 <- wordstm2004[which(wordstm2004 != "")];
-# wordscraiova2006 <- sourceWordsList2(final,"ro","craiova2006");
-# wordscraiova2006 <- wordscraiova2006[which(wordscraiova2006 != "")];
+# writeLines(finalLaEn[finalLaEn$lang == "la", "term"], "../Data/laTerms.csv");
+# writeLines(finalLaEn[finalLaEn$lang == "en", "term"], "../Data/enTerms.csv");
+# writeLines(as.character(finalWords[finalWords$lang == "la", "term"]), "../Data/laWords.csv");
+# writeLines(as.character(finalWords[finalWords$lang == "en", "term"]), "../Data/enWords.csv");
 
-# finalWords <- listtodf(finalWords, wordsjunqueira, "ro", sourc = "junqueira");
-# finalWords <- listtodf(finalWords, wordsbuc1987, "ro", sourc = "buc1987");
-# finalWords <- listtodf(finalWords, wordstm2009, "ro", sourc = "tm2009");
-# finalWords <- listtodf(finalWords, wordstm2004, "ro", sourc = "tm2004");
-# finalWords <- listtodf(finalWords, wordscraiova2006, "ro", sourc = "craiova2006");
+gtLaRoTerms <- read.csv("../Data/gtLaRoTerms.csv", header = FALSE, sep = "\n");
+gtEnRoTerms <- read.csv("../Data/gtEnRoTerms.csv", header = FALSE, sep = "\n");
+gtLaRoWords <- read.csv("../Data/gtLaRoWords.csv", header = FALSE, sep = "\n");
+gtEnRoWords <- read.csv("../Data/gtEnRoWords.csv", header = FALSE, sep = "\n");
+gtLaRoTerms[,"V1"] <- sub(",", "", gtLaRoTerms[,"V1"], fixed=TRUE);
+gtLaRoTerms <- cleardf(gtLaRoTerms);
+gtLaRoTerms[,"V1"] <- tolower(gtLaRoTerms[,"V1"]);
+gtLaRoTerms[407,"V1"] <- "m.";
+gtEnRoTerms[,"V1"] <- sub(",", "", gtEnRoTerms[,"V1"], fixed=TRUE);
+gtEnRoTerms <- cleardf(gtEnRoTerms);
+gtEnRoTerms[,"V1"] <- tolower(gtEnRoTerms[,"V1"]);
+gtLaRoWords[,"V1"] <- sub(",", "", gtLaRoWords[,"V1"], fixed=TRUE);
+gtLaRoWords <- cleardf(gtLaRoWords);
+gtLaRoWords[,"V1"] <- tolower(gtLaRoWords[,"V1"]);
+gtEnRoWords[,"V1"] <- sub(",", "", gtEnRoWords[,"V1"], fixed=TRUE);
+gtEnRoWords <- cleardf(gtEnRoWords);
+gtEnRoWords[,"V1"] <- tolower(gtEnRoWords[,"V1"]);
 
-#auto <- autoTranslWordList(final2, finalWords2, LaRoRelOk, "la", "ro", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
-#LaRoRelAuto <- autoMatch(LaRoRelOk, auto, finalWords2);
-#LaRoRelAutoOk <- read.csv("../Data/LaRoRelAutoOk.csv");
-#finalWords3 <- appenddf(df=data.frame(V1 = LaRoRelAutoOk[, "matchWords"]) , finalWords2, "ro", "autoOk", as.character(LaRoRelAutoOk[, "term_id"]));
-#final3 <- woToTermsBase(LaRoRelAutoOk, final2, "la", "ro", "autoOk", "matchWords");
-#final3 <- autoReduce(final3, "autoOk", "autoRed", "ro");
-#autoRed <- sourceWordsList2(final3, "ro", "autoRed");
-#autoRed <- autoRed[which(autoRed != "")];
-#finalWords3 <- listtodf(finalWords3, autoRed, "ro", sourc = "autoRed");
+final <- appenddf(gtLaRoTerms, final, "ro", "gtLaRoTerms", termidsLaT);
+final <- appenddf(gtEnRoTerms, final, "ro", "gtEnRoTerms", termidsEnT);
+finalWords <- appenddf(gtLaRoWords, finalWords, "ro", "gtLaRoWords", termidsLaW);
+finalWords <- appenddf(gtEnRoWords, finalWords, "ro", "gtEnRoWords", termidsEnW);
+
+LaRoRel <- wordMatchCsv(finalLaEn, final, finalWords, "la", "ro", "reference", "gtLaRoWords");
+EnRoRel <- wordMatchCsv(finalLaEn, final, finalWords, "en", "ro", "reference", "gtEnRoWords");
+LaRoRelOk <- read.csv("../Data/LaRoRelOk.csv");
+LaRoRelOk <- LaRoRelOk[,2:length(names(LaRoRelOk))];
+LaRoRelOk[,"matchWords"] <- tolower(LaRoRelOk[,"matchWords"]);
+final <- woToTermsBase(LaRoRelOk, final, "la", "ro", "gtLaRoWords");
+final <- woToTermsBase(EnRoRel, final, "la", "ro", "gtEnRoWords");
+final <- woToTermsRef(LaRoRelOk, final, "la", "ro", "referenceWordsLa");
+
+wordsjunqueira <- sourceWordsList(final,"ro","junqueira");
+wordsjunqueira <- wordsjunqueira[which(wordsjunqueira != "")];
+wordsbuc1987 <- sourceWordsList(final,"ro","buc1987");
+wordsbuc1987 <- wordsbuc1987[which(wordsbuc1987 != "")];
+wordstm2009 <- sourceWordsList(final,"ro","tm2009");
+wordstm2009 <- wordstm2009[which(wordstm2009 != "")];
+wordstm2004 <- sourceWordsList(final,"ro","tm2004");
+wordstm2004 <- wordstm2004[which(wordstm2004 != "")];
+wordscraiova2006 <- sourceWordsList(final,"ro","craiova2006");
+wordscraiova2006 <- wordscraiova2006[which(wordscraiova2006 != "")];
+
+finalWords <- listtodf(finalWords, wordsjunqueira, "ro", sourc = "junqueira");
+finalWords <- listtodf(finalWords, wordsbuc1987, "ro", sourc = "buc1987");
+finalWords <- listtodf(finalWords, wordstm2009, "ro", sourc = "tm2009");
+finalWords <- listtodf(finalWords, wordstm2004, "ro", sourc = "tm2004");
+finalWords <- listtodf(finalWords, wordscraiova2006, "ro", sourc = "craiova2006");
+
+auto <- autoTranslWordList(final, finalWords, LaRoRelOk, "la", "ro", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
+LaRoRelAuto <- autoMatch(LaRoRelOk, auto, finalWords);
+LaRoRelAutoOk <- read.csv("../Data/LaRoRelAutoOk.csv");
+finalWords <- appenddf(df=data.frame(V1 = LaRoRelAutoOk[, "matchWords"]) , finalWords, "ro", "autoOk", as.character(LaRoRelAutoOk[, "term_id"]));
+final <- woToTermsBase(LaRoRelAutoOk, final, "la", "ro", "autoOk", "matchWords");
+final <- autoReduce(final, "autoOk", "autoRed", "ro");
+autoRed <- sourceWordsList(final, "ro", "autoRed");
+autoRed <- autoRed[which(autoRed != "")];
+finalWords <- listtodf(finalWords, autoRed, "ro", sourc = "autoRed");
 
 # compareRatioWT2(finalLaEn2, final3, finalWords3, c("la","en"), "ro", c("autoOk", "autoRed", "reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), c("autoOk", "autoRed", "reference", "reference", "gtLaRoWords", "gtEnRoWords", "gtLaRoWords", "gtEnRoWords", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
-#                   noTerms noTermsQ noWords noWordsQ  ratioWT
-# la                   566      518     990      582 1.749117
-# en                   581      535    1056      556 1.817556
-# autoOk               566      513     984      570 1.738516
-# autoRed              500      461     857      521 1.714000
-# reference            500      455     909      537 1.818000
-# referenceWordsLa     500      455     909      537 1.818000
-# gtLaRoTerms          566      518     990      539 1.749117
-# gtEnRoTerms          581      530    1056      549 1.817556
-# gtLaRoWords          566      517     990      539 1.749117
-# gtEnRoWords          581      534    1056      549 1.817556
-# junqueira            583      533    1088      597 1.866209
-# tm2009               547      495    1019      564 1.862888
-# tm2004               230      200     420      255 1.826087
-# buc1987               54       39     123       64 2.277778
-# craiova2006          125      104     293      135 2.344000
-
 #df<-compareRatioWT2(finalLaEn2, final3, finalWords3, c("la", "en"), "ro", c("autoOk", "autoRed", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"), c("autoOk", "autoRed", "reference", "reference", "gtLaRoWords", "gtEnRoWords", "gtLaRoWords", "gtEnRoWords"));
 #gRatioT <- compareRatioWTgraph(df[,1:2], "Numărul total de termeni și numărul de termeni unici \ncorespunzătoare surselor folosite", "Numărul de termeni", leg = c("număr total de termeni", "număr de termeni unici"),lim=650, set=c(-0.25, -0.1));
 #gRatioW <- compareRatioWTgraph(df[,3:4], "Numărul total de cuvinte și numărul de cuvinte unice \ncorespunzătoare surselor folosite", "Numărul de cuvinte", leg = c("număr total de cuvinte", "număr de cuvinte unice"),lim=1150, set=c(-0.2, -0.1));
 #gRatioWT <- compareRatioWTgraphS(df[5], "Raportul dintre numărul total de cuvinte și numărul total de termeni, \ncorespunzător surselor folosite", "Valoarea raportului",lim=2);
 
 # compareSynoT(finalLaEn2, final3, c("la","en"), "ro", c("autoOk", "autoRed", "reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"));
-#                     noConcepts noTerms noConceptsWithSyno RatioSynoT minSynoT maxSynoT
-# la                      500     566                 57   1.132000        1        4
-# en                      500     581                 70   1.162000        1        3
-# autoOk                  500     566                 57   1.132000        1        4
-# autoRed                 500     500                  0   1.000000        1        1
-# reference               500     500                  0   1.000000        1        1
-# referenceWordsLa        500     500                  0   1.000000        1        1
-# gtLaRoTerms             500     566                 57   1.132000        1        4
-# gtEnRoTerms             500     581                 70   1.162000        1        3
-# gtLaRoWords             500     566                 57   1.132000        1        4
-# gtEnRoWords             500     581                 70   1.162000        1        3
-# junqueira               496     583                 69   1.175403        1        4
-# tm2009                  483     547                 55   1.132505        1        4
-# tm2004                  193     230                 32   1.191710        1        3
-# buc1987                  31      54                 12   1.741935        1        5
-# craiova2006              68     125                 35   1.838235        1        5
-
-#la         nexus, macula communicans, synapsis non vesicularis, synapsis electrica ; perikaryon, neurosoma, soma, corpus neuronis
-#en         gap junction, nonvesicular synapse, electrical synapse ; neutrophilic granulocyte, neutrophil, segmented neutrophilic granulocyte ; plasmalemma, cell membrane, plasma membrane ; desmosome, macula adherens, spot desmosome ; secretory vacuole vesicle, secretory granule, secretory ; plasmocyte, plasma cell, plasmacyte ; stratum basale, basal cell layer, stratum germinativum ; microvillous border, brush border, striated border ; perisinusoidal cell, fat storing cell, hepatic stellate cell [hsc] ; portal area, portal canal, portal zone
-#reference  
-#referenceWordsLa
-#junqueira  epiteliu simplu pavimentos, epiteliu unistratificat pavimentos, epiteliu simplu scuamos, epiteliu unistratificat scuamos
-#tm2009     incluziune de glicogen, granulă de glicogen, depozit de glicogen, vacuolă de glicogen
-#tm2004     celulă epitelială endocrină principală, celulă principală, celulă cromofobă ; celulă epitelială endocrină oxifilă, celulă oxifilă, celulă acidofilă ; celule nevroglice, celule gliale, nevroglii ; ganglion cerebro-spinal, ganglion senzitivo-senzorial, ganglion aferent ; neuron de asociație, interneuron, neuron intermediar
-#buc1987    celulă stem, celulă sușă, precursor, progenitor, tulpină a altor tipuri de celule
-#craiova2006 leucocit granulocitar neutrofil, granulocit neutrofil, granulocit neutrofil segmentat, neutrofil, polimorfonuclear neutrofil
-#autoOk     nexus, macula comunicantă, sinapsă  , sinapsă  ; pericarion, neurozom, soma, corp neuronal
-#autoRed    -
-#gtLaRoTerms legătură, partaja un loc, sinapsele nu veziculoase, sinapse electrice ; perikaryon, neurosoma, soma, neuroni corp
-#gtEnRoTerms joncțiune gap, synapse nonvesicular, sinapsă electrică ; granulocite neutrofile, neutrofile, granulocite neutrofile segmentate ; plasmalema, membranei celulare, membranei plasmatice ; desmosome, adherens macula, la fața locului desmosome ; secretorie veziculă vacuole, granule secretorii, secretorie ; plasmocyte, celulelor plasmatice, plasmacyte ; stratul bazal, strat de celule bazale, strat germinativum ; frontieră microvillous, perie de frontieră, frontieră striat ; celulă perisinusoidală, celulă de stocare de grasime, celulelor hepatice stelat [hsc] ; zona de portal, canal portal, zona de portal
-#gtLaRoWords legătură, punct comunicarea, sinapselor nu veziculoase, sinapselor electric ; perikaryon, neurosoma, soma, corp neuron
-#gtEnRoWords plasmalema, celulă membrană, plasma membrană ; microvillous frontieră, perie frontieră, striat frontieră ; desmosome, macula adherens, punct desmosome ; decalaj joncțiune, nonvesicular synapse, electric synapse ; secretorie vacuole veziculă, secretorie granulă, secretorie ; plasmocyte, plasma celulă, plasmacyte ; neutrofilica granulocite, neutrofile, segmentat neutrofilica granulocite ; perisinusoidală celulă, grăsime stocarea celulă, hepatic stelat celulă hsc ; portal domeniu, portal canal, portal zonă ; strat bazal, bazale celulă strat, strat germinativum
-
 #dfSyn <- compareSynoT(finalLaEn2, final3, c("la","en"), "ro", c("autoOk", "autoRed", "reference","referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"));
 #gRatioSynT <- compareRatioWTgraphS(dfSyn[4], "Raportul dintre numărul de sinonime și numărul de termeni, \ncorespunzător surselor folosite", "Valoarea raportului",lim=2);
 #RatioSynC <- compareRatioWTgraphS(dfSyn[3], "Numărul de concepte care prezintă sinonime, \ncorespunzător surselor folosite", "Numărul de concepte",lim=80);
@@ -2052,117 +1853,6 @@ translateText <- function(text, terms, sources, langs){
 # length(which(final[final$source == "gtLaRoTerms", "term"] %in% final[final$source == "reference", "term"])) # 55
 # length(which(final[final$source == "gtLaRoTerms", "term"] %in% c(final[final$source == "reference", "term"], final[final$source == "junqueira", "term"], final[final$source == "tm2009", "term"], final[final$source == "tm2004", "term"], final[final$source == "buc1987", "term"], final[final$source == "craiova2006", "term"] ))) #65
 
-#correctTerms(final, "reference", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
-# 500c/500t
-#correctTerms(final, "gtLaRoTerms", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
-#64 concepts 64terms
-#correctTerms(final, "gtEnRoTerms", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
-# [,1]       [,2]
-# [1,] 500.000 581.000000
-# [2,] 128.000 129.000000
-# [3,]   0.256   0.222031
-#correctTerms(final, "gtLaRoWords", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
-#        [,1]        [,2]
-#[1,] 500.000 566.0000000
-#[2,]  62.000  63.0000000
-# [3,]   0.124   0.1113074
-#correctTerms(final, "gtEnRoWords", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
-#78 78
-#correctTerms(final, "referenceWordsLa", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro"); 
-# [,1]   [,2]
-# [1,] 500.00 500.00
-# [2,] 480.00 480.00
-# [3,]   0.96   0.96
-
-# correctTerms(final3, "autoOk", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
-# [,1]        [,2]
-# [1,] 500.00 566.0000000
-# [2,] 385.00 405.0000000
-# [3,]   0.77   0.7155477
-
-# correctTerms(final3, "autoRed", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
-# [,1]    [,2]
-# [1,] 500.000 500.000
-# [2,] 371.000 371.000
-# [3,]   0.742   0.742
-
-#correctWords(finalWords, "reference", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
-# [,1] [,2]
-# [1,]  500  909
-# [2,]  500  909
-# [3,]    1    1
-
-#correctWords(finalWords, "gtLaRoWords", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
-# [,1]        [,2]
-# [1,] 500.000 990.0000000
-# [2,] 204.000 258.0000000
-# [3,]   0.408   0.2606061
-
-#correctWords(finalWords, "gtEnRoWords", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
-# [,1]         [,2]
-# [1,] 500.00 1056.0000000
-# [2,] 335.00  482.0000000
-# [3,]   0.67    0.4564394
-
-#correctWords(finalWords2, "referenceOk", c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
-# [,1]        [,2]
-# [1,] 500.000 990.0000000
-# [2,] 474.000 771.0000000
-# [3,]   0.948   0.7787879
-
-# correctWords(finalWords3, "autoOk", c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro")
-# [,1]        [,2]
-# [1,] 500.000 990.0000000
-# [2,] 457.000 801.0000000
-# [3,]   0.914   0.8090909
-
-# ratioOffNewWords(final3, "la","ro","autoOk")
-# [,1] [,2]
-# [1,]  500  566
-# [2,]  500  566
-# [3,]    1    1
-
-# ratioOffNewWords(final3, "la","ro","autoRed")
-# [,1] [,2]
-# [1,]  500  500
-# [2,]  500  500
-# [3,]    1    1
-
-#ratioOffNewWords(final2, "la","ro","reference")
-# [,1]    [,2]
-# [1,] 500.000 500.000
-# [2,] 409.000 409.000
-# [3,]   0.818   0.818
-
-#ratioOffNewWords(final2, "la","ro","junqueira")
-# [,1]        [,2]
-# [1,] 500.00 587.0000000
-# [2,] 415.00 485.0000000
-# [3,]   0.83   0.8262351
-
-# ratioOffNewWords(final2, "la","ro","gtLaRoTerms")
-# [,1]        [,2]
-# [1,] 500.000 566.0000000
-# [2,] 434.000 495.0000000
-# [3,]   0.868   0.8745583
-
-#ratioOffNewWords(final2, "la","ro","gtLaRoWords")
-# [,1]        [,2]
-# [1,] 500.000 566.0000000
-# [2,] 477.000 536.0000000
-# [3,]   0.954   0.9469965
-
-# ratioOffNewWords(final3, "la","ro","autoOk")
-# [,1] [,2]
-# [1,]  500  566
-# [2,]  500  566
-# [3,]    1    1
-
-# ratioOffNewWords(final3, "la","ro","autoRed")
-# [,1] [,2]
-# [1,]  500  500
-# [2,]  500  500
-# [3,]    1    1
 
 #dfRatioWords <- ratioOffNewWordsTable(final3, "la", "ro", c("autoOk", "autoRed", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords"));
 #gRatioTerms <- compareRatioWTgraph(dfRatioWords[,c(4,5)], "Numărul de termeni \ncu aceeași rație de cuvinte per termen", "Numărul de termeni", leg = c("număr total de termeni", "număr de termeni \ncu aceeași rație \nde cuvinte per termen"), lim=600, set = c(-0.43, -0.1));
@@ -2170,22 +1860,6 @@ translateText <- function(text, terms, sources, langs){
 
 #sources <- list(c("fipat"), c("fipat"), c("autoRed"), c("autoOk"),c("reference"), c("referenceWordsLa"), c("gtLaRoTerms"), c("gtEnRoTerms"), c("gtLaRoWords"), c("gtEnRoWords"), c("junqueira","tm2009", "tm2004", "buc1987", "craiova2006"));
 #langs <- list(c("la"), c("en"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro"), c("ro","ro","ro","ro","ro"))
-
-#compareAll<-compareTime(final3, sources, langs, c(6,15,20), 5, 10, 10);
-#names(compareAll) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
-
-#compareAll100R<-compareTime(final3, sources, langs, c(6,15,20), 5, 100, 10);
-#names(compareAll100R) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
-
-#compareAll10R100L<-compareTime(final3, sources, langs, c(6,15,20), 5, 10, 100);
-#names(compareAll10R100L) <- c("la", "en", "autoRed", "autoOk", "reference", "referenceWordsLa", "gtLaRoTerms", "gtEnRoTerms", "gtLaRoWords", "gtEnRoWords", "allSources");
-
-#compare100<-plotdf(compareAll10R100L, 10);
-#plot(compare100$elapsed, compare100$noRepet, pch=5, col= compare100$sources);
-#legend('topright',levels(factor(compare100$sources)),col=seq_along(levels(factor(compare100$sources))),pch=10);
-#plot(compare100[compare100$sources != "allSources", "elapsed"], compare100[compare100$sources != "allSources", "noRepet"], pch=5, col= compare100$sources)
-#legend('topright',compare100$sources,col=compare100$sources,pch=10);
-#qplot(elapsed, noRepet, data = compare100[compare100$sources != "allSources",], color = sources, size = I(6));
 
 # compareAll10<-compareTime(final3, sources, langs, c(6,15,20), 5, 10, 10);
 # compareAll20<-compareTime(final3, sources, langs, c(6,15,20), 5, 20, 10);
@@ -2217,10 +1891,6 @@ translateText <- function(text, terms, sources, langs){
 
 # write.csv(finalLaEn2, "../Data/finalLaEn.csv");
 # writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
-# writeLines(finalLaEn2[finalLaEn2$lang == "la", "term"], "../Data/laTerms.csv");
-# writeLines(finalLaEn2[finalLaEn2$lang == "en", "term"], "../Data/enTerms.csv");
-# writeLines(as.character(finalWords[finalWords$lang == "la", "term"]), "../Data/laWords.csv");
-# writeLines(as.character(finalWords[finalWords$lang == "en", "term"]), "../Data/enWords.csv");
 # write.csv(LaRoRel, "../Data/LaRoRel.csv");
 # write.csv(EnRoRel, "../Data/EnRoRel.csv");
 # write.csv(LaRoRelAuto, "../Data/LaRoRelAuto.csv", row.names=FALSE);
@@ -2228,104 +1898,6 @@ translateText <- function(text, terms, sources, langs){
 #write.csv(finalWords, "../Data/finalWords.csv");
 #write.csv(final, "../Data/final.csv");
 
-
-#final3[row.names(final3[final3$source == "autoOk", ])[which(nchar(as.character(final3[final3$source == "autoOk", "term"])) == 6)], "term"];
-#"celulă" "nucleu" "flagel" "mitoză" "papilă"
-#final3[row.names(final3[final3$source == "autoOk", ])[which(nchar(as.character(final3[final3$source == "autoOk", "term"])) == 15)], "term"];
-#"glande salivare" "glandă parotidă" "coroană dentară" "alveolă dentară" "folicul limfoid"
-#final3[row.names(final3[final3$source == "autoOk", ])[which(nchar(as.character(final3[final3$source == "autoOk", "term"])) == 20)], "term"];
-#"celulă multinucleată" "țesut conjunctiv lax" "granulocit neutrofil" "neurofibră senzitivă" "proces odontoblastic"
-
-#final3[row.names(final3[final3$source == "autoRed", ])[which(nchar(as.character(final3[final3$source == "autoRed", "term"])) == 6)], "term"];
-#"celulă" "esofag" "neuron" "nucleu" "plasmă"
-#final3[row.names(final3[final3$source == "autoRed", ])[which(nchar(as.character(final3[final3$source == "autoRed", "term"])) == 15)], "term"];
-#"arahnoidă mater" "astrocit fibros" "neuron purkinje" "cortex cerebral" "zonula ocludens"
-#final3[row.names(final3[final3$source == "autoRed", ])[which(nchar(as.character(final3[final3$source == "autoRed", "term"])) == 20)], "term"];
-#"țesut conjunctiv lax" "țesut muscular neted" "ligament periodontal" "neurofibră senzitivă" "celulă multinucleată"
-
-#final3[row.names(final3[final3$source == "reference", ])[which(nchar(as.character(final3[final3$source == "reference", "term"])) == 6)], "term"];
-#"celulă" "esofag" "neuron" "nucleu" "plasmă"
-#final3[row.names(final3[final3$source == "reference", ])[which(nchar(as.character(final3[final3$source == "reference", "term"])) == 15)], "term"];
-#"astrocit fibros" "cavitate bucală" "celulă satelită"  "cortex cerebral" "măduva spinării"
-#final3[row.names(final3[final3$source == "reference", ])[which(nchar(as.character(final3[final3$source == "reference", "term"])) == 20)], "term"];
-#"țesut conjunctiv lax" "țesut muscular neted" "ligament periodontal" "celulă mioepitelială" "celulă centroacinară"
-
-#final3[row.names(final3[final3$source == "referenceWordsLa", ])[which(nchar(as.character(final3[final3$source == "referenceWordsLa", "term"])) == 6)], "term"];
-#"celulă" "nucleu" "flagel" "mitoză" "stromă"
-#final3[row.names(final3[final3$source == "referenceWordsLa", ])[which(nchar(as.character(final3[final3$source == "referenceWordsLa", "term"])) == 15)], "term"];
-#"margine striată" "nucleu picnotic" "heterocromatină" "membrană bazală" "țesut epitelial"
-#final3[row.names(final3[final3$source == "referenceWordsLa", ])[which(nchar(as.character(final3[final3$source == "referenceWordsLa", "term"])) == 20)], "term"];
-#"celulă multinucleată" "celulă mioepitelială" "proces odontoblastic" "ligament periodontal" "celulă centroacinară"
-
-#final3[row.names(final3[final3$source == "gtLaRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtLaRoTerms", "term"])) == 6)], "term"];
-#"celulă" "creier" "esofag" "neuron" "nucleu"
-#final3[row.names(final3[final3$source == "gtLaRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtLaRoTerms", "term"])) == 15)], "term"];
-#"canal alimentar" "țesut epitelial" "glanda exocrina" "tropocollagenum" "myofibroblastus"
-#final3[row.names(final3[final3$source == "gtLaRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtLaRoTerms", "term"])) == 20)], "term"];
-#"precursori de celule" "epiteliul respirator" "strat de accidentale" "cavitatea unui dinte" "capsule transparente"
-
-#final3[row.names(final3[final3$source == "gtEnRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtEnRoTerms", "term"])) == 6)], "term"];
-#"celulă" "esofag" "neuron" "nucleu" "plasma"
-#final3[row.names(final3[final3$source == "gtEnRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtEnRoTerms", "term"])) == 15)], "term"];
-#"mater arahnoida" "cavitatea orală" "celule purkinje" "citoscheletului" "adherens macula"
-#final3[row.names(final3[final3$source == "gtEnRoTerms", ])[which(nchar(as.character(final3[final3$source == "gtEnRoTerms", "term"])) == 20)], "term"];
-#"cortexul cerebeloasa" "synapse axodendritic" "țesut muscular neted" "veziculă pinocytotic" "microbutule centrală"
-
-#final3[row.names(final3[final3$source == "gtLaRoWords", ])[which(nchar(as.character(final3[final3$source == "gtLaRoWords", "term"])) == 6)], "term"];
-#"celulă" "nucleu" "organe" "flagel" "nucleu"
-#final3[row.names(final3[final3$source == "gtLaRoWords", ])[which(nchar(as.character(final3[final3$source == "gtLaRoWords", "term"])) == 15)], "term"];
-#"celulă gigantic" "filament actina" "neurofilamentum" "citoscheletului" "microfilamentum"
-#final3[row.names(final3[final3$source == "gtLaRoWords", ])[which(nchar(as.character(final3[final3$source == "gtLaRoWords", "term"])) == 20)], "term"];
-#"matrice cytoplasmica" "celulă multinucleata" "microtubulus central" "matrice extracelular" "neurofibra senzorial"
-
-#final3[row.names(final3[final3$source == "gtEnRoWords", ])[which(nchar(as.character(final3[final3$source == "gtEnRoWords", "term"])) == 6)], "term"];
-#"celulă" "nucleu" "cilium" "dynein" "flagel"
-#final3[row.names(final3[final3$source == "gtEnRoWords", ])[which(nchar(as.character(final3[final3$source == "gtEnRoWords", "term"])) == 15)], "term"];
-#"celulă membrană" "plasma membrană" "perie frontieră" "macula adherens" "punct desmosome"
-#final3[row.names(final3[final3$source == "gtEnRoWords", ])[which(nchar(as.character(final3[final3$source == "gtEnRoWords", "term"])) == 20)], "term"];
-#"multinucleate celulă" "nonvesicular synapse" "endoplasmatic stomac" "pinocytotic veziculă" "nonvesicular synapse"
-
-#file <- "../Test Files/txt.txt";
-#txt <- readChar(file, file.info(file)$size);
-#txt2 <- findInText2(txt, final3, "autoRed", "ro");
-
-#system.time( replicate(100, findInText2(txt, final3, "autoRed", "ro") ) )
-# user  system elapsed 
-# 9.126   0.290   9.461 
-
-#system.time( replicate(100, findInText2(txt, final3, "autoOk", "ro") ) )
-# user  system elapsed 
-# 10.248   0.314  10.835 
-
-#system.time( replicate(100, findInText2(txt, final3, "reference", "ro") ) )
-# user  system elapsed 
-# 9.351   0.281   9.959 
-
-#system.time( replicate(100, findInText2(txt, final3, "referenceWordsLa", "ro") ) )
-# user  system elapsed 
-# 9.184   0.263   9.677
-
-#system.time( replicate(100, findInText2(txt, final3, "gtLaRoTerms", "ro") ) )
-# user  system elapsed 
-# 10.062   0.304  10.521 
-
-#system.time( replicate(100, findInText2(txt, final3, "gtEnRoTerms", "ro") ) )
-# user  system elapsed 
-# 10.374   0.294  11.164 
-
-#system.time( replicate(100, findInText2(txt, final3, "gtLaRoWords", "ro") ) )
-# user  system elapsed 
-# 10.148   0.260  10.611 
-
-#system.time( replicate(100, findInText2(txt, final3, "gtEnRoWords", "ro") ) )
-# user  system elapsed 
-# 10.331   0.308  10.844 
-
-
-#txt2 <- findInText(txt, final3, c("junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
-#system.time( replicate(10, myfunction(with,arguments) ) )
-# user  system elapsed 
-# 30.676   0.374  31.160 
 
 
 #length(LaRoRel[LaRoRel$matchWords != "", "matchWords"]) #722 from 990
@@ -2335,26 +1907,6 @@ translateText <- function(text, terms, sources, langs){
 #length(which(LaRoRel[, "matchWords"] == "" & LaRoRelOk[, "matchWords"] == "")); #87 - "" -> 567 usable from 856
 #length(as.character(finalWords[finalWords$source=="junqueira" & finalWords$lang == "ro","term"])); #1088
 
-# unused
-# termidsjunqueiraW <- rep(names(wordsjunqueira), noElemList(wordsjunqueira, byElem = TRUE)); # 1088 words - unused
-# termidsbuc1987W <- rep(names(wordsbuc1987), noElemList(wordsbuc1987, byElem = TRUE)); # 123 words - unused
-# termidstm2009W <- rep(names(wordstm2009), noElemList(wordstm2009, byElem = TRUE)); # 1019 words - unused
-# termidstm2004W <- rep(names(wordstm2004), noElemList(wordstm2004, byElem = TRUE)); # 420 words - unused
-# termidscraiova2006W <- rep(names(wordscraiova2006), noElemList(wordscraiova2006, byElem = TRUE)); # 293 words - unused
-#finalLaEn3 <- finalLaEn2;
-#finalLaEn3[,"source"] <- "fipat";
-#final2 <- rbind(finalLaEn3, final);
-#final2[,"id"]<- seq(1,length(row.names(final2))); #this is the shit now!
-#finalWords2 <- appenddf(df=data.frame(V1 = LaRoRelOk[, "matchWords"]) , finalWords2, "ro", "referenceOk", as.character(LaRoRelOk[, "term_id"]));
-#LaRoRelJ <- wordMatchCsv2(finalLaEn2, final, finalWords2, "la", "ro", "junqueira", c("gtLaRoWords", "referenceOk"));
-# write.csv(LaRoRelJ, "../Data/LaRoRelJ.csv", row.names = TRUE);
-
-#text <- "O celulă are multe organite și este de mai multe feluri. Avem o celulă scuamoasă cu margine striată și platou microvilos cu microvil și stereocil. Epiteliu pseudostratificat există."
-#text <- findInText(text,final3, c("autoRed"), "ro");
-#txt <- readLines("../Test Files/textGT.txt");
-#txt2 <- findInText(txt, final3, c("reference", "junqueira", "tm2009", "tm2004", "buc1987", "craiova2006"), "ro");
-#writeLines(txt2, "../Test Files/textGT2.txt")
-#system.time( replicate(10000, myfunction(with,arguments) ) )
 
 #uniqueWo <- makeUniqueWords(final,"ro");
 #g <- horizNoTerms(final);
