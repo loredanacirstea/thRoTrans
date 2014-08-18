@@ -8,79 +8,65 @@
 #library(translate);
 #set.key("AIzaSyC5nT8bwUjdNXJxRbiloQhy6qhybDsdPNo")
 
-#first paragraph from wiki into mysql table
-#install.packages("XML");
-#library(XML);
-#url = "http://en.wikipedia.org/wiki/Gaia_(spacecraft)";
-#desc = htmlTreeParse(url, useInternalNodes = T);
-#tex = xpathSApply(desc, "//p[1]", xmlValue);
-#tex <- gsub("'", "\\'", tex, fixed = TRUE);
-#tex <-gsub("[]", "", tex, fixed = TRUE);
-#ins <- dbSendQuery(mydb, paste("insert into `", tables[5], "` set `description`= \"", tex, "\", `url`=\"", url, "\"", sep=""));
-
-#dataframe with all the relations term-term, word-term
-#lower case for all terms except t language
-#tm[,"term"] <- c(tolower(tm[tm$lang != "t","term"]), tm[tm$lang == "t","term"]);
-
 #translation function - example: translate("term", "ro") (! attention term with language!! different terminologies gives only the first)
 translateT <- function(term, lang) {
-    term = tolower(term);
-    termId = tm[tm$term == term, "term_id"];
-    termId <- termId[!is.na(termId)][1];
-    return(tm[tm$term_id == termId & tm$lang == lang, "term"]);
-    }
+  term = tolower(term);
+  termId = tm[tm$term == term, "term_id"];
+  termId <- termId[!is.na(termId)][1];
+  return(tm[tm$term_id == termId & tm$lang == lang, "term"]);
+}
 #usedIn function for words; returns a numeric vector with all id's of the terms which use the given word or character vector with the terms; origin?
 usedIn <- function(word, lang) {
-    termId = tm[tm$term == word & tm$lang == lang, "term_id"][1];
-    #return(rel[rel$term1 == termId & rel$relation == 3,"term2"]);
-    termsIds = rel[rel$term1 == termId & rel$relation == 3,"term2"];
-    termsNames = c();
-    for(id in termsIds) {
-        termsNames = c(termsNames, tm[tm$term_id == id & tm$lang == lang, "term"]);
-        }
-     return(termsNames);
-    }
+  termId = tm[tm$term == word & tm$lang == lang, "term_id"][1];
+  #return(rel[rel$term1 == termId & rel$relation == 3,"term2"]);
+  termsIds = rel[rel$term1 == termId & rel$relation == 3,"term2"];
+  termsNames = c();
+  for(id in termsIds) {
+    termsNames = c(termsNames, tm[tm$term_id == id & tm$lang == lang, "term"]);
+  }
+  return(termsNames);
+}
 #output: list of the equivalent terms in all languages of the terminology
 langTerms <- function(term, lang) {
-    if(class(term) == "numeric" || class(term) == "integer") {
-        termId = term;
-    }
-    else {
-        termId = tm[tm$term == term, "term_id"];
-        termId <- termId[!is.na(termId)][1];
-    }
-    allTerms <- tm[tm$term_id == termId, c("term", "lang")];
-    return(allTerms);
+  if(class(term) == "numeric" || class(term) == "integer") {
+    termId = term;
+  }
+  else {
+    termId = tm[tm$term == term, "term_id"];
+    termId <- termId[!is.na(termId)][1];
+  }
+  allTerms <- tm[tm$term_id == termId, c("term", "lang")];
+  return(allTerms);
 }
 uniqueWordsVector <- function(terms = tm,lang) {
-    allTerms = terms[terms$lang == lang, "term"];
-    #wordsList = strsplit(allTerms,"\s|,|\(|\)|\[|\]|[0-9]|;");
-    #words = unlist(wordsList);
-    allTerms <- allTerms[!is.na(allTerms)];
-    wordsList = strsplit(allTerms," ");
-    words = unlist(wordsList); #makes it a vector
-    words = strsplit(words,",");
-    words = unlist(words);
-    words = strsplit(words,"(", fixed = TRUE);
-    words = unlist(words);
-    words = strsplit(words,")", fixed = TRUE);
-    words = unlist(words);
-    words = strsplit(words,";");
-    words = unlist(words);
-    words = strsplit(words,"[", fixed = TRUE);
-    words = unlist(words);
-    words = strsplit(words,"]", fixed = TRUE);
-    words = unlist(words);
-    words = strsplit(words,"{", fixed = TRUE);
-    words = unlist(words);
-    words = strsplit(words,"}", fixed = TRUE);
-    words = unlist(words);
-    words = strsplit(words,"/", fixed = TRUE);
-    words = unlist(words);
-    words = strsplit(words,"[0123456789]");
-    words = unlist(words);
-    words = unique(words); #removes doubles
-    return(words);
+  allTerms = terms[terms$lang == lang, "term"];
+  #wordsList = strsplit(allTerms,"\s|,|\(|\)|\[|\]|[0-9]|;");
+  #words = unlist(wordsList);
+  allTerms <- allTerms[!is.na(allTerms)];
+  wordsList = strsplit(allTerms," ");
+  words = unlist(wordsList); #makes it a vector
+  words = strsplit(words,",");
+  words = unlist(words);
+  words = strsplit(words,"(", fixed = TRUE);
+  words = unlist(words);
+  words = strsplit(words,")", fixed = TRUE);
+  words = unlist(words);
+  words = strsplit(words,";");
+  words = unlist(words);
+  words = strsplit(words,"[", fixed = TRUE);
+  words = unlist(words);
+  words = strsplit(words,"]", fixed = TRUE);
+  words = unlist(words);
+  words = strsplit(words,"{", fixed = TRUE);
+  words = unlist(words);
+  words = strsplit(words,"}", fixed = TRUE);
+  words = unlist(words);
+  words = strsplit(words,"/", fixed = TRUE);
+  words = unlist(words);
+  words = strsplit(words,"[0123456789]");
+  words = unlist(words);
+  words = unique(words); #removes doubles
+  return(words);
 }
 sourceWordsList <- function(terms = tm,lang, sourc = 0) {
   allTerms = c();
@@ -137,10 +123,10 @@ sourceWordsList2 <- function(terms = tm,lang, sourc = 0) {
     if(allTerms[[termid]] != "" && termid != 1){
       if(is.list(allTerms[[termid]]) == TRUE) {
         for(n in 1: length(allTerms[[termid]])) {    
-            allTerms[[termid]][[n]] <- unlist(strsplit(as.character(allTerms[[termid]][[n]]), " "));
-            for(char in c(",", "(", ")", ";", "[", "]", "{", "}", "/")) { allTerms[[termid]][[n]] <- unlist(strsplit(allTerms[[termid]][[n]], char, fixed = TRUE)); }
-            allTerms[[termid]][[n]] <- unlist(strsplit(allTerms[[termid]][[n]], "[0123456789]"));
-            }
+          allTerms[[termid]][[n]] <- unlist(strsplit(as.character(allTerms[[termid]][[n]]), " "));
+          for(char in c(",", "(", ")", ";", "[", "]", "{", "}", "/")) { allTerms[[termid]][[n]] <- unlist(strsplit(allTerms[[termid]][[n]], char, fixed = TRUE)); }
+          allTerms[[termid]][[n]] <- unlist(strsplit(allTerms[[termid]][[n]], "[0123456789]"));
+        }
       }
       else{
         allTerms[[termid]] <- unlist(strsplit(as.character(allTerms[[termid]]), " "));
@@ -153,27 +139,27 @@ sourceWordsList2 <- function(terms = tm,lang, sourc = 0) {
 }
 #creates dataframe with words in the provided languages, same structure with terminology dataframe; input: vector of languages, output: data frame.
 uniqueWordFrame<- function(terms = tm, langs, add = 0) {
-    allWords = c();
-    allLangs = c();
-    for(lang in langs) {
-        words = makeWords(lang);
-        l = length(words);
-        allWords = c(allWords, words);
-        langV = rep(lang,l);
-        allLangs = c(allLangs, langV);
-    }
-    len <- length(allWords);
-    wo <- data.frame(id = numeric(len), term_id = numeric(len), lang = character(len),
-                     part_speech = character(len), gender = character(len), term = character(len),
-                     source = character(len), description = character(len), wiki = character(len), pages = character(len)); #not good - it should autom. take the original structure
-    wo[,"term"] <- allWords;
-    wo[,"lang"] <- allLangs;
-    #startId <- nrow(tm)+30000; #tm used! attention to init
-    startId <- 1;
-    ids <- seq(startId,startId + len-1); 
-    wo[,"term_id"] <- ids;
-    wo[,"id"] <- ids;
-    return(wo);
+  allWords = c();
+  allLangs = c();
+  for(lang in langs) {
+    words = makeWords(lang);
+    l = length(words);
+    allWords = c(allWords, words);
+    langV = rep(lang,l);
+    allLangs = c(allLangs, langV);
+  }
+  len <- length(allWords);
+  wo <- data.frame(id = numeric(len), term_id = numeric(len), lang = character(len),
+                   part_speech = character(len), gender = character(len), term = character(len),
+                   source = character(len), description = character(len), wiki = character(len), pages = character(len)); #not good - it should autom. take the original structure
+  wo[,"term"] <- allWords;
+  wo[,"lang"] <- allLangs;
+  #startId <- nrow(tm)+30000; #tm used! attention to init
+  startId <- 1;
+  ids <- seq(startId,startId + len-1); 
+  wo[,"term_id"] <- ids;
+  wo[,"id"] <- ids;
+  return(wo);
 }
 sourceWordFrame<- function(terms = tm, langs, sources = 0) {
   allWords = c();
@@ -207,53 +193,53 @@ sourceWordFrame<- function(terms = tm, langs, sources = 0) {
 #maybe add the findTerm function?
 #update words also
 updateFrame <- function(dataF, term, lang, termId = NA, new = FALSE, partSpeech = NA, gender = NA, descript = NA, wiki = NA) {
-    if(new == FALSE) {
-        dataF[dataF$term_id == termId & dataF$lang == lang, "term"] <- term;
+  if(new == FALSE) {
+    dataF[dataF$term_id == termId & dataF$lang == lang, "term"] <- term;
+  }
+  if(new == TRUE) {
+    if(is.na(termId)) {
+      termId <- max(dataF[,"term_id"])+1;
     }
-    if(new == TRUE) {
-        if(is.na(termId)) {
-            termId <- max(dataF[,"term_id"])+1;
-        }
-        newRow <- data.frame(id = max(dataF[,"id"])+1, term_id = termId, lang = lang, part_speech = partSpeech, gender = gender, term = term, description = descript, wiki = wiki); #not good - it should autom. take the original structure
-        dataF = rbind(dataF, newRow);
-        return(dataF);
-    }
+    newRow <- data.frame(id = max(dataF[,"id"])+1, term_id = termId, lang = lang, part_speech = partSpeech, gender = gender, term = term, description = descript, wiki = wiki); #not good - it should autom. take the original structure
+    dataF = rbind(dataF, newRow);
+    return(dataF);
+  }
 }
 #translate one word at a time and append to data frame provided
 transWord <- function(dataF, termId, lang, newLang) {
-    langN <- c(lang, "->", newLang);
-    dataF <- updateFrame(dataF, translate(dataF[dataF$term_id == termId & dataF$lang == lang, "term"], lang, newLang), langN, termId, new = TRUE);
-    return(dataF);
+  langN <- c(lang, "->", newLang);
+  dataF <- updateFrame(dataF, translate(dataF[dataF$term_id == termId & dataF$lang == lang, "term"], lang, newLang), langN, termId, new = TRUE);
+  return(dataF);
 }
 # ! term_id in words same id for translations
 #transWords: input: data frame with words from wordFrame, vector of languages
 #output: same data frame with appended translated words / separate data frame (new=TRUE)
 #!! termIds are constructed separately from terms - problems might arrise
 transWords <- function(words,langs, newLang, new = FALSE) {
-    #words<-update(words, term, newLang, termId, new = TRUE);
-    for(lang in langs) {
-        trans <- words[words$lang == lang, "term"];
-        n <- floor(length(trans)/ 2000);
-        transVector <- c();
-        if(n > 0) {
-            for(i in 1:n) {
-                transVector <- c(transVector, paste(trans[i:(i+1999)], collapse = "\n", sep = ""));
-            }
-        }
-        transVector <- c(transVector, paste(trans[i:length(trans)], collapse = "\n", sep = ""));
-        translated <- c();
-        for(string in transVector) {
-            translated <- c(translated, unlist(strsplit(translate(string, lang, newLang), sep = "\n")));
-        }
-        len <- length(translated);
-        wot <- data.frame(id = numeric(len), term_id = numeric(len), lang = character(len), part_speech = character(len), gender = character(len), term = character(len), description = character(len), wiki = character(len)) #not good - it should autom. take the original structure
-        wot[,"id"] <- seq(nrow(words)+1, nrow(words)+len);
-        wot[,"term_id"] <- words[words$lang == lang, "term_id"];
-        wot[,"lang"] <- lang;
-        wot[,"term"] <- translated;
-        words <- rbind(words, wot);        
+  #words<-update(words, term, newLang, termId, new = TRUE);
+  for(lang in langs) {
+    trans <- words[words$lang == lang, "term"];
+    n <- floor(length(trans)/ 2000);
+    transVector <- c();
+    if(n > 0) {
+      for(i in 1:n) {
+        transVector <- c(transVector, paste(trans[i:(i+1999)], collapse = "\n", sep = ""));
+      }
     }
-    return(words);
+    transVector <- c(transVector, paste(trans[i:length(trans)], collapse = "\n", sep = ""));
+    translated <- c();
+    for(string in transVector) {
+      translated <- c(translated, unlist(strsplit(translate(string, lang, newLang), sep = "\n")));
+    }
+    len <- length(translated);
+    wot <- data.frame(id = numeric(len), term_id = numeric(len), lang = character(len), part_speech = character(len), gender = character(len), term = character(len), description = character(len), wiki = character(len)) #not good - it should autom. take the original structure
+    wot[,"id"] <- seq(nrow(words)+1, nrow(words)+len);
+    wot[,"term_id"] <- words[words$lang == lang, "term_id"];
+    wot[,"lang"] <- lang;
+    wot[,"term"] <- translated;
+    words <- rbind(words, wot);        
+  }
+  return(words);
 }
 #pt browse: cat("What's your name? ") x <- readLines(file("stdin"),1) print(x) pui asa ceva in a while loop ! origin ! same term in diff languages
 #browse() - root-ul in en + info
@@ -595,142 +581,142 @@ dataOptions <- function(){
   }
 }
 ontobrowse <- function() {
-    opt <- startOptions();
-    if(opt == 4) {
-      return(cat("User interface exited. Check documentation for direct function use."));
+  opt <- startOptions();
+  if(opt == 4) {
+    return(cat("User interface exited. Check documentation for direct function use."));
+  }
+  
+  #opt==3 -> load from term
+  if(opt == 3){
+    valid <- 0;
+    while(valid == 0) {
+      choice <- readChoice("term");
+      id <- allTerms[tolower(allTerms$term) == tolower(choice), "term_id"];
+      if(length(id) == 0) { cat("There is no such term. Try again."); valid <- 0; }
+      else { valid <- 1; }
     }
     
-    #opt==3 -> load from term
-    if(opt == 3){
-      valid <- 0;
-      while(valid == 0) {
-        choice <- readChoice("term");
-        id <- allTerms[tolower(allTerms$term) == tolower(choice), "term_id"];
-        if(length(id) == 0) { cat("There is no such term. Try again."); valid <- 0; }
-        else { valid <- 1; }
-      }
+    #same term for different concepts or same term in different languages for the same concept:
+    if(length(id) > 1) { 
+      ids <- factor(id);
+      concepts <- levels(ids);
       
-      #same term for different concepts or same term in different languages for the same concept:
-      if(length(id) > 1) { 
-        ids <- factor(id);
-        concepts <- levels(ids);
-        
-        #one concept, same term in different languages
-        if(length(concepts) == 1) {id <- id[1];} 
-        
-        #multiple concepts - choice:
-        else {
-          cat("This term defines multiple concepts:", "\n");
-          for(i in 1:length(concepts)) {
-            cat(i, " term ID: ", concepts[i], ". Ancestry: ", sep = "");
-            parents <- ancestry(allTerms, allRel, as.integer(concepts[i]));
-            for(i in length(parents):2) {
-              cat(as.character(allTerms[allTerms$term_id == parents[i] & allTerms$lang == "la", "term"]), " (term ID: ", parents[i], ") ", "->");
-            }
-            cat(as.character(allTerms[allTerms$term_id == parents[1] & allTerms$lang == "la", "term"]), "\n");
-          } 
-          cat("Write the digit/number of the chosen concept:");
-          conc <- readLines(n=1);
-          id <- as.numeric(concepts[as.numeric(conc)]);
-        } #/concept choice
-      } #/length(id)>1 - multiple term Ids
-    } #/opt==3
-    
-    #opt==2 -> load from id
-    if(opt == 2){
-      valid <- 0;
-      while(valid == 0) {
-        choice <- readChoice("term ID");
-        id <- as.integer(choice);
-        if(length(allTerms[allTerms$term_id == id,]) == 0) { 
-          cat("There is no such id. Try again.");
-          readChoice("term ID");
-        }
-        else { valid <- 1; }
-      }
-    } #/opt==2
-    
-    #opt==1 -> load from terminologies
-    if(opt == 1) {
-      terminologies <- allRel[allRel$term2 == 9000, "term1"];
-      for(terminology in terminologies) {
-        name <- allTerms[allTerms$term_id == terminology & allTerms$lang == "la", "term"];
-        cat("term ID: ", terminology, "term: ", as.character(name), "\n");
-      }
-      cat("Write the term ID for the chosen terminology or go back (write < ) and press Enter: ", "\n");
-      choice <- readLines(n=1);
-      if(choice == "<") { ontobrowse();}
+      #one concept, same term in different languages
+      if(length(concepts) == 1) {id <- id[1];} 
+      
+      #multiple concepts - choice:
       else {
-        id <- as.integer(choice);
-        if(length(allTerms[allTerms$term_id == id,]) == 0) { 
-          cat("There is no such term. Try again.");
-          id <- integer(0);
-        }
+        cat("This term defines multiple concepts:", "\n");
+        for(i in 1:length(concepts)) {
+          cat(i, " term ID: ", concepts[i], ". Ancestry: ", sep = "");
+          parents <- ancestry(allTerms, allRel, as.integer(concepts[i]));
+          for(i in length(parents):2) {
+            cat(as.character(allTerms[allTerms$term_id == parents[i] & allTerms$lang == "la", "term"]), " (term ID: ", parents[i], ") ", "->");
+          }
+          cat(as.character(allTerms[allTerms$term_id == parents[1] & allTerms$lang == "la", "term"]), "\n");
+        } 
+        cat("Write the digit/number of the chosen concept:");
+        conc <- readLines(n=1);
+        id <- as.numeric(concepts[as.numeric(conc)]);
+      } #/concept choice
+    } #/length(id)>1 - multiple term Ids
+  } #/opt==3
+  
+  #opt==2 -> load from id
+  if(opt == 2){
+    valid <- 0;
+    while(valid == 0) {
+      choice <- readChoice("term ID");
+      id <- as.integer(choice);
+      if(length(allTerms[allTerms$term_id == id,]) == 0) { 
+        cat("There is no such id. Try again.");
+        readChoice("term ID");
+      }
+      else { valid <- 1; }
+    }
+  } #/opt==2
+  
+  #opt==1 -> load from terminologies
+  if(opt == 1) {
+    terminologies <- allRel[allRel$term2 == 9000, "term1"];
+    for(terminology in terminologies) {
+      name <- allTerms[allTerms$term_id == terminology & allTerms$lang == "la", "term"];
+      cat("term ID: ", terminology, "term: ", as.character(name), "\n");
+    }
+    cat("Write the term ID for the chosen terminology or go back (write < ) and press Enter: ", "\n");
+    choice <- readLines(n=1);
+    if(choice == "<") { ontobrowse();}
+    else {
+      id <- as.integer(choice);
+      if(length(allTerms[allTerms$term_id == id,]) == 0) { 
+        cat("There is no such term. Try again.");
+        id <- integer(0);
       }
     }
+  }
+  
+  #choose languages to load
+  langs <- allTerms[allTerms$term_id == id, "lang"];
+  langs <- as.character(langs);
+  cat("1 Load all languages: ", paste(langs, sep = " "), "\n");
+  cat("2 Choose languages", "\n");
+  opt2 <- readLines(n=1);
+  if(opt2 == 2) {
+    cat("Write the chosen languages separated by one space character. Choose from: ", 
+        paste(langs, sep = " "), "\n");
     
-    #choose languages to load
-    langs <- allTerms[allTerms$term_id == id, "lang"];
-    langs <- as.character(langs);
-    cat("1 Load all languages: ", paste(langs, sep = " "), "\n");
-    cat("2 Choose languages", "\n");
-    opt2 <- readLines(n=1);
-    if(opt2 == 2) {
-      cat("Write the chosen languages separated by one space character. Choose from: ", 
-          paste(langs, sep = " "), "\n");
-      
-      langs <- unlist(strsplit(readLines(n=1), " "));
-    }
-    
-    # initialise data frames
-    cat("Loading data ...");
-    initialise(allTerms, allRel, id, langs);
-    cat("Enter preferred language for display: ");
-    lg <- readLines(n=1);
-    cho <- 0;
-    while(cho == 0) {
-      choice <- dataOptions();
-      endbrowse <- 0;
-      while(endbrowse == 0){
-        if(choice == 1){ browse(tm, rel, id, langs, lg); }
-        cat("Enter term ID, < to go back to options or ? to search for a term. Press Enter.");
-        opt <- readLines(n=1);
-        if(opt == "<") { endbrowse <- 1;}
-        else if(opt == "?") {
-          cat("Enter term/word: ");
-          wo <- readLines(n=1);
-          search(wo, output = 2);
-          cat("Chosen term id: ");
-          id <- as.numeric(readLines(n=1));
-        }
-        else {
-          int <- as.integer(opt);
-          if(length(terms[terms$term_id == int,]) != 0) { id <- int; }
-          else { cat("Invalid id."); }
-        }
-        if(choice == 2) {
-          browse(tm, rel, id, langs, lg);
-          cat("Enter labels to be updated (term, lang, part_speech, gender, source, description, wiki, email), separated by space: ");
-          labels <- readLines(n=1);
-          cat("Enter new values, separated by space: ");
-          values <- readLines(n=1);
-          if("term" %in% labels) { oo<-0;
-          }
-          
-        }
+    langs <- unlist(strsplit(readLines(n=1), " "));
+  }
+  
+  # initialise data frames
+  cat("Loading data ...");
+  initialise(allTerms, allRel, id, langs);
+  cat("Enter preferred language for display: ");
+  lg <- readLines(n=1);
+  cho <- 0;
+  while(cho == 0) {
+    choice <- dataOptions();
+    endbrowse <- 0;
+    while(endbrowse == 0){
+      if(choice == 1){ browse(tm, rel, id, langs, lg); }
+      cat("Enter term ID, < to go back to options or ? to search for a term. Press Enter.");
+      opt <- readLines(n=1);
+      if(opt == "<") { endbrowse <- 1;}
+      else if(opt == "?") {
+        cat("Enter term/word: ");
+        wo <- readLines(n=1);
+        search(wo, output = 2);
+        cat("Chosen term id: ");
+        id <- as.numeric(readLines(n=1));
+      }
+      else {
+        int <- as.integer(opt);
+        if(length(terms[terms$term_id == int,]) != 0) { id <- int; }
+        else { cat("Invalid id."); }
       }
       if(choice == 2) {
-        cat("Enter term id or < (back) or ? (search)");
+        browse(tm, rel, id, langs, lg);
+        cat("Enter labels to be updated (term, lang, part_speech, gender, source, description, wiki, email), separated by space: ");
+        labels <- readLines(n=1);
+        cat("Enter new values, separated by space: ");
+        values <- readLines(n=1);
+        if("term" %in% labels) { oo<-0;
+        }
+        
       }
-      if(choice == 3) {}
-      if(choice == 4) {}
-      if(choice == 5) {}
-      if(choice == 6) { 
-        cat("Enter new language (2 letters): ");
-        la <- readLines(n=1);
-        newTranslation(la); }
-    }  
-    
+    }
+    if(choice == 2) {
+      cat("Enter term id or < (back) or ? (search)");
+    }
+    if(choice == 3) {}
+    if(choice == 4) {}
+    if(choice == 5) {}
+    if(choice == 6) { 
+      cat("Enter new language (2 letters): ");
+      la <- readLines(n=1);
+      newTranslation(la); }
+  }  
+  
 }
 graphdemo <- function(){
   samplet <- data.frame(t(rep(NA,length(names(tm)))));
@@ -788,21 +774,21 @@ horizNoTerms <- function(df){
   for(i in 1:6) { ycoord <- c(ycoord, data[1,i], data[2,i]); }
   #for(elem in 1:length(add)){ add[elem] <- add[elem]*100/ref; }
   #prop = prop.table(add, margin = 2);
-#  g <- barplot(noconcepts, main = "Procentul de suprapunere a variantelor de traducere peste referință", 
-#                xlab = "Variantele de traducere", ylab = "Procent de suprapunere %", ylim = c(0, 500),
-#                names.arg = names(noconcepts), col = c("lightblue", "mistyrose", "lavender"),);
-   title <- "Valori comparate ale conceptelor găsite și ale \ntermenilor referință incluși în acestea \npentru fiecare sursă";
-   par(mar = c(5.1, 7.1, 5.1, 7.1), xpd = TRUE, las = 1);
-   g <- barplot(data, main = title,
-                xlab = "Numărul de concepte/termeni",
-                ylab = "Sursele folosite pentru traducerea termenilor",
-                col = c("lightblue", "mistyrose"), beside = TRUE, 
-                horiz = TRUE, width = 2, ann = FALSE);
-   legend("topright", inset = c(0, 0), fill = c("lightblue", "mistyrose"), 
-          legend = rownames(data), xjust=1, yjust=1, cex = 0.9, pt.cex = 1);
-   text(ycoord , g, round(ycoord, 2), cex=1, pos=4);
-   #heat.colors(length(rownames(data)))
-   return(g);
+  #  g <- barplot(noconcepts, main = "Procentul de suprapunere a variantelor de traducere peste referință", 
+  #                xlab = "Variantele de traducere", ylab = "Procent de suprapunere %", ylim = c(0, 500),
+  #                names.arg = names(noconcepts), col = c("lightblue", "mistyrose", "lavender"),);
+  title <- "Valori comparate ale conceptelor găsite și ale \ntermenilor referință incluși în acestea \npentru fiecare sursă";
+  par(mar = c(5.1, 7.1, 5.1, 7.1), xpd = TRUE, las = 1);
+  g <- barplot(data, main = title,
+               xlab = "Numărul de concepte/termeni",
+               ylab = "Sursele folosite pentru traducerea termenilor",
+               col = c("lightblue", "mistyrose"), beside = TRUE, 
+               horiz = TRUE, width = 2, ann = FALSE);
+  legend("topright", inset = c(0, 0), fill = c("lightblue", "mistyrose"), 
+         legend = rownames(data), xjust=1, yjust=1, cex = 0.9, pt.cex = 1);
+  text(ycoord , g, round(ycoord, 2), cex=1, pos=4);
+  #heat.colors(length(rownames(data)))
+  return(g);
 }
 comp <- function(df1,df2){
   for(row in length(row.names(df1))) {
@@ -839,12 +825,12 @@ listtodf <- function(df, list, lang, sourc = NA, termdf = NA) {
         for(j in 1: length(list[[as.character(termid)]][[i]])) {
           term <- c(term, list[[as.character(termid)]][[i]][[j]]);
           term_id <- c(term_id, termid);
-#           if(length(termdf) > 1){ #!pages=NA for reference
-#             if(!is.na(source)) {
-#               pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == sourc, "pages"]));
-#               no <- no + 1;
-#             }
-#           }
+          #           if(length(termdf) > 1){ #!pages=NA for reference
+          #             if(!is.na(source)) {
+          #               pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == sourc, "pages"]));
+          #               no <- no + 1;
+          #             }
+          #           }
         }
       }
     }
@@ -852,12 +838,12 @@ listtodf <- function(df, list, lang, sourc = NA, termdf = NA) {
       for(i in 1: length(list[[as.character(termid)]])) {
         term <- c(term, list[[as.character(termid)]][i]);
         term_id <- c(term_id, termid);
-#         if(length(termdf) > 1){ #!pages=NA for reference
-#           if(!is.na(sourc)) {
-#             pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == sourc, "pages"]));
-#             no <- no + 1;
-#           }
-#         }
+        #         if(length(termdf) > 1){ #!pages=NA for reference
+        #           if(!is.na(sourc)) {
+        #             pages[no] <- c(pages, as.character(termdf[termdf$term_id == termid & termdf$lang == lang & termdf$source == sourc, "pages"]));
+        #             no <- no + 1;
+        #           }
+        #         }
       }
     }
   }
@@ -1026,17 +1012,17 @@ wordMatchCsv2 <- function(offTerms, newTerms, words, offLang = "la", newLang = "
       else { ok <- choice; }
       sheet[row, "matchWords"] <- words[ok];
     }
-      
-      
-      
-#      for(i in (length(names(sheet)) - maxWo + 1 ) : length(names(sheet))){
-#        if(length(sheet[row, names(base)[baseT]]) != 0 && length(sheet[row, i]) != 0 && sheet[row, names(base)[baseT]] != "" && sheet[row, i] != ""){
-#          if(length(agrep(sheet[row, names(base)[baseT]], sheet[row, i], max.distance = 0.5, ignore.case=TRUE)) != 0){
-#            sheet[row, "matchWords"] <- sheet[row, i];
-#          }
-#        }
-#      }
-#    }
+    
+    
+    
+    #      for(i in (length(names(sheet)) - maxWo + 1 ) : length(names(sheet))){
+    #        if(length(sheet[row, names(base)[baseT]]) != 0 && length(sheet[row, i]) != 0 && sheet[row, names(base)[baseT]] != "" && sheet[row, i] != ""){
+    #          if(length(agrep(sheet[row, names(base)[baseT]], sheet[row, i], max.distance = 0.5, ignore.case=TRUE)) != 0){
+    #            sheet[row, "matchWords"] <- sheet[row, i];
+    #          }
+    #        }
+    #      }
+    #    }
   }
   return(sheet);
 }
@@ -1144,7 +1130,7 @@ automaticTransl <- function(offTerms, terms, words, matchwo, offLang = "la", new
     uniqList[[wo]][["RefWords"]] <-c();
     uniqList[[wo]][["matchWords"]] <-c();
     for(i in 1:length(sources)) {
-    uniqList[[wo]][[sources[i]]] <-c();
+      uniqList[[wo]][[sources[i]]] <-c();
     }
   }
   for(wo in uniqWo) {
@@ -1159,13 +1145,13 @@ automaticTransl <- function(offTerms, terms, words, matchwo, offLang = "la", new
       ind <- c();
       for(s in wos){
         
-        }
-        
       }
+      
     }
-   
-    uniqList[[wo]][["matchWords"]]
-    agrep(sheet[row, "base"], sheet[row, i], max.distance = 0.5)
+  }
+  
+  uniqList[[wo]][["matchWords"]]
+  agrep(sheet[row, "base"], sheet[row, i], max.distance = 0.5)
   
   df <- data.frame(refT, refW, offT, offW, matchW, junqueira, tm2009, tm2004, buc1987, craiova2006, sourceTerms);
   return(df);
@@ -1250,15 +1236,15 @@ autoTranslWordList <- function(terms, words, matchwo, offLang = "la", newLang = 
   for(wo in uniqWo){
     pos <- which(uniq[[wo]][["ind"]] == max(uniq[[wo]][["ind"]]));
     if(length(pos) > 1){
-        inc <- 1;
-        kk <- "";
-        while(length(kk) == 0 && inc < 10){
-          for(p in pos){
-            kk <- agrep(wo, uniq[[wo]][["match"]][[p]], max.distance = 0.1*inc);
-            if(length(kk) != 0) { pos <- p;}
-          }
-          inc <- inc + 1;
+      inc <- 1;
+      kk <- "";
+      while(length(kk) == 0 && inc < 10){
+        for(p in pos){
+          kk <- agrep(wo, uniq[[wo]][["match"]][[p]], max.distance = 0.1*inc);
+          if(length(kk) != 0) { pos <- p;}
         }
+        inc <- inc + 1;
+      }
       if(length(pos) > 1) {
         min <- 100;
         k <- 0;
@@ -1461,7 +1447,7 @@ compareRatioWTgraph <- function(df, title="", xtitle="", ytitle="", sources="", 
   g <- barplot(data, main = title, xlab = xtitle, ylab = ytitle, axis.lty=1,
                col = c("lightblue", "mistyrose"), beside = TRUE, width = 4,
                ann = FALSE, cex.names=0.8, horiz = TRUE, bty='L', xlim=range(0:lim));
-    legend("topright", inset = set, fill = c("lightblue", "mistyrose"), 
+  legend("topright", inset = set, fill = c("lightblue", "mistyrose"), 
          legend = leg, xjust=1, yjust=1, cex = 0.9, pt.cex = 1, bty="n");
   text(ycoord , g, round(ycoord, 3), cex=0.8, pos=4);
 }
@@ -1471,7 +1457,6 @@ compareRatioWTgraphS <- function(df, title="", xtitle="", ytitle="", sources="",
   df2 <- t(df);
   df2 <- as.data.frame(df2);
   data <- as.matrix(df2);
-  #data <- data.table(df2, key="noTerms");
   ycoord <- c();
   colours <- c();
   for(i in 1:length(sources)) {
@@ -1484,8 +1469,55 @@ compareRatioWTgraphS <- function(df, title="", xtitle="", ytitle="", sources="",
                col = colours, beside = TRUE, width = 4,
                ann = FALSE, cex.names=0.9, horiz = TRUE, bty='L', xlim=range(0:lim));
   #legend("topright", inset = set, fill = c("lightblue", "mistyrose"), 
-         #legend = leg, xjust=1, yjust=1, cex = 0.9, pt.cex = 1, bty="n");
+  #legend = leg, xjust=1, yjust=1, cex = 0.9, pt.cex = 1, bty="n");
   text(ycoord , g, round(ycoord, 2), cex=0.8, pos=4);
+}
+compareRatioWTgraph2 <- function(df, title="", xtitle="", ytitle="", sources="", val="", leg="", lim=0, set=c(0, 0)){
+  df<-df[order(df[,1], decreasing=TRUE),];
+  if(sources == "") { sources <- row.names(df);}
+  df2 <- t(df);
+  df2 <- as.data.frame(df2);
+  data <- as.matrix(df2);
+  ycoord <- c();
+  for(i in 1:length(sources)) { ycoord <- c(ycoord, data[1,i], data[2,i]); }
+  par(mgp=c(7,1,0));
+  par(mar = (c(5.1, 10.1, 5.1, 6.5)+0.1), xpd = TRUE, las=1, family="serif", font.lab = 6, font.axis = 6);
+  g <- barplot(data, main = title, axis.lty=1,
+               col = c("lightblue", "mistyrose"), beside = TRUE, width = 5,
+               ann = FALSE, cex.names=0.9, horiz = TRUE, bty='L', xlim=range(0:lim),
+               space = c(0,0.5));
+  #g <- barplot(data, axes = FALSE, ann = FALSE, col = c("lightblue", "mistyrose"), beside = TRUE, width = 5, horiz = TRUE, bty='L', xlim=range(0:lim));
+  axis(1, cex.axis = 1)
+  #axis(2, at =  cex.axis = 1)
+  title(ylab = ytitle, cex.lab = 1.2,line = 7.5)
+  title(xlab = xtitle, cex.lab = 1.2,line = 3.5, family="serif", font.axis = 6, font.lab = 6)
+  legend("topright", inset = set, fill = c("lightblue", "mistyrose"), 
+         legend = leg, xjust=1, yjust=1, cex = 1, pt.cex = 1, bty="n");
+  text(ycoord+0 , g+0, round(ycoord, 1), cex=0.9, pos=4);
+}
+compareRatioWTgraphS2 <- function(df, title="", xtitle="", ytitle="", sources="", val="", leg="", lim=0){
+  df<-df[order(df[,1], decreasing=TRUE), , drop = FALSE];
+  if(sources == "") { sources <- row.names(df);}
+  df2 <- t(df);
+  df2 <- as.data.frame(df2);
+  data <- as.matrix(df2);
+  ycoord <- c();
+  colours <- c();
+  for(i in 1:length(sources)) {
+    ycoord <- c(ycoord, data[1,i]*100);
+    if(sources[i] %in% c("la", "en")) { colours <- c(colours, c("mistyrose")); }
+    else { colours <- c(colours, c("lightblue")); }
+  }
+  par(mgp=c(7,1,0));
+  par(mar = (c(5.1, 10.1, 1.1, 3.1)+0.1), xpd = TRUE, las=1, family="serif", font.lab = 6, font.axis = 6);
+  g <- barplot(data*100, main = title, axis.lty=1,
+               col = colours, beside = TRUE, width = 4,
+               ann = FALSE, cex.names=0.9, horiz = TRUE, bty='L', xlim=range(0:lim),
+               space = c(0,0.4));
+  axis(1, cex.axis = 1)
+  title(ylab = ytitle, cex.lab = 1.2,line = 7.5)
+  title(xlab = xtitle, cex.lab = 1.2,line = 3.5, family="serif", font.axis = 6, font.lab = 6)
+  text(ycoord , g, paste(round(ycoord, 1),"%"), cex=1, pos=4);
 }
 compareSynoT <- function(oTerms, terms, offLang = "la", newLang = "ro", sources){
   noConcepts <- c();
@@ -1796,6 +1828,7 @@ compareTime <- function(terms, sources = list(), langs = list(), noChar = c(), n
   }
   for(so in 1:length(sources)){
     text <- createText(terms, sources[[so]], langs[[so]], noChar, noTerms);
+    cat(text);
     times[[so]] <- time(text, terms, sources[[so]], langs[[so]], repeats, loops);
   }
   df <- data.frame(times);
@@ -1812,6 +1845,24 @@ plotdf <- function(df, rep){
   }
   df2 <- data.frame(elapsed = val, sources = sources, noRepet = noRep);
   return(df2);
+}
+comparedf <- function(df){
+  sources <- levels(df[,"sources"]);
+  min <- c(); fQ <- c(); med <- c(); mean <- c(); tQ <- c(); max <- c();
+  for(so in sources){
+    sum <- summary(df[df$sources == so, "elapsed"]);
+    min <- c(min, sum["Min."]);
+    fQ <- c(fQ, sum["1st Qu."]);
+    med <- c(med, sum["Median"]);
+    mean <- c(mean, sum["Mean"]);
+    tQ <- c(tQ, sum["3rd Qu."]);
+    max <- c(max, sum["Max."]);
+  }
+  df2 <- data.frame(sources, min, firstQu = fQ, median = med, mean, thirdQu = tQ, max);
+  return(df2);
+}
+translateText <- function(text, terms, sources, langs){
+  
 }
 #global data frames: terms and relations
 #cat("Connecting to database ...");
@@ -2156,7 +2207,13 @@ plotdf <- function(df, rep){
 # gAll <- qplot(noRepet, elapsed, data = compareFR, color = sources, size = I(6), main = "Variația duratei de execuție a unei căutări de termeni \nîntr-un text, corespunzător surselor", xlab = "Numărul de repetiții al execuției funcției de căutare", ylab = "Durata de execuție", margins = TRUE);
 # gAll+theme(axis.text=element_text(size=14), axis.title=element_text(size=14,face="bold"));
 
+# g <- qplot(noRepet, elapsed, data = compareFR[compareFR$sources != "allSources",], color = sources, size = I(6), main = "", xlab = "Numărul de repetiții al execuției funcției de căutare", ylab = "Timpul de execuție (sec)", margins = TRUE);
+# g+theme(axis.text=element_text(size=17), axis.title=element_text(size=17, family="serif"));
+# gAll <- qplot(noRepet, elapsed, data = compareFR, color = sources, size = I(6), main = "", xlab = "Numărul de repetiții al execuției funcției de căutare", ylab = "Timpul de execuție (sec)", margins = TRUE);
+# gAll+theme(axis.text=element_text(size=17), axis.title=element_text(size=17, family="serif"));
 
+# sums <- comparedf(compareFR); #summary for each source
+# sums <- sums[order(sums[,"mean"]),];
 
 # write.csv(finalLaEn2, "../Data/finalLaEn.csv");
 # writeLines(final[final$source == "reference", "term"], "../Data/referenceTerms.csv");
