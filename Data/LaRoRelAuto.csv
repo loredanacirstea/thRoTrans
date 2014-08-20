@@ -421,8 +421,8 @@
 11552,"palatum molle","palat moale","moale","molle","moale","moale",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 11552,"velum palatinum","palat moale","văl","velum","moale","palat","moale",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 11552,"velum palatinum","palat moale","palatin","palatinum","palat","palat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-11559,"tela submucosa","submucoasă","armament","","","submucoasă","armament","submucoasa","submucoasa","submucoasă","submucoasă","","submucoasă",NA,NA,NA,NA
-11559,"tela submucosa","submucoasă","submucoasa","tela submucosa","submucoasă","submucoasă","armament","submucoasa","submucoasa","submucoasă","submucoasă","","submucoasă",NA,NA,NA,NA
+11559,"tela submucosa","submucoasă","armament","","","submucoasă","armament","submucoasa","submucoasa","submucoasă","submucoasă",NA,NA,NA,NA,NA,NA
+11559,"tela submucosa","submucoasă","submucoasa","tela submucosa","submucoasă","submucoasă","armament","submucoasa","submucoasa","submucoasă","submucoasă",NA,NA,NA,NA,NA,NA
 11562,"gingiva","gingie","gume","gingiva","gingie","gingie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 11571,"sulcus gingivalis","crevasă gingivală","canelură","sulcus","crevasă","crevasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 11571,"sulcus gingivalis","crevasă gingivală","gingival","gingivalis","gingival","gingival","gingivală",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -514,8 +514,8 @@
 12014,"cellula accumulans adipem","celulă Ito-Nemoto","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
 12014,"cellula accumulans adipem","celulă Ito-Nemoto","accumulans","accumulans","Ito-Nemoto","celulă","stelată","perisinusoidală","adipocit","hepatic","Ito-Nemoto",NA,NA,NA,NA,NA,NA
 12014,"cellula accumulans adipem","celulă Ito-Nemoto","grăsime","adipem","adipocit","adipocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-12015,"vas sinusoideum","sinusoid","vas","vas sinusoideum","sinusoid","sinusoid","vas","sinusoideum","sinusoidă","sinusoid","sinusoid","sinusoid","",NA,NA,NA,NA
-12015,"vas sinusoideum","sinusoid","sinusoideum","","","sinusoid","vas","sinusoideum","sinusoidă","sinusoid","sinusoid","sinusoid","",NA,NA,NA,NA
+12015,"vas sinusoideum","sinusoid","vas","vas sinusoideum","sinusoid","sinusoid","vas","sinusoideum","sinusoidă","sinusoid","sinusoid",NA,NA,NA,NA,NA,NA
+12015,"vas sinusoideum","sinusoid","sinusoideum","","","sinusoid","vas","sinusoideum","sinusoidă","sinusoid","sinusoid",NA,NA,NA,NA,NA,NA
 12019,"spatium portale","spațiu port","spațiu","spatium","spațiu","spațiu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12019,"spatium portale","spațiu port","portal","portale","portal","portal","port",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12061,"pancreas","pancreas","pancreas","pancreas","pancreas","pancreas",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -541,8 +541,8 @@
 12152,"corpus neuroepitheliale","corp neuroepitelial","neuroepitheliale","neuroepitheliale","neuroepitelial","neuroepitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12161,"cartilagines tracheales","cartilaje ale traheei","cartilajelor","cartilagines","cartilaje","cartilaje",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12161,"cartilagines tracheales","cartilaje ale traheei","tracheales","tracheales","traheei","traheale","traheei",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-12163,"tunica adventitia","adventice","mantie","tunica adventitia","adventice","adventice","mantie","întâmplător","adventitial","strat","tunică","adventice","adventice","adventice","",NA,NA
-12163,"tunica adventitia","adventice","întâmplător","","","adventice","mantie","întâmplător","adventitial","strat","tunică","adventice","adventice","adventice","",NA,NA
+12163,"tunica adventitia","adventice","mantie","tunica adventitia","adventice","adventice","mantie","întâmplător","adventitial","strat","tunică","adventice","adventice",NA,NA,NA,NA
+12163,"tunica adventitia","adventice","întâmplător","","","adventice","mantie","întâmplător","adventitial","strat","tunică","adventice","adventice",NA,NA,NA,NA
 12165,"bronchus","bronhie","bronhiile","bronchus","bronhie","bronhie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12180,"bronchiolus","bronhiolă","bronhiolă","bronchiolus","bronhiolă","bronhiolă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12213,"fibra collageni","fibră de colagen","fibră","fibra","fibră","fibră",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -556,8 +556,8 @@
 12414,"systemata genitalia","sisteme genitale","sisteme","systemata","sisteme","sisteme",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12414,"systemata genitalia","sisteme genitale","organele genitale","genitalia","genitale","genitale",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12418,"ovarium","ovar","ovar","ovarium","ovar","ovar",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-12421,"tunica albuginea ovarii","albuginee","mantie","","","albuginee","mantie","albuginea","ovar","tunica","albuginea","tunică","albuginee","ovariană","albuginee","","albuginee"
-12421,"tunica albuginea ovarii","albuginee","albuginea","tunica albuginea","albuginee","albuginee","mantie","albuginea","ovar","tunica","albuginea","tunică","albuginee","ovariană","albuginee","","albuginee"
+12421,"tunica albuginea ovarii","albuginee","mantie","","","albuginee","mantie","albuginea","ovar","tunica","albuginea","tunică","albuginee","ovariană","albuginee",NA,NA
+12421,"tunica albuginea ovarii","albuginee","albuginea","tunica albuginea","albuginee","albuginee","mantie","albuginea","ovar","tunica","albuginea","tunică","albuginee","ovariană","albuginee",NA,NA
 12421,"tunica albuginea ovarii","albuginee","ovar","ovarii","ovariană","ovariană","corticală","cortex","ovarian","medulară","ovarului",NA,NA,NA,NA,NA,NA
 12422,"cortex ovarii","corticală ovariană","cortexul","cortex","cortex","cortex","cerebelos","cerebral","cerebrală","corticală","corticosuprarenală",NA,NA,NA,NA,NA,NA
 12422,"cortex ovarii","corticală ovariană","ovar","ovarii","ovariană","ovariană","corticală","cortex","ovarian","medulară","ovarului",NA,NA,NA,NA,NA,NA
@@ -610,8 +610,8 @@
 12485,"corpus polare primum","prim globul polar","în primul rând","primum","prim","prim",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12485,"polocytus primus","prim globul polar","polocytus","polocytus","polar","globul","polar","prim","corp",NA,NA,NA,NA,NA,NA,NA,NA
 12485,"polocytus primus","prim globul polar","în primul rând","primus","prim","prim",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-12613,"tunica albuginea","albuginee","mantie","","","albuginee","mantie","albuginea","tunica","albuginea","tunică","albuginee","albuginee","","albuginee",NA,NA
-12613,"tunica albuginea","albuginee","albuginea","tunica albuginea","albuginee","albuginee","mantie","albuginea","tunica","albuginea","tunică","albuginee","albuginee","","albuginee",NA,NA
+12613,"tunica albuginea","albuginee","mantie","","","albuginee","mantie","albuginea","tunica","albuginea","tunică","albuginee","albuginee",NA,NA,NA,NA
+12613,"tunica albuginea","albuginee","albuginea","tunica albuginea","albuginee","albuginee","mantie","albuginea","tunica","albuginea","tunică","albuginee","albuginee",NA,NA,NA,NA
 12628,"zonula occludens","joncțiune strânsă","brâu mic","zonula","zonula","zonula","joncțiune",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12628,"zonula occludens","joncțiune strânsă","închide","occludens","ocludens","ocluzie","ocluzivă","ocludens","ocludentă","strânsă",NA,NA,NA,NA,NA,NA,NA
 12721,"textus muscularis levis","țesut muscular neted","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -648,8 +648,8 @@
 12944,"corpus pineale","glandă pineală","corp","corpus","corp","cerebrală","corp","pericarion","globul","corpuscul","neuroepitelial",NA,NA,NA,NA,NA,NA
 12944,"corpus pineale","glandă pineală","pineala","pineale","pineală","pineală","pineal",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12945,"pinealocytus","pinealocit","pinealocytus","pinealocytus","pinealocit","pinealocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-12945,"endocrinocytus pinealis","pinealocit","endocrinocytus","endocrinocytus pinealis","pinealocit","pinealocit","pinealocytus","endocrinocytus","pineala","pinealocyte","pinealocit","pinealocit","pinealocit","pinealocit","pinealocit","",NA
-12945,"endocrinocytus pinealis","pinealocit","pineala","","","pinealocit","pinealocytus","endocrinocytus","pineala","pinealocyte","pinealocit","pinealocit","pinealocit","pinealocit","pinealocit","",NA
+12945,"endocrinocytus pinealis","pinealocit","endocrinocytus","endocrinocytus pinealis","pinealocit","pinealocit","pinealocytus","endocrinocytus","pineala","pinealocyte","pinealocit","pinealocit","pinealocit",NA,NA,NA,NA
+12945,"endocrinocytus pinealis","pinealocit","pineala","","","pinealocit","pinealocytus","endocrinocytus","pineala","pinealocyte","pinealocit","pinealocit","pinealocit",NA,NA,NA,NA
 12946,"astrocytus","astrocit","astrocytus","astrocytus","astrocit","astrocit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12948,"neurofibra non myelinata","fibră nervoasă amielinică","neurofibra","neurofibra","nervoasă","nervoasă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12948,"neurofibra non myelinata","fibră nervoasă amielinică","nu","non myelinata","amielinică","fibră","nervoasă","amielinică","neurofibra","nu","myelinata","nonmyelinated","nerv","fibră","fibră","nervoasă","nemielinizată"
@@ -662,8 +662,8 @@
 12969,"parathyrocytus oxyphilicus","celulă oxifilă","parathyrocytus","parathyrocytus oxyphilicus","celulă oxifilă","celulă","oxifilă","parathyrocytus","oxyphilicus","paratiroidian","oxyphil","celulă","celulă","paratiroidiană","oxifilă","celulă","oxifilă"
 12969,"parathyrocytus oxyphilicus","celulă oxifilă","oxyphilicus","","","celulă","oxifilă","parathyrocytus","oxyphilicus","paratiroidian","oxyphil","celulă","celulă","paratiroidiană","oxifilă","celulă","oxifilă"
 12974,"cortex","corticosuprarenală","cortexul","cortex","cortex","cortex","cerebelos","cerebral","cerebrală","corticală","corticosuprarenală",NA,NA,NA,NA,NA,NA
-12981,"corticosterocytus spongiosus","spongiocit","corticosterocytus","corticosterocytus spongiosus","spongiocit","spongiocit","corticosterocytus","spongios","spongios","cortical","adrenalocyte","spongiocit","spongiocit","spongiocit","",NA,NA
-12981,"corticosterocytus spongiosus","spongiocit","spongios","","","spongiocit","corticosterocytus","spongios","spongios","cortical","adrenalocyte","spongiocit","spongiocit","spongiocit","",NA,NA
+12981,"corticosterocytus spongiosus","spongiocit","corticosterocytus","corticosterocytus spongiosus","spongiocit","spongiocit","corticosterocytus","spongios","spongios","cortical","adrenalocyte","spongiocit","spongiocit",NA,NA,NA,NA
+12981,"corticosterocytus spongiosus","spongiocit","spongios","","","spongiocit","corticosterocytus","spongios","spongios","cortical","adrenalocyte","spongiocit","spongiocit",NA,NA,NA,NA
 12983,"medulla","medulosuprarenală","măduvă","medulla","medulară","măduva","medulară","medulosuprarenală","măduvă",NA,NA,NA,NA,NA,NA,NA,NA
 12990,"insula pancreatica","insulă pancreatică","insulă","insula","insulă","insulă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 12990,"insula pancreatica","insulă pancreatică","pancreatic","pancreatica","pancreatică","pancreatică",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -678,17 +678,17 @@
 13071,"vasa sanguinea et lymphatica","vase sangvine și limfatice","și","et","limfatice","vase","sangvine","și","limfatice","sanguine","sanghine",NA,NA,NA,NA,NA,NA
 13071,"vasa sanguinea et lymphatica","vase sangvine și limfatice","limfatica","lymphatica","limfatice","limfatice",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 13081,"arteria","arteră","arteră","arteria","arteră","arteră",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-13082,"tunica intima","intimă","mantie","tunica intima","intimă","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă","intimă",""
-13082,"tunica intima","intimă","cel mai intim","","","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă","intimă",""
-13082,"tunica interna","intimă","mantie","tunica intima","intimă","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă","intimă",""
-13082,"tunica interna","intimă","intern","","","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă","intimă",""
+13082,"tunica intima","intimă","mantie","tunica intima","intimă","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă",NA,NA
+13082,"tunica intima","intimă","cel mai intim","","","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă",NA,NA
+13082,"tunica interna","intimă","mantie","tunica intima","intimă","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă",NA,NA
+13082,"tunica interna","intimă","intern","","","intimă","mantie","cel mai intim","mantie","intern","intima","intimă","tunică","intimă","intimă",NA,NA
 13083,"endothelium vasculare","endoteliu vascular","endoteliul","endothelium","endoteliu","endoteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 13083,"endothelium vasculare","endoteliu vascular","vasculare","vasculare","vascular","vascular",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-13104,"vas capillare","capilar","vas","vas capillare","capilar","capilar","vas","scapulo","capilar","vas","capilar","capilar","vas","capilar","capilar","",NA
-13104,"vas capillare","capilar","scapulo","","","capilar","vas","scapulo","capilar","vas","capilar","capilar","vas","capilar","capilar","",NA
+13104,"vas capillare","capilar","vas","vas capillare","capilar","capilar","vas","scapulo","capilar","vas","capilar","capilar","vas","capilar",NA,NA,NA
+13104,"vas capillare","capilar","scapulo","","","capilar","vas","scapulo","capilar","vas","capilar","capilar","vas","capilar",NA,NA,NA
 13109,"pericytus","pericit","pericytus","pericytus","pericit","pericit",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-13155,"vas lymphocapillare","capilar limfatic","vas","vas lymphocapillare","capilar limfatic","capilar","limfatic","vas","lymphocapillare","limfatic","capilar","capilar","limfatic","capilar","limfatic","capilar limfatic",""
-13155,"vas lymphocapillare","capilar limfatic","lymphocapillare","","","capilar","limfatic","vas","lymphocapillare","limfatic","capilar","capilar","limfatic","capilar","limfatic","capilar limfatic",""
+13155,"vas lymphocapillare","capilar limfatic","vas","vas lymphocapillare","capilar limfatic","capilar","limfatic","vas","lymphocapillare","limfatic","capilar","capilar","limfatic","capilar","limfatic",NA,NA
+13155,"vas lymphocapillare","capilar limfatic","lymphocapillare","","","capilar","limfatic","vas","lymphocapillare","limfatic","capilar","capilar","limfatic","capilar","limfatic",NA,NA
 13178,"textus lymphoideus","țesut limfoid","text","textus","țesut","țesut","neted","epitelial",NA,NA,NA,NA,NA,NA,NA,NA,NA
 13178,"textus lymphoideus","țesut limfoid","lymphoideus","lymphoideus","limfoid","limfoid","limfatic","limfonodul",NA,NA,NA,NA,NA,NA,NA,NA,NA
 13180,"cellula dendritica nodularis","celulă dendritică foliculară","celulă","cellula","celulă","celulă","epitelială","foliculară","scuamoasă","celule","multinucleată","stelată","centroacinară","limfocit","receptoare",NA,NA
@@ -900,8 +900,8 @@
 13904,"auris externa","ureche externă","extern","externa","externă","externă",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 13910,"auris media","ureche medie","ureche","auris","ureche","ureche",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 13910,"auris media","ureche medie","mass-media","media","medie","medie",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-13917,"membrana tympanica","timpan","filme","membrana tympanica","timpan","timpan","filme","tympanica","timpanice","membrană","membrană","timpanică","timpan","membrană","timpanică","timpan","timpan"
-13917,"membrana tympanica","timpan","tympanica","","","timpan","filme","tympanica","timpanice","membrană","membrană","timpanică","timpan","membrană","timpanică","timpan","timpan"
+13917,"membrana tympanica","timpan","filme","membrana tympanica","timpan","timpan","filme","tympanica","timpanice","membrană","membrană","timpanică","timpan","membrană","timpanică","timpan",NA
+13917,"membrana tympanica","timpan","tympanica","","","timpan","filme","tympanica","timpanice","membrană","membrană","timpanică","timpan","membrană","timpanică","timpan",NA
 13931,"epithelium pseudostratificatum","epiteliu pseudostratificat","epiteliu","epithelium","epiteliu","epiteliu",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 13931,"epithelium pseudostratificatum","epiteliu pseudostratificat","pseudostratificatum","pseudostratificatum","pseudostratificat","pseudostratificat",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 13934,"auris interna","ureche internă","ureche","auris","ureche","ureche",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
