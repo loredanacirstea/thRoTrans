@@ -1792,13 +1792,14 @@ comparedf <- function(df){
   df2 <- data.frame(sources, min, firstQu = fQ, median = med, mean, thirdQu = tQ, max);
   return(df2);
 }
-parseText <- function(text, terms, sources, langs){
+translateText <- function(textFile, terms, sources, langs, lg, sourc){
   if(length(sources) == 1){ find <- as.character(terms[terms$lang %in% langs & terms$source %in% sources, "term"]); }
   else { find <- unique(as.character(terms[terms$lang %in% langs & terms$source %in% sources, "term"])); }
   nwo <- list();
   ind <- list();
   ind["ind"] <- c();
   ind["len"] <- c();
+  text <- readLines(textFile);
   txt <- unlist(strsplit(text, " "));
   ii <- c();
   aterms <- list();
@@ -1815,11 +1816,12 @@ parseText <- function(text, terms, sources, langs){
   for(or in ord){
     for(term in nwo[[as.character(or)]]){
       wo <- unlist(strsplit(term, " "));
-      ii <- agrep(wo[1], txt, max.distance = 0.2, ignore.case = TRUE);
+      #ii <- agrep(wo[1], txt, max.distance = 0, ignore.case = TRUE);
+      ii <- grep(wo[1], txt, ignore.case = TRUE, value = TRUE, fixed = TRUE);
       aterms[[term]] <- c();
       if(length(wo) == 1) { 
         #cat(term, ": ", which((nchar(txt[ii])- nchar(wo[1]))<4), "\n");
-        if(length(agrep(wo[1], txt, max.distance = 0.1, ignore.case = TRUE))!=0){
+        if(length(grep(wo[1], txt, value = TRUE, fixed = TRUE, ignore.case = TRUE))!=0){
           aterms[[term]] <- c(aterms[[term]], txt[ii][which((nchar(txt[ii])- nchar(wo[1]))<3)]); }
       }
       else if(length(ii) >0){
@@ -1829,7 +1831,7 @@ parseText <- function(text, terms, sources, langs){
             if(length(txt[j+1])>0 && length(wo[i])>0)
               if(is.na(wo[i]) == FALSE && is.na(txt[j+1]) == FALSE)
                 if(wo[i] != " " && txt[j+1] != " "){
-                  if(length(agrep(wo[i],txt[j+1], max.distance = 0.2, ignore.case = TRUE)) == 0) { ii <- ii[ii!=j]; }
+                  if(length(grep(wo[i],txt[j+1], value = TRUE, fixed = TRUE, ignore.case = TRUE)) == 0) { ii <- ii[ii!=j]; }
                 }
               else { ii <- ii[ii!=j]; }
             else { ii <- ii[ii!=j]; }
@@ -1882,9 +1884,33 @@ parseText <- function(text, terms, sources, langs){
     }
     if(df[length(row.names(df)),1] < nchar(text)){ text2 <- c(text2, substr(text, df[length(row.names(df)),1]+ df[length(row.names(df)),2], nchar(text))); }
     text2 <- paste(text2, sep = "", collapse = "");
-    return(text2);
-  } else { return(text); }
+    #return(text2);
+    tt <- text2;
+  } else {
+    #return(text);
+    tt <- text;
+    cat("No changes in the document.");
+    return();
+  }
+  writeLines(unlist(strsplit(tt,"\n")), "../Data/translate.txt");
+  cat("Check text. Copy and paste the text into Google Translate or another tool, 
+        then copy and paste the result into the same file. Make sure you have an \n after the last line, 
+      but not more Press Enter when finished.");
+  kk <- readLines(n=1);
+  tt <- readLines("../Data/translate.txt");
+  #return(tt);
+  i <- 1;
+  for(line in 1:length(tt)){
+    if(length(grep("<",tt[line])) != 0 && length(grep(">",tt[line])) != 0){
+      id <- as.character(terms[terms$lang == langs & terms$term == gsub("[[:digit:]]", "", names(unlist(aterms))[match(tm[i],unlist(aterms))]), "term_id"])[1];
+      tt[line] <- as.character(terms[terms$term_id == id & terms$lang == lg & terms$source == sourc, "term"])[1];
+      i <- i +1;
+    }
+  }
+  #writeLines(tt, "../Data/translate.txt");
+  writeLines(paste(tt, sep = "", collapse = ""),  "../Data/translate.txt");
 }
+
 #global data frames: terms and relations
 #cat("Connecting to database ...");
 
