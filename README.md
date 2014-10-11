@@ -1,5 +1,7 @@
-README
+My Graduation Thesis
 =========
+
+###_Algorithm of translation in the Romanian language for the Terminologia Histologica and APIs for a controlled vocabulary_
 
 
 thRoTrans is part of my graduation thesis project for the University of Medicine and Pharmacy "Carol Davila", titled: 
@@ -24,11 +26,16 @@ Short Description
 ------------------
  - R code:
     - terminology maintenance and browsing, with a simple User Interface included
-    - algorithm for creating a computable translation in Romanian
-        - extendable to any other Latin language
-        - 
+    - algorithm for creating a computable translation in Romanian, extendable to any other Latin language, exemplified on 500 histological concepts
+ - computability:
+    - no linking words
+    - only one term per concept (no synonyms for the terms)
+    - only one translation for each Latin word / expression (no synonyms for words / expressions)
+    - 1:1 ratio between the Latin words and the new language words for each term
+    - words similar to Latin will be preferred
+    - terms with fewer words will be preferred.
  - suggestions for improving Terminologia Histologica from a morpho-semantic point of view.
- - 
+ - issues with Terminologia Histologica as it was published at the time when the thesis was written (final version - August 2014)
 
 Links
 -------
@@ -38,7 +45,8 @@ Links
  - Video demos of the R package:
     - simple browse function: https://www.youtube.com/watch?v=-wN2op1u7s8
     - semi-automatic translation in a new language - user perspective: https://www.youtube.com/watch?v=-BprxBS7qiY#t=10
- - Romanian editable thesis (with versioning): https://docs.google.com/document/d/19GR2oOqCHePJ5lNXs3runAkDD-INixnhkKej4mqjtwc/edit?usp=sharing 
+ - Summary (English): _to come_
+ - Editable thesis (Romanian) (with versioning): https://docs.google.com/document/d/19GR2oOqCHePJ5lNXs3runAkDD-INixnhkKej4mqjtwc/edit?usp=sharing 
  - Final thesis (Romanian) (.pdf): https://drive.google.com/file/d/0B1GtDMuhK2dnZlhIaEJRUkEtdFU/edit?usp=sharing 
  - Official documents, data, intermediary work: https://drive.google.com/folderview?id=0B1GtDMuhK2dnZHNpRmhaaElibVU&usp=sharing
  - Transparent collaboration and organisational issues: https://groups.google.com/forum/#!categories/public-witness/
