@@ -1,8 +1,10 @@
-#install.packages("RCurl");
+ontoinstall <- function() {
+  install.packages("RCurl");
+  install.packages("ggplot2");
+  install.packages("stringdist");
+}
 library(RCurl);
-#install.packages("ggplot2");
 library("ggplot2");
-#install.packages("stringdist");
 library(stringdist)
 
 #translation function - example: translate("term", "ro") (! attention term with language!! different terminologies gives only the first)
@@ -586,7 +588,7 @@ dataOptions <- function(){
 ontobrowse <- function() {
   opt <- startOptions();
   if(opt == 4) {
-    return(cat("User interface exited. Check documentation for direct function use."));
+    return(cat("User interface exited."));
   }
   
   #opt==3 -> load from term
@@ -682,6 +684,9 @@ ontobrowse <- function() {
     endbrowse <- 0;
     while(endbrowse == 0){
       if(choice == 1){ browse(tm, rel, id, langs, lg); }
+      if(choice == 4) {  
+        return(cat("User interface exited.")); 
+      }
       cat("Enter term ID, < to go back to options or ? to search for a term. Press Enter.");
       opt <- readLines(n=1);
       if(opt == "<") { endbrowse <- 1;}
@@ -694,7 +699,7 @@ ontobrowse <- function() {
       }
       else {
         int <- as.integer(opt);
-        if(length(terms[terms$term_id == int,]) != 0) { id <- int; }
+        if(length(allTerms[allTerms$term_id == int,]) != 0) { id <- int; }
         else { cat("Invalid id."); }
       }
       if(choice == 2) {
@@ -712,7 +717,9 @@ ontobrowse <- function() {
       cat("Enter term id or < (back) or ? (search)");
     }
     if(choice == 3) {}
-    if(choice == 4) {}
+    if(choice == 4) {  
+      return(cat("User interface exited.")); 
+    }
     if(choice == 5) {}
     if(choice == 6) { 
       cat("Enter new language (2 letters): ");
@@ -1914,23 +1921,25 @@ translateText <- function(textFile, terms, sources, langs, lg, sourc){
 #global data frames: terms and relations
 #cat("Connecting to database ...");
 
-# x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
-# allTerms <- read.csv(text = x);
-# y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
-# allRel <- read.csv(text = y);
-# tm <- allTerms;
-# rel <- allRel;
-# orig <- 10001;
-# displayLg <-"la";
-# finalTerms <- data.frame();
-# finalWords <- data.frame();
-# LaRoRel <- data.frame();
-# LaRoRelOk <- data.frame();
-# LaRoRelAuto <- data.frame();
-# LaRoRelAutoOk <- data.frame();
-# 
-# z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
-# sample500 <- read.csv(text = z);
+ontoinitialize <- function() {
+  x <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term.csv");
+  allTerms <- read.csv(text = x);
+  y <- getURL("https://raw.githubusercontent.com/ctzurcanu/smp/master/data/term_relation.csv");
+  allRel <- read.csv(text = y);
+  tm <- allTerms;
+  rel <- allRel;
+  orig <- 10001;
+  displayLg <-"la";
+  finalTerms <- data.frame();
+  finalWords <- data.frame();
+  LaRoRel <- data.frame();
+  LaRoRelOk <- data.frame();
+  LaRoRelAuto <- data.frame();
+  LaRoRelAutoOk <- data.frame();
+  
+  z <- getURL("https://raw.githubusercontent.com/loredanacirstea/thRoTrans/master/Data/500terms.csv");
+  sample500 <- read.csv(text = z);
+}
 # newTranslation(sample500);
 
 

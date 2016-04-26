@@ -37,6 +37,13 @@ Short Description
  - suggestions for improving Terminologia Histologica from a morpho-semantic point of view.
  - issues with Terminologia Histologica as it was published at the time when the thesis was written (final version - August 2014)
 
+ - for code testing (Code/ontobrowse.r file):
+    - browsing functionality:
+        - load Code/Code.Rproj in RStudio; it will automatically load workspace data (Code/onto2.RData)
+        - type ontobrowse() in the RStudio console and follow the instructions
+    -  without loading preexisting data, make sure to: ontoinstall() and ontoinitialize() first
+    - the translation algorithm does not have a simple interface for now; the process steps are commented at the end of the Code/ontobrowse.r file, starting with the 1943 line: `newTranslation(sample500);`; process documented in detail in https://drive.google.com/file/d/0B1GtDMuhK2dnZlhIaEJRUkEtdFU/edit?usp=sharing (page 34), unfortunately only available in Romanian at this moment.
+
 Links
 -------
 
